@@ -1,0 +1,37 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry.json",
+	"name": "quas-ui",
+	"homepage": "https://github.com/idkfelix/quas-ui",
+	"items": [
+		{
+			"type": "registry:component",
+			"name": "confirm-dialog",
+			"title": "Confirm Dialog",
+			"description": "A simple confirmation dialog with a callback.",
+			"registryDependencies": ["alert-dialog"],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/confirm-dialog/confirm-dialog.svelte",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/ui/confirm-dialog/index.ts",
+					"type": "registry:file"
+				}
+			]
+		},
+		{
+			"type": "registry:hook",
+			"name": "use-boolean",
+			"title": "Use Boolean",
+			"description": "Hook to simplify working with booleans.",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/hooks/use-boolean.svelte.ts",
+					"type": "registry:file"
+				}
+			]
+		}
+	]
+}

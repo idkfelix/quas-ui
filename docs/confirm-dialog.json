@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "confirm-dialog",
+	"title": "Confirm Dialog",
+	"type": "registry:component",
+	"description": "A simple confirmation dialog with a callback.",
+	"registryDependencies": [
+		"alert-dialog"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\" module>\n\timport {ConfirmDialog} from './index.ts';\n\timport {mount, unmount} from 'svelte';\n\n\texport type ConfirmDialogVariant = 'default' | 'destructive';\n\texport type ConfirmDialogProps = {\n\t\ttitle: string;\n\t\tdescription: string;\n\t\tcallback: () => void;\n\t\tvariant?: ConfirmDialogVariant;\n\t\trequestDestroy: () => void;\n\t};\n\n\texport const confirmDialog = (\n\t\ttitle: string,\n\t\tdescription: string,\n\t\tcallback: () => void,\n\t\tvariant?: ConfirmDialogVariant,\n\t) => {\n\t\tconst instance = mount(ConfirmDialog, {\n\t\t\ttarget: document.body,\n\t\t\tprops: {\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tvariant,\n\t\t\t\tcallback,\n\t\t\t\trequestDestroy: () => unmount(instance),\n\t\t\t},\n\t\t});\n\t};\n</script>\n\n<script lang=\"ts\">\n\timport * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';\n\n\tlet {\n\t\ttitle,\n\t\tdescription,\n\t\tcallback,\n\t\tvariant = 'default',\n\t\trequestDestroy,\n\t}: ConfirmDialogProps = $props();\n\n\tconst onclick = () => {\n\t\tcallback();\n\t\trequestDestroy();\n\t};\n</script>\n\n<AlertDialog.Root open={true}>\n\t<AlertDialog.Content>\n\t\t<AlertDialog.Header>\n\t\t\t<AlertDialog.Title>{title}</AlertDialog.Title>\n\t\t\t<AlertDialog.Description>{description}</AlertDialog.Description>\n\t\t</AlertDialog.Header>\n\t\t<AlertDialog.Footer>\n\t\t\t<AlertDialog.Cancel onclick={requestDestroy}>Cancel</AlertDialog.Cancel>\n\t\t\t<AlertDialog.Action {onclick} {variant}>\n\t\t\t\t{variant == 'destructive' ? 'Delete' : 'Confirm'}\n\t\t\t</AlertDialog.Action>\n\t\t</AlertDialog.Footer>\n\t</AlertDialog.Content>\n</AlertDialog.Root>\n",
+			"type": "registry:file",
+			"target": "confirm-dialog/confirm-dialog.svelte"
+		},
+		{
+			"content": "import ConfirmDialog, {confirmDialog, type ConfirmDialogProps} from './confirm-dialog.svelte';\n\nexport {\n\tConfirmDialog,\n\tconfirmDialog,\n\t//\n\ttype ConfirmDialogProps,\n};\n",
+			"type": "registry:file",
+			"target": "confirm-dialog/index.ts"
+		}
+	]
+}
