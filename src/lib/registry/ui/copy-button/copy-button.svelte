@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { ButtonProps } from '$lib/components/ui/button/index.js';
+	import type { ButtonProps } from '$lib/registry/ui/button/index.js';
 	import type { WithElementRef } from 'bits-ui';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
@@ -14,7 +14,7 @@
 	import { CopyIcon, CheckIcon, XIcon } from '@lucide/svelte';
 	import { mergeProps } from 'bits-ui';
 	import { scale } from 'svelte/transition';
-	import { Button } from '$lib/components/ui/button/index.js';
+	import { Button } from '$lib/registry/ui/button/index.js';
 	import { UseClipboard } from '$lib/registry/hooks/use-clipboard.svelte.js';
 	import { cn } from '$lib/utils.js';
 
