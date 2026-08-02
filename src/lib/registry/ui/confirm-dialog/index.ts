@@ -1,7 +1,4 @@
-import Root, { 
-	type ConfirmDialogProps,
-	confirmDialog
-} from './confirm-dialog.svelte';
+import Root, { type ConfirmDialogProps, confirmDialog } from './confirm-dialog.svelte';
 
 export {
 	Root,

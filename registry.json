@@ -27,6 +27,21 @@
 		},
 		{
 			"type": "registry:component",
+			"name": "async-button",
+			"registryDependencies": ["button", "spinner", "use-boolean"],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/async-button/async-button.svelte",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/ui/async-button/index.ts",
+					"type": "registry:file"
+				}
+			]
+		},
+		{
+			"type": "registry:component",
 			"name": "confirm-dialog",
 			"registryDependencies": ["alert-dialog"],
 			"files": [

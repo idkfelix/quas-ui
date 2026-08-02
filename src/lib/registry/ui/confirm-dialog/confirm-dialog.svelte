@@ -1,6 +1,6 @@
 <script lang="ts" module>
-	import type { ButtonVariant } from '$lib/registry/ui/button/index.js';
 	import { mount, unmount } from 'svelte';
+	import type { ButtonVariant } from '$lib/registry/ui/button/index.js';
 	import { ConfirmDialog } from './index.ts';
 
 	export type ConfirmDialogProps = {

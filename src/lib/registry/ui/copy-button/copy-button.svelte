@@ -14,8 +14,8 @@
 	import { CopyIcon, CheckIcon, XIcon } from '@lucide/svelte';
 	import { mergeProps } from 'bits-ui';
 	import { scale } from 'svelte/transition';
-	import { Button } from '$lib/registry/ui/button/index.js';
 	import { UseClipboard } from '$lib/registry/hooks/use-clipboard.svelte.js';
+	import { Button } from '$lib/registry/ui/button/index.js';
 	import { cn } from '$lib/utils.js';
 
 	let {
@@ -26,7 +26,7 @@
 		text,
 		class: className,
 		children,
-		...rest
+		...restProps
 	}: CopyButtonProps = $props();
 
 	// svelte-ignore state_referenced_locally
@@ -37,7 +37,7 @@
 	let clipboard = new UseClipboard();
 
 	const merged = $derived(
-		mergeProps(rest, {
+		mergeProps(restProps, {
 			onclick: async () => {
 				const copied = await clipboard.copy(text);
 				onCopy?.(copied);
@@ -48,22 +48,22 @@
 
 <Button
 	bind:ref
+	class={cn('flex items-center gap-2', className)}
 	{size}
 	{variant}
-	class={cn('flex items-center gap-2', className)}
 	{...merged as ButtonProps}
 >
 	{#if clipboard.copied === true}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
-			<CheckIcon tabindex={-1} data-icon="inline-start"/>
+			<CheckIcon tabindex={-1} data-icon="inline-start" />
 		</div>
 	{:else if clipboard.copied === false}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
-			<XIcon tabindex={-1} data-icon="inline-start"/>
+			<XIcon tabindex={-1} data-icon="inline-start" />
 		</div>
 	{:else}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
-			<CopyIcon tabindex={-1} data-icon="inline-start"/>
+			<CopyIcon tabindex={-1} data-icon="inline-start" />
 		</div>
 	{/if}
 	{@render children?.()}
