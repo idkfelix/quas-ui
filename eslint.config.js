@@ -1,10 +1,10 @@
-import prettier from 'eslint-config-prettier';
 import path from 'node:path';
 import js from '@eslint/js';
+import prettier from 'eslint-config-prettier';
 import svelte from 'eslint-plugin-svelte';
-import {defineConfig, includeIgnoreFile} from 'eslint/config';
 import globals from 'globals';
 import ts from 'typescript-eslint';
+import { defineConfig, includeIgnoreFile } from 'eslint/config';
 
 const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
 
@@ -16,8 +16,8 @@ export default defineConfig(
 	prettier,
 	svelte.configs.prettier,
 	{
-		languageOptions: {globals: {...globals.browser, ...globals.node}},
-		rules: {'no-undef': 'off'},
+		languageOptions: { globals: { ...globals.browser, ...globals.node } },
+		rules: { 'no-undef': 'off' },
 	},
 	{
 		files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
@@ -34,5 +34,5 @@ export default defineConfig(
 			'svelte/no-useless-mustaches': 'warn',
 			'svelte/no-navigation-without-resolve': 'off',
 		},
-	},
+	}
 );

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import {cn, type WithElementRef} from '$lib/utils.js';
-	import type {HTMLAttributes} from 'svelte/elements';
+	import { cn, type WithElementRef } from '$lib/utils.js';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
 		ref = $bindable(null),
@@ -15,7 +15,7 @@
 	data-slot="alert-dialog-media"
 	class={cn(
 		"mb-2 inline-flex size-8 items-center justify-center rounded-md bg-muted sm:group-data-[size=default]/alert-dialog-content:row-span-2 *:[svg:not([class*='size-'])]:size-4",
-		className,
+		className
 	)}
 	{...restProps}
 >

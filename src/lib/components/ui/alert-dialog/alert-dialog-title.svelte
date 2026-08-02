@@ -1,6 +1,6 @@
 <script lang="ts">
-	import {AlertDialog as AlertDialogPrimitive} from 'bits-ui';
-	import {cn} from '$lib/utils.js';
+	import { AlertDialog as AlertDialogPrimitive } from 'bits-ui';
+	import { cn } from '$lib/utils.js';
 
 	let {
 		ref = $bindable(null),
@@ -14,7 +14,7 @@
 	data-slot="alert-dialog-title"
 	class={cn(
 		'font-heading text-sm font-medium sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2',
-		className,
+		className
 	)}
 	{...restProps}
 />

@@ -1,6 +1,6 @@
 <script lang="ts" module>
-	import {ConfirmDialog} from './index.ts';
-	import {mount, unmount} from 'svelte';
+	import { mount, unmount } from 'svelte';
+	import { ConfirmDialog } from './index.ts';
 
 	export type ConfirmDialogVariant = 'default' | 'destructive';
 	export type ConfirmDialogProps = {
@@ -15,7 +15,7 @@
 		title: string,
 		description: string,
 		callback: () => void,
-		variant?: ConfirmDialogVariant,
+		variant?: ConfirmDialogVariant
 	) => {
 		const instance = mount(ConfirmDialog, {
 			target: document.body,
