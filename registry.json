@@ -21,7 +21,7 @@
 			"registryDependencies": [],
 			"files": [
 				{
-					"path": "src/lib/hooks/use-boolean.svelte.ts",
+					"path": "src/lib/registry/hooks/use-boolean.svelte.ts",
 					"type": "registry:file"
 				}
 			]
@@ -32,7 +32,7 @@
 			"registryDependencies": [],
 			"files": [
 				{
-					"path": "src/lib/hooks/use-clipboard.svelte.ts",
+					"path": "src/lib/registry/hooks/use-clipboard.svelte.ts",
 					"type": "registry:file"
 				}
 			]

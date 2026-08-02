@@ -15,7 +15,7 @@
 	import { mergeProps } from 'bits-ui';
 	import { scale } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { UseClipboard } from '$lib/hooks/use-clipboard.svelte';
+	import { UseClipboard } from '$lib/registry/hooks/use-clipboard.svelte.js';
 	import { cn } from '$lib/utils.js';
 
 	let {
