@@ -1,12 +1,5 @@
 <script lang="ts">
-	import { AsyncButton } from '$lib/registry/ui/async-button/index.js';
+	import ModeToggle from '$lib/registry/ui/mode-toggle/mode-toggle.svelte';
 </script>
 
-<AsyncButton 
-	variant='outline'
-	onClickPromise={async () => {
-		await new Promise(resolve => setTimeout(resolve, 1000))
-	}}
->
-	test
-</AsyncButton>
+<ModeToggle />

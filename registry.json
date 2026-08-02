@@ -69,6 +69,21 @@
 					"type": "registry:file"
 				}
 			]
+		},
+		{
+			"type": "registry:component",
+			"name": "mode-toggle",
+			"registryDependencies": ["button"],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/mode-toggle/mode-toggle.svelte",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/ui/mode-toggle/index.ts",
+					"type": "registry:file"
+				}
+			]
 		}
 	]
 }
