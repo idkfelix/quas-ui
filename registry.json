@@ -16,6 +16,28 @@
 			]
 		},
 		{
+			"type": "registry:hook",
+			"name": "use-boolean",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/hooks/use-boolean.svelte.ts",
+					"type": "registry:file"
+				}
+			]
+		},
+		{
+			"type": "registry:hook",
+			"name": "use-clipboard",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/hooks/use-clipboard.svelte.ts",
+					"type": "registry:file"
+				}
+			]
+		},
+		{
 			"type": "registry:component",
 			"name": "confirm-dialog",
 			"registryDependencies": ["alert-dialog"],
@@ -26,17 +48,6 @@
 				},
 				{
 					"path": "src/lib/registry/ui/confirm-dialog/index.ts",
-					"type": "registry:file"
-				}
-			]
-		},
-		{
-			"type": "registry:hook",
-			"name": "use-boolean",
-			"registryDependencies": [],
-			"files": [
-				{
-					"path": "src/lib/registry/hooks/use-boolean.svelte.ts",
 					"type": "registry:file"
 				}
 			]
