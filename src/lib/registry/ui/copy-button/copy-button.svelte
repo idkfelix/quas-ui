@@ -55,15 +55,15 @@
 >
 	{#if clipboard.copied === true}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
-			<CheckIcon tabindex={-1} />
+			<CheckIcon tabindex={-1} data-icon="inline-start"/>
 		</div>
 	{:else if clipboard.copied === false}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
-			<XIcon tabindex={-1} />
+			<XIcon tabindex={-1} data-icon="inline-start"/>
 		</div>
 	{:else}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
-			<CopyIcon tabindex={-1} />
+			<CopyIcon tabindex={-1} data-icon="inline-start"/>
 		</div>
 	{/if}
 	{@render children?.()}

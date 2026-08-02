@@ -1,7 +1,11 @@
-import CopyButton, { type CopyButtonProps } from './copy-button.svelte';
+import Root, { 
+	type CopyButtonProps 
+} from './copy-button.svelte';
 
 export {
-	CopyButton,
+	Root,
+	type CopyButtonProps as Props,
 	//
+	Root as CopyButton,
 	type CopyButtonProps,
 };
