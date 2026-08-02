@@ -4,6 +4,18 @@
 	"homepage": "https://github.com/idkfelix/quas-ui",
 	"items": [
 		{
+			"type": "registry:theme",
+			"name": "theme",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/app.css",
+					"type": "registry:file",
+					"target": "~/src/app.css"
+				}
+			]
+		},
+		{
 			"type": "registry:component",
 			"name": "confirm-dialog",
 			"registryDependencies": ["alert-dialog"],
