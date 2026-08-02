@@ -6,8 +6,6 @@
 		{
 			"type": "registry:component",
 			"name": "confirm-dialog",
-			"title": "Confirm Dialog",
-			"description": "A simple confirmation dialog with a callback.",
 			"registryDependencies": ["alert-dialog"],
 			"files": [
 				{
@@ -23,8 +21,6 @@
 		{
 			"type": "registry:hook",
 			"name": "use-boolean",
-			"title": "Use Boolean",
-			"description": "Hook to simplify working with booleans.",
 			"registryDependencies": [],
 			"files": [
 				{
