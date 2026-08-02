@@ -7,7 +7,6 @@ export default defineConfig({
 	semi: true,
 	singleQuote: true,
 	trailingComma: 'es5',
-	ignorePatterns: ['bun.lock', '/static/'],
 	sortImports: {
 		internalPattern: ['$lib/'],
 		newlinesBetween: false,
@@ -78,4 +77,13 @@ export default defineConfig({
 	},
 	sortPackageJson: false,
 	svelte: true,
+	ignorePatterns: ['bun.lock', '/static/'],
+	overrides: [
+		{
+			files: ['package.json'],
+			options: {
+				useTabs: false,
+			},
+		},
+	],
 });
