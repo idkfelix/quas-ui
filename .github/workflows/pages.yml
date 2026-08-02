@@ -28,7 +28,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Build Registry
-        run: bun run build:registry -o ./static/styles/mira
+        run: bun run build:registry -o ./static
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
