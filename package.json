@@ -6,12 +6,11 @@
   "scripts": {
     "dev": "vite dev",
     "sync": "svelte-kit sync",
-    "build:svelte": "vite build",
-    "build:registry": "shadcn-svelte registry build",
+    "build": "vite build",
     "lint": "oxfmt --check && eslint .",
     "format": "oxfmt",
-    "check": "svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+    "ui:add": "shadcn-svelte add -y",
+    "ui:build": "shadcn-svelte registry build"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

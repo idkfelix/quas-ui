@@ -20,11 +20,11 @@
 
 	let {
 		ref = $bindable(null),
+		class: className,
 		size = 'icon',
 		variant = 'outline',
 		onCopy,
 		text,
-		class: className,
 		children,
 		...restProps
 	}: CopyButtonProps = $props();

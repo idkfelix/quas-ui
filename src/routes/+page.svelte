@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ModeToggle from '$lib/registry/ui/mode-toggle/mode-toggle.svelte';
+	import { CopyButton } from '$lib/registry/ui/copy-button/index.js';
 </script>
 
-<ModeToggle />
+<CopyButton text="test" />

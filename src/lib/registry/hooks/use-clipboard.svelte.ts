@@ -1,3 +1,21 @@
+/**
+ * A hook for working with the clipboard.
+ * ```svelte
+ * <script lang='ts'>
+ * 	const clipboard = new UseClipboard();
+ * </script>
+ *
+ * <button onclick={() => clipboard.copy(...)}>
+ * 	{#if clipboard.copied === undefined}
+ * 		Copy
+ * 	{:else if clipboard.copied}
+ * 		Copied!
+ * 	{:else}
+ * 		Failed
+ * 	{/if}
+ * </button>
+ * ```
+ */
 export class UseClipboard {
 	#delay: number;
 	#copiedStatus = $state<boolean>();
@@ -7,13 +25,17 @@ export class UseClipboard {
 		this.#delay = delay;
 	}
 
+	/** Copies text to clipboard */
 	async copy(text: string) {
 		if (this.#timeout) {
 			this.#copiedStatus = undefined;
 			clearTimeout(this.#timeout);
 		}
 
-		this.#copiedStatus = await copyText(text);
+		this.#copiedStatus = await navigator.clipboard.writeText(text).then(
+			() => true,
+			() => false
+		);
 
 		this.#timeout = setTimeout(() => {
 			this.#copiedStatus = undefined;
@@ -22,16 +44,8 @@ export class UseClipboard {
 		return this.#copiedStatus;
 	}
 
+	/** Whether the copy was successful */
 	get copied() {
 		return this.#copiedStatus;
-	}
-}
-
-export async function copyText(text: string): Promise<boolean> {
-	try {
-		await navigator.clipboard.writeText(text);
-		return true;
-	} catch {
-		return false;
 	}
 }
