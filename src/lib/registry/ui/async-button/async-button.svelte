@@ -1,14 +1,9 @@
 <script lang="ts" module>
 	import type { ButtonProps } from '$lib/registry/ui/button/index.js';
-	import type { MouseEventHandler } from 'svelte/elements';
 
 	export type AsyncButtonProps = ButtonProps & {
 		loading?: boolean;
-		onClickPromise?: (
-			e:
-				| Parameters<MouseEventHandler<HTMLButtonElement>>[0]
-				| Parameters<MouseEventHandler<HTMLAnchorElement>>[0]
-		) => Promise<void>;
+		onClickPromise?: (e: MouseEvent) => Promise<void>;
 	};
 </script>
 
