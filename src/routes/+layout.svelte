@@ -7,7 +7,5 @@
 
 <ModeWatcher />
 <div class="grid h-dvh place-items-center">
-	<div class="flex gap-4">
-		{@render children()}
-	</div>
+	{@render children()}
 </div>
