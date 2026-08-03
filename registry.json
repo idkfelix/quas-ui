@@ -42,6 +42,21 @@
 		},
 		{
 			"type": "registry:component",
+			"name": "chip",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/chip/chip.svelte",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/ui/chip/index.ts",
+					"type": "registry:file"
+				}
+			]
+		},
+		{
+			"type": "registry:component",
 			"name": "confirm-dialog",
 			"registryDependencies": ["alert-dialog"],
 			"files": [
