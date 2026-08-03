@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { ButtonProps } from '$lib/registry/ui/button/index.js';
+	import type { ButtonProps } from '$lib/registry/ui/button';
 
 	export type AsyncButtonProps = ButtonProps & {
 		loading?: boolean;
@@ -8,10 +8,10 @@
 </script>
 
 <script lang="ts">
+	import { Button } from '$lib/registry/ui/button';
+	import { Spinner } from '$lib/registry/ui/spinner';
+	import { cn } from '$lib/utils';
 	import { UseBoolean } from '$lib/registry/hooks/use-boolean.svelte';
-	import { Button } from '$lib/registry/ui/button/index.js';
-	import { Spinner } from '$lib/registry/ui/spinner/index.js';
-	import { cn } from '$lib/utils.js';
 
 	let {
 		ref = $bindable(null),

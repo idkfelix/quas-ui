@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { ButtonProps } from '$lib/registry/ui/button/index.js';
+	import type { ButtonProps } from '$lib/registry/ui/button';
 	import type { WithoutChildren } from 'bits-ui';
 
 	export type ModeToggleProps = WithoutChildren<
@@ -14,7 +14,7 @@
 	import { SunIcon, MoonIcon } from '@lucide/svelte';
 	import { toggleMode, mode } from 'mode-watcher';
 	import { scale } from 'svelte/transition';
-	import { Button } from '$lib/registry/ui/button/index.js';
+	import { Button } from '$lib/registry/ui/button';
 
 	let {
 		ref = $bindable(null),

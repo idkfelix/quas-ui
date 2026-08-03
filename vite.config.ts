@@ -15,6 +15,9 @@ export default defineConfig({
 					async: true,
 				},
 			},
+			vitePlugin: {
+				inspector: true,
+			},
 		}),
 	],
 });
