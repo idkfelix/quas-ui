@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import type { ButtonProps } from '$lib/registry/ui/button';
 
-	export type AsyncButtonProps = ButtonProps & {
+	export type ButtonAsyncProps = ButtonProps & {
 		loading?: boolean;
 		onClickPromise?: (e: MouseEvent) => Promise<void>;
 	};
@@ -22,7 +22,7 @@
 		onclick,
 		children,
 		...restProps
-	}: AsyncButtonProps = $props();
+	}: ButtonAsyncProps = $props();
 
 	let pending = new UseBoolean(false);
 	let loading = $derived(loadingProp || pending.current);
