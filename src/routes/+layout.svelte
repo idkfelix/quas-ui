@@ -6,6 +6,6 @@
 </script>
 
 <ModeWatcher />
-<div class="grid h-dvh place-items-center">
+<div class='w-2xl mx-auto py-8'>
 	{@render children()}
 </div>
