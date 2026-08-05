@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import CodePreview from "./code-preview.svelte";
+  import CodeBlock from "./code-block.svelte";
   import type { Snippet } from "svelte";
 
   let {example, children}: {example: string, children?: Snippet} = $props()
@@ -12,6 +12,6 @@
         {@render children?.()}
       </div>
     </div>
-    <CodePreview code={example} class='rounded-none'/>
+    <CodeBlock code={example} class='rounded-none'/>
   </div>
 </div>

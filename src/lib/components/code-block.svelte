@@ -1,15 +1,16 @@
 <script lang='ts'>
   import { CopyButton } from "$lib/registry/ui/copy-button";
-  import { highlightCode } from "$lib/highlighter";
+  import { highlightCode } from "$lib/utils/highlighter";
   import { cn } from "$lib/utils";
 
-  let {code, class: className}: {
+  let {code, lang, class: className}: {
     code: string;
     class?: string;
+    lang?: 'svelte' | 'typescript' | 'bash';
   } = $props();
 
   let cleanCode = $derived(code.replaceAll('$lib/registry/ui', '$lib/components/ui').replace(/\t/g, "  "));
-  let html = $derived(await highlightCode(cleanCode));
+  let html = $derived(await highlightCode(cleanCode, lang));
 </script>
 
 <div 

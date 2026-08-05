@@ -6,6 +6,4 @@
 </script>
 
 <ModeWatcher />
-<div class='w-2xl mx-auto py-8'>
-	{@render children()}
-</div>
+{@render children()}

@@ -4,7 +4,7 @@ import { createHighlighterCore } from 'shiki/core'
 const highlightCodeCache = new Map<string, string>();
 const highlighterPromise = createHighlighterCore({
   themes: [import("@shikijs/themes/ayu-dark"), import("@shikijs/themes/ayu-light")],
-  langs: [import("@shikijs/langs/typescript"), import("@shikijs/langs/svelte")],
+  langs: [import("@shikijs/langs/typescript"), import("@shikijs/langs/svelte"), import("@shikijs/langs/bash")],
   engine: createJavaScriptRegexEngine(),
 });
 

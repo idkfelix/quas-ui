@@ -132,7 +132,7 @@
 
 @layer components {
 	.shiki, .shiki span {
-		background-color: var(--color-card) !important;
+		background-color: var(--color-secondary) !important;
 	}
 
 	html.dark .shiki, html.dark .shiki span {
@@ -145,11 +145,11 @@
   @apply text-foreground;
 
   & h2:not(:where(.no-prose-docs *)) {
-    @apply mt-10 mb-4 scroll-m-28 text-xl font-medium tracking-tight first:mt-0 lg:mt-16;
+    @apply mt-8 mb-3 text-xl font-medium tracking-tight;
   }
 
   & h3:not(:where(.no-prose-docs *)) {
-    @apply mt-12 scroll-m-28 text-lg font-medium tracking-tight;
+    @apply mt-6 mb-3 text-lg font-medium tracking-tight;
   }
 
   & p:not(:where(.no-prose-docs *)) {
