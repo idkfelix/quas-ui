@@ -43,10 +43,14 @@
 		WithElementRef<HTMLAnchorAttributes> & {
 			variant?: ButtonVariant;
 			size?: ButtonSize;
+			loading?: boolean;
+			onClickPromise?: (e: MouseEvent) => Promise<void>;
 		};
 </script>
 
 <script lang="ts">
+	import { Spinner } from '$lib/registry/ui/spinner';
+
 	let {
 		class: className,
 		variant = 'default',
@@ -55,9 +59,15 @@
 		href = undefined,
 		type = 'button',
 		disabled,
+		loading,
+		onclick,
+		onClickPromise,
 		children,
 		...restProps
 	}: ButtonProps = $props();
+
+	let pending = $state(false);
+	let isLoading = $derived(loading || pending);
 </script>
 
 {#if href}
@@ -77,11 +87,30 @@
 	<button
 		bind:this={ref}
 		data-slot="button"
-		class={cn(buttonVariants({ variant, size }), className)}
+		class={cn(
+			buttonVariants({ variant, size }),
+			isLoading && '[&_svg:not([data-loading-icon])]:hidden',
+			className
+		)}
 		{type}
-		{disabled}
+		disabled={disabled || isLoading}
+		data-loading={isLoading}
+		onclick={async (e) => {
+			onclick?.(e as never);
+			if (onClickPromise) {
+				pending = true;
+				try {
+					await onClickPromise(e);
+				} finally {
+					pending = false;
+				}
+			}
+		}}
 		{...restProps}
 	>
+		{#if isLoading}
+			<Spinner data-icon="inline-start" data-loading-icon />
+		{/if}
 		{@render children?.()}
 	</button>
 {/if}

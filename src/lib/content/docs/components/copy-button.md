@@ -18,4 +18,5 @@ description: A button used to copy text to the clipboard.
 </ComponentPreview>
 
 ## Installation
+
 <CodeBlock lang='bash' code={`npx shadcn-svelte@latest add ${rUrl}`}/>

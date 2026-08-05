@@ -18,4 +18,5 @@ description: An icon button to toggle between light and dark mode using mode-wat
 </ComponentPreview>
 
 ## Installation
+
 <CodeBlock lang='bash' code={`npx shadcn-svelte@latest add ${rUrl}`}/>

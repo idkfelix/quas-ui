@@ -18,4 +18,5 @@ description: A confirmation dialog with a callback.
 </ComponentPreview>
 
 ## Installation
+
 <CodeBlock lang='bash' code={`npx shadcn-svelte@latest add ${rUrl}`}/>

@@ -96,7 +96,9 @@
 		{/if}
 	{/if}
 
-	{@render children?.()}
+	<span class="leading-1">
+		{@render children?.()}
+	</span>
 
 	{#if removable}
 		<button

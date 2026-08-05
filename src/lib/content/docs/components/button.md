@@ -1,6 +1,6 @@
 ---
 title: Button
-description: A button component with variants.
+description: A button that handles promises with a loading state.
 ---
 
 <script lang='ts'>
@@ -17,6 +17,6 @@ description: A button component with variants.
   <ButtonExample/>
 </ComponentPreview>
 
-
 ## Installation
+
 <CodeBlock lang='bash' code={`npx shadcn-svelte@latest add ${rUrl}`}/>

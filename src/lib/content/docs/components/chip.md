@@ -18,4 +18,5 @@ description: A chip that can act as a toggle or removable tag.
 </ComponentPreview>
 
 ## Installation
+
 <CodeBlock lang='bash' code={`npx shadcn-svelte@latest add ${rUrl}`}/>

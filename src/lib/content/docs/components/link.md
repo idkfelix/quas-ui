@@ -18,4 +18,5 @@ description: A simple link component.
 </ComponentPreview>
 
 ## Installation
+
 <CodeBlock lang='bash' code={`npx shadcn-svelte@latest add ${rUrl}`}/>
