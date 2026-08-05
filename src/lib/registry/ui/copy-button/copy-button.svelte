@@ -22,7 +22,7 @@
 		ref = $bindable(null),
 		class: className,
 		size = 'icon',
-		variant = 'outline',
+		variant,
 		onCopy,
 		text,
 		children,

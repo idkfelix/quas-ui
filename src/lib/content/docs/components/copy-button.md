@@ -7,14 +7,14 @@ description: A button used to copy text to the clipboard.
   import { page } from '$app/state';
   import ComponentPreview from '$lib/components/component-preview.svelte'
   import CodeBlock from '$lib/components/code-block.svelte'
-  import Example from '$lib/registry/examples/copy-button.svelte'
-  import raw from '$lib/registry/examples/copy-button.svelte?raw'
+  import CopyButtonExample from '$lib/registry/examples/copy-button.svelte'
+  import CopyButtonExampleRaw from '$lib/registry/examples/copy-button.svelte?raw'
 
   let rUrl = $derived(page.url.toString().replace('/docs/components/','/r/').concat('.','json'))
 </script>
 
-<ComponentPreview example={raw}>
-  <Example/>
+<ComponentPreview example={CopyButtonExampleRaw}>
+  <CopyButtonExample/>
 </ComponentPreview>
 
 ## Installation
