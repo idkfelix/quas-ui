@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { confirmDialog } from '$lib/registry/blocks/confirm-dialog';
 	import { Button } from '$lib/registry/ui/button';
-	import { confirmDialog } from '$lib/registry/ui/confirm-dialog';
 </script>
 
 <Button

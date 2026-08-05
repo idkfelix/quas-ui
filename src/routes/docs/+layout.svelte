@@ -4,10 +4,11 @@
 	import type { LayoutProps } from './$types';
 
 	const { children, data }: LayoutProps = $props();
+	const { componentLinks, blockLinks } = $derived(data);
 </script>
 
 <SidebarProvider class="max-h-dvh px-2" style="--sidebar-width: 14rem;">
-	<DocsSidebar links={data.navLinks} class="ml-auto py-10" />
+	<DocsSidebar {componentLinks} {blockLinks} class="ml-auto py-10" />
 	<div class="mx-auto flex w-full max-w-2xl scrollbar-none flex-col overflow-x-scroll py-8 lg:mx-4">
 		{@render children()}
 	</div>

@@ -10,7 +10,7 @@ description: A confirmation dialog with a callback.
   import ConfirmDialogExample from '$lib/registry/examples/confirm-dialog.svelte'
   import ConfirmDialogExampleRaw from '$lib/registry/examples/confirm-dialog.svelte?raw'
 
-  let rUrl = $derived(page.url.toString().replace('/docs/components/','/r/').concat('.','json'))
+  let rUrl = $derived(page.url.toString().replace('/docs/blocks/','/r/').concat('.','json'))
 </script>
 
 <ComponentPreview example={ConfirmDialogExampleRaw}>
