@@ -9,12 +9,8 @@ const modules = import.meta.glob("/content/**/*.md");
 const exampleModules = import.meta.glob("/src/lib/registry/examples/*.svelte");
 
 export const load: PageLoad = async ({ data, params: { slug } }) => {
-	const path = slug && slug.length > 0 ? slug : "index";
-	const filePath = `/content/${path}.md`;
-
-	if (!modules[filePath]) {
-		error(404, "Not Found");
-	}
+	const filePath = `/content/${slug}.md`;
+	if (!modules[filePath]) error(404, "Not Found");
 
 	const doc = (await modules[filePath]()) as { default: Component; metadata: Doc };
 

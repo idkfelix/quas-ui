@@ -10,9 +10,7 @@ const rawDocSources = import.meta.glob("/content/**/*.md", {
 }) as Record<string, string>;
 
 export const load: PageServerLoad = async ({ params: { slug } }) => {
-	const path = slug && slug.length > 0 ? slug : "index";
-	const raw = rawDocSources[`/content/${path}.md`];
-
+	const raw = rawDocSources[`/content/${slug}.md`];
 	if (!raw) error(404, "Not Found");
 
 	const { previewNames, exampleSources } = extractDocsAssets(raw);
