@@ -4,16 +4,15 @@ description: A button that handles promises with a loading state.
 ---
 
 <script lang="ts">
-  import Preview from '$lib/components/preview.svelte'
-  import ButtonDemo from '$lib/registry/examples/button-demo.svelte'
+  import ComponentPreview from '$lib/components/component-preview.svelte';
 </script>
 
-{#snippet example()}
+<ComponentPreview name="button-demo"/>
 
-```svelte
-<Button variant="outline">Button</Button>
-```
+## Variants
 
-{/snippet}
+<ComponentPreview name="button-variant"/>
 
-<Preview demo={ButtonDemo} {example}/>
+## Sizes
+
+<ComponentPreview name="button-size"/>

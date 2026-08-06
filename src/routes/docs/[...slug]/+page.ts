@@ -1,32 +1,40 @@
-import { docs, type Doc } from "$content/index.js";
+import { type Doc } from "$content/index.js";
 import { error } from "@sveltejs/kit";
 import type { PageLoad } from "./$types";
 import type { Component } from "svelte";
 
 export const prerender = true;
 
-type DocResolver = () => Promise<{ default: Component; metadata: Doc }>;
+const modules = import.meta.glob("/content/**/*.md");
+const exampleModules = import.meta.glob("/src/lib/registry/examples/*.svelte");
 
-export const load: PageLoad = async ({ params: { slug } }) => {
-	const modules = import.meta.glob(`/content/**/*.md`);
-	let match: { path?: string; resolver?: DocResolver } = {};
+export const load: PageLoad = async ({ data, params: { slug } }) => {
+	const path = slug && slug.length > 0 ? slug : "index";
+	const filePath = `/content/${path}.md`;
 
-	for (const [path, resolver] of Object.entries(modules)) {
-		if (path.replace("/content/", "").replace(".md", "") === slug) {
-			match = { path, resolver: resolver as unknown as DocResolver };
-			break;
-		}
+	if (!modules[filePath]) {
+		error(404, "Not Found");
 	}
 
-	const doc = await match?.resolver?.();
-	const metadata = docs.find((d) => d.path === slug);
+	const doc = (await modules[filePath]()) as { default: Component; metadata: Doc };
 
-	if (!doc || !metadata) {
-		error(404, "Could not find the document.");
+	const exampleComponents: Record<string, Component> = {};
+	if (data.previewNames?.length) {
+		await Promise.all(
+			data.previewNames.map(async (name) => {
+				const importFn = exampleModules[`/src/lib/registry/examples/${name}.svelte`];
+				if (importFn) {
+					const mod = (await importFn()) as { default: Component };
+					exampleComponents[name] = mod.default;
+				}
+			})
+		);
 	}
 
 	return {
+		...data,
 		component: doc.default,
-		metadata: metadata,
+		metadata: doc.metadata,
+		exampleComponents,
 	};
 };
