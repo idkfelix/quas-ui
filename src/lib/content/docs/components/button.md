@@ -7,14 +7,14 @@ description: A button that handles promises with a loading state.
   import { page } from '$app/state';
   import ComponentPreview from '$lib/components/component-preview.svelte'
   import CodeBlock from '$lib/components/code-block.svelte'
-  import ButtonExample from '$lib/registry/examples/button.svelte'
-  import ButtonExampleRaw from '$lib/registry/examples/button.svelte?raw'
+  import ButtonDemo from '$lib/registry/examples/button-demo.svelte'
+  import ButtonDemoRaw from '$lib/registry/examples/button-demo.svelte?raw'
 
   let rUrl = $derived(page.url.toString().replace('/docs/components/','/r/').concat('.','json'))
 </script>
 
-<ComponentPreview example={ButtonExampleRaw}>
-  <ButtonExample/>
+<ComponentPreview example={ButtonDemoRaw}>
+  <ButtonDemo/>
 </ComponentPreview>
 
 ## Installation

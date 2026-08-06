@@ -7,14 +7,14 @@ description: A simple link component.
   import { page } from '$app/state';
   import ComponentPreview from '$lib/components/component-preview.svelte'
   import CodeBlock from '$lib/components/code-block.svelte'
-  import LinkExample from '$lib/registry/examples/link.svelte'
-  import LinkExampleRaw from '$lib/registry/examples/link.svelte?raw'
+  import LinkDemo from '$lib/registry/examples/link-demo.svelte'
+  import LinkDemoRaw from '$lib/registry/examples/link-demo.svelte?raw'
 
   let rUrl = $derived(page.url.toString().replace('/docs/components/','/r/').concat('.','json'))
 </script>
 
-<ComponentPreview example={LinkExampleRaw}>
-  <LinkExample/>
+<ComponentPreview example={LinkDemoRaw}>
+  <LinkDemo/>
 </ComponentPreview>
 
 ## Installation

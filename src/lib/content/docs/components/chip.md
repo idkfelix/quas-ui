@@ -7,14 +7,14 @@ description: A chip that can act as a toggle or removable tag.
   import { page } from '$app/state';
   import ComponentPreview from '$lib/components/component-preview.svelte'
   import CodeBlock from '$lib/components/code-block.svelte'
-  import ChipExample from '$lib/registry/examples/chip.svelte'
-  import ChipExampleRaw from '$lib/registry/examples/chip.svelte?raw'
+  import ChipDemo from '$lib/registry/examples/chip-demo.svelte'
+  import ChipDemoRaw from '$lib/registry/examples/chip-demo.svelte?raw'
 
   let rUrl = $derived(page.url.toString().replace('/docs/components/','/r/').concat('.','json'))
 </script>
 
-<ComponentPreview example={ChipExampleRaw}>
-  <ChipExample/>
+<ComponentPreview example={ChipDemoRaw}>
+  <ChipDemo/>
 </ComponentPreview>
 
 ## Installation
