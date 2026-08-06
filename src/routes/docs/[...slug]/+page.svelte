@@ -5,17 +5,17 @@
 	let { data }: PageProps = $props();
 </script>
 
-<SEO {...data.meta} />
+<SEO {...data.metadata} />
 
 <div>
 	<h1 class="pb-2 text-4xl font-bold tracking-tight">
-		{data.meta.title}
+		{data.metadata.title}
 	</h1>
 	<p class="text-base text-balance text-muted-foreground sm:text-base">
-		{data.meta.description}
+		{data.metadata.description}
 	</p>
 </div>
 
 <div class="prose-docs mt-6">
-	<data.content />
+	<data.component />
 </div>

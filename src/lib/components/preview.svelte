@@ -1,8 +1,7 @@
 <script lang="ts">
-	import CodeBlock from './code-block.svelte';
 	import type { Snippet } from 'svelte';
 
-	let { example, children }: { example: string; children?: Snippet } = $props();
+	let { demo, example }: { demo: Snippet; example?: Snippet } = $props();
 </script>
 
 <div
@@ -11,9 +10,14 @@
 	<div>
 		<div data-slot="preview" class="preview flex justify-center">
 			<div class="preview flex min-h-112.5 w-full items-center justify-center border-b p-10">
-				{@render children?.()}
+				{@render demo()}
 			</div>
 		</div>
-		<CodeBlock code={example} class="rounded-none" />
+		<div
+			data-slot="code"
+			class="relative overflow-hidden [&_pre]:max-h-100 [&_pre:not(.shiki)]:p-0"
+		>
+			{@render example?.()}
+		</div>
 	</div>
 </div>

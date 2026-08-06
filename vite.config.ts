@@ -1,20 +1,18 @@
 import adapter from '@sveltejs/adapter-auto';
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { mdsvex } from 'mdsvex';
+import { mdsx } from 'mdsx';
 import { defineConfig } from 'vite';
+import { mdsxConfig } from './mdsx.config';
 
 export default defineConfig({
 	plugins: [
 		tailwindcss(),
 		sveltekit({
 			adapter: adapter(),
-			preprocess: [
-				mdsvex({
-					extensions: ['.md', '.svx'],
-				}),
-			],
-			extensions: ['.svelte', '.md', '.svx'],
+			preprocess: [mdsx(mdsxConfig)],
+			alias: { '$content/*': '.velite/*' },
+			extensions: ['.svelte', '.md'],
 			compilerOptions: {
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true,
@@ -23,9 +21,7 @@ export default defineConfig({
 					async: true,
 				},
 			},
-			vitePlugin: {
-				inspector: true,
-			},
 		}),
 	],
+	assetsInclude: ['**/*.md'],
 });
