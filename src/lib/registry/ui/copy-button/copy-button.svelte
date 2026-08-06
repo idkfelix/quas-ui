@@ -1,27 +1,27 @@
 <script lang="ts" module>
-	import type { ButtonProps } from '$lib/registry/ui/button';
-	import type { WithElementRef } from 'bits-ui';
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { ButtonProps } from "$lib/registry/ui/button";
+	import type { WithElementRef } from "bits-ui";
+	import type { HTMLButtonAttributes } from "svelte/elements";
 
 	export type CopyButtonProps = WithElementRef<HTMLButtonAttributes> &
-		Pick<ButtonProps, 'size' | 'variant'> & {
+		Pick<ButtonProps, "size" | "variant"> & {
 			onCopy?: (copied: boolean | undefined) => void;
 			text: string;
 		};
 </script>
 
 <script lang="ts">
-	import { CopyIcon, CheckIcon, XIcon } from '@lucide/svelte';
-	import { mergeProps } from 'bits-ui';
-	import { scale } from 'svelte/transition';
-	import { Button } from '$lib/registry/ui/button';
-	import { cn } from '$lib/utils';
-	import { UseClipboard } from '$lib/registry/hooks/use-clipboard.svelte';
+	import { CopyIcon, CheckIcon, XIcon } from "@lucide/svelte";
+	import { mergeProps } from "bits-ui";
+	import { scale } from "svelte/transition";
+	import { Button } from "$lib/registry/ui/button";
+	import { cn } from "$lib/utils";
+	import { UseClipboard } from "$lib/registry/hooks/use-clipboard.svelte";
 
 	let {
 		ref = $bindable(null),
 		class: className,
-		size = 'icon',
+		size = "icon",
 		variant,
 		onCopy,
 		text,
@@ -30,8 +30,8 @@
 	}: CopyButtonProps = $props();
 
 	// svelte-ignore state_referenced_locally
-	if (size === 'icon' && children) {
-		size = 'default';
+	if (size === "icon" && children) {
+		size = "default";
 	}
 
 	let clipboard = new UseClipboard();
@@ -48,7 +48,7 @@
 
 <Button
 	bind:ref
-	class={cn('flex items-center gap-2', className)}
+	class={cn("flex items-center gap-2", className)}
 	{size}
 	{variant}
 	{...merged as ButtonProps}

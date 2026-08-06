@@ -1,10 +1,10 @@
-import { defineConfig, s } from 'velite';
+import { defineConfig, s } from "velite";
 
 export default defineConfig({
 	collections: {
 		docs: {
-			name: 'Doc',
-			pattern: './**/*.md',
+			name: "Doc",
+			pattern: "./**/*.md",
 			schema: s
 				.object({
 					title: s.string(),
@@ -14,7 +14,7 @@ export default defineConfig({
 				})
 				.transform((d) => ({
 					...d,
-					group: d.path.split('/').shift(),
+					group: d.path.split("/").shift(),
 				})),
 		},
 	},

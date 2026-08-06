@@ -1,9 +1,9 @@
-import adapter from '@sveltejs/adapter-auto';
-import tailwindcss from '@tailwindcss/vite';
-import { sveltekit } from '@sveltejs/kit/vite';
-import { mdsx } from 'mdsx';
-import { defineConfig } from 'vite';
-import { mdsxConfig } from './mdsx.config';
+import adapter from "@sveltejs/adapter-auto";
+import tailwindcss from "@tailwindcss/vite";
+import { sveltekit } from "@sveltejs/kit/vite";
+import { mdsx } from "mdsx";
+import { defineConfig } from "vite";
+import { mdsxConfig } from "./mdsx.config.ts";
 
 export default defineConfig({
 	plugins: [
@@ -11,17 +11,17 @@ export default defineConfig({
 		sveltekit({
 			adapter: adapter(),
 			preprocess: [mdsx(mdsxConfig)],
-			alias: { '$content/*': '.velite/*' },
-			extensions: ['.svelte', '.md'],
+			alias: { "$content/*": ".velite/*" },
+			extensions: [".svelte", ".md"],
 			compilerOptions: {
 				runes: ({ filename }) =>
-					filename.split(/[/\\]/).includes('node_modules') ? undefined : true,
-				warningFilter: (warning) => warning.code !== 'script_context_deprecated',
+					filename.split(/[/\\]/).includes("node_modules") ? undefined : true,
+				warningFilter: (warning) => warning.code !== "script_context_deprecated",
 				experimental: {
 					async: true,
 				},
 			},
 		}),
 	],
-	assetsInclude: ['**/*.md'],
+	assetsInclude: ["**/*.md"],
 });

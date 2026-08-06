@@ -1,7 +1,7 @@
-import { docs, type Doc } from '$content/index.js';
-import { error } from '@sveltejs/kit';
-import type { PageLoad } from './$types';
-import type { Component } from 'svelte';
+import { docs, type Doc } from "$content/index.js";
+import { error } from "@sveltejs/kit";
+import type { PageLoad } from "./$types";
+import type { Component } from "svelte";
 
 export const prerender = true;
 
@@ -12,7 +12,7 @@ export const load: PageLoad = async ({ params: { slug } }) => {
 	let match: { path?: string; resolver?: DocResolver } = {};
 
 	for (const [path, resolver] of Object.entries(modules)) {
-		if (path.replace('/content/', '').replace('.md', '') === slug) {
+		if (path.replace("/content/", "").replace(".md", "") === slug) {
 			match = { path, resolver: resolver as unknown as DocResolver };
 			break;
 		}
@@ -22,7 +22,7 @@ export const load: PageLoad = async ({ params: { slug } }) => {
 	const metadata = docs.find((d) => d.path === slug);
 
 	if (!doc || !metadata) {
-		error(404, 'Could not find the document.');
+		error(404, "Could not find the document.");
 	}
 
 	return {

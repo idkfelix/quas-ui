@@ -1,38 +1,38 @@
 <script lang="ts" module>
-	import { tv, type VariantProps } from 'tailwind-variants';
+	import { tv, type VariantProps } from "tailwind-variants";
 
 	const inputGroupButtonVariants = tv({
-		base: 'flex items-center gap-2 rounded-md text-xs/relaxed shadow-none',
+		base: "flex items-center gap-2 rounded-md text-xs/relaxed shadow-none",
 		variants: {
 			size: {
 				xs: "h-5 gap-1 rounded-[calc(var(--radius-sm)-2px)] px-1 [&>svg:not([class*='size-'])]:size-3",
-				sm: 'gap-1',
-				'icon-xs': 'size-6 p-0 has-[>svg]:p-0',
-				'icon-sm': 'size-7 p-0 has-[>svg]:p-0',
+				sm: "gap-1",
+				"icon-xs": "size-6 p-0 has-[>svg]:p-0",
+				"icon-sm": "size-7 p-0 has-[>svg]:p-0",
 			},
 		},
 		defaultVariants: {
-			size: 'xs',
+			size: "xs",
 		},
 	});
 
-	export type InputGroupButtonSize = VariantProps<typeof inputGroupButtonVariants>['size'];
+	export type InputGroupButtonSize = VariantProps<typeof inputGroupButtonVariants>["size"];
 </script>
 
 <script lang="ts">
-	import { Button } from '$lib/registry/ui/button/index.js';
-	import { cn } from '$lib/utils.js';
-	import type { ComponentProps } from 'svelte';
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
+	import type { ComponentProps } from "svelte";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		children,
-		type = 'button',
-		variant = 'ghost',
-		size = 'xs',
+		type = "button",
+		variant = "ghost",
+		size = "xs",
 		...restProps
-	}: Omit<ComponentProps<typeof Button>, 'href' | 'size'> & {
+	}: Omit<ComponentProps<typeof Button>, "href" | "size"> & {
 		size?: InputGroupButtonSize;
 	} = $props();
 </script>

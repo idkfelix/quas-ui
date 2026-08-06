@@ -1,7 +1,7 @@
 <script lang="ts" module>
-	import { mount, unmount } from 'svelte';
-	import { ConfirmDialog } from './index.ts';
-	import type { ButtonVariant } from '$lib/registry/ui/button';
+	import { mount, unmount } from "svelte";
+	import { ConfirmDialog } from "./index.ts";
+	import type { ButtonVariant } from "$lib/registry/ui/button";
 
 	export type ConfirmDialogProps = {
 		title: string;
@@ -11,7 +11,7 @@
 		requestDestroy: () => void;
 	};
 
-	export const confirmDialog = (props: Omit<ConfirmDialogProps, 'requestDestroy'>) => {
+	export const confirmDialog = (props: Omit<ConfirmDialogProps, "requestDestroy">) => {
 		const instance = mount(ConfirmDialog, {
 			target: document.body,
 			props: {
@@ -23,12 +23,12 @@
 </script>
 
 <script lang="ts">
-	import * as AlertDialog from '$lib/registry/ui/alert-dialog';
+	import * as AlertDialog from "$lib/registry/ui/alert-dialog";
 
 	let {
 		title,
 		description,
-		variant = 'default',
+		variant = "default",
 		onConfirm,
 		requestDestroy,
 	}: ConfirmDialogProps = $props();
@@ -48,7 +48,7 @@
 		<AlertDialog.Footer>
 			<AlertDialog.Cancel onclick={requestDestroy}>Cancel</AlertDialog.Cancel>
 			<AlertDialog.Action {onclick} {variant}>
-				{variant === 'destructive' ? 'Delete' : 'Confirm'}
+				{variant === "destructive" ? "Delete" : "Confirm"}
 			</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>

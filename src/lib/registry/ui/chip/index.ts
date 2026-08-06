@@ -1,5 +1,5 @@
-import Root from './chip.svelte';
-import { chipVariants, type ChipVariant } from './chip.svelte';
+import Root from "./chip.svelte";
+import { chipVariants, type ChipVariant } from "./chip.svelte";
 
 export {
 	Root,

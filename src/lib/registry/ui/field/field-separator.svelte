@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Separator } from '$lib/registry/ui/separator/index.js';
-	import { cn, type WithElementRef } from '$lib/utils.js';
-	import type { Snippet } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import { cn, type WithElementRef } from "$lib/utils.js";
+	import type { Snippet } from "svelte";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(null),
@@ -21,7 +21,7 @@
 	data-slot="field-separator"
 	data-content={hasContent}
 	class={cn(
-		'relative -my-2 h-5 text-xs/relaxed group-data-[variant=outline]/field-group:-mb-2',
+		"relative -my-2 h-5 text-xs/relaxed group-data-[variant=outline]/field-group:-mb-2",
 		className
 	)}
 	{...restProps}

@@ -1,4 +1,4 @@
-import Root from './link.svelte';
+import Root from "./link.svelte";
 
 export {
 	Root,

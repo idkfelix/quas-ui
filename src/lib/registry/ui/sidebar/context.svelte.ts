@@ -1,6 +1,14 @@
-import { getContext, setContext } from 'svelte';
-import { IsMobile } from '$lib/hooks/is-mobile.svelte.js';
-import { SIDEBAR_KEYBOARD_SHORTCUT } from './constants.js';
+import { getContext, setContext } from "svelte";
+import { MediaQuery } from "svelte/reactivity";
+import { SIDEBAR_KEYBOARD_SHORTCUT } from "./constants.js";
+
+const DEFAULT_MOBILE_BREAKPOINT = 768;
+
+export class IsMobile extends MediaQuery {
+	constructor(breakpoint: number = DEFAULT_MOBILE_BREAKPOINT) {
+		super(`max-width: ${breakpoint - 1}px`);
+	}
+}
 
 type Getter<T> = () => T;
 
@@ -24,9 +32,9 @@ class SidebarState {
 	readonly props: SidebarStateProps;
 	open = $derived.by(() => this.props.open());
 	openMobile = $state(false);
-	setOpen: SidebarStateProps['setOpen'];
+	setOpen: SidebarStateProps["setOpen"];
 	#isMobile: IsMobile;
-	state = $derived.by(() => (this.open ? 'expanded' : 'collapsed'));
+	state = $derived.by(() => (this.open ? "expanded" : "collapsed"));
 
 	constructor(props: SidebarStateProps) {
 		this.setOpen = props.setOpen;
@@ -57,7 +65,7 @@ class SidebarState {
 	};
 }
 
-const SYMBOL_KEY = 'scn-sidebar';
+const SYMBOL_KEY = "scn-sidebar";
 
 /**
  * Instantiates a new `SidebarState` instance and sets it in the context.

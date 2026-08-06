@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { SidebarProvider } from '$lib/registry/ui/sidebar';
-	import DocsSidebar from '$lib/components/docs-sidebar.svelte';
-	import type { LayoutProps } from './$types';
+	import { SidebarProvider } from "$lib/registry/ui/sidebar";
+	import DocsSidebar from "$lib/components/docs-sidebar.svelte";
+	import type { LayoutProps } from "./$types";
 
 	const { children }: LayoutProps = $props();
 </script>
