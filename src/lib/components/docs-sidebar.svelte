@@ -4,7 +4,11 @@
 	import { cn } from '$lib/utils';
 	import type { NavLink } from '$lib/utils/nav.server';
 
-	let { componentLinks, blockLinks, class: className }: { componentLinks: NavLink[]; blockLinks: NavLink[]; class?: string } = $props();
+	let {
+		componentLinks,
+		blockLinks,
+		class: className,
+	}: { componentLinks: NavLink[]; blockLinks: NavLink[]; class?: string } = $props();
 </script>
 
 <Sidebar.Root class={cn('sticky hidden bg-transparent lg:flex', className)} collapsible="none">

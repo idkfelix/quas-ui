@@ -5,7 +5,7 @@
 	export const chipVariants = tv({
 		base: [
 			'group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-[0.625rem] font-medium whitespace-nowrap transition-all',
-			'has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 *:[&>svg]:pointer-events-none *:[&>svg]:size-2.5!',
+			'has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_[data-icon=inline-end]]:order-last [&_[data-icon=inline-start]]:order-first *:[&>svg]:pointer-events-none *:[&>svg]:size-2.5!',
 			'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50',
 			'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
 		],
@@ -14,6 +14,7 @@
 				default: 'bg-primary text-primary-foreground hover:bg-primary/90',
 				secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
 				outline: 'border-border bg-input/20 text-foreground hover:bg-muted',
+				ghost: 'hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50',
 			},
 			active: {
 				true: '',
@@ -53,16 +54,16 @@
 		class: className,
 		variant = 'default',
 		active = $bindable(false),
-		removable = false,
-		toggleable = false,
-		disabled = false,
+		removable,
+		toggleable,
+		disabled,
 		onclick,
 		onremove,
 		children,
 		...restProps
 	}: ChipProps = $props();
 
-	const handleClick = (e: MouseEvent) => {
+	const handleToggle = (e: MouseEvent) => {
 		if (disabled) return;
 		if (onclick) onclick(e);
 		else active = !active;
@@ -78,27 +79,28 @@
 <svelte:element
 	this={removable ? 'span' : 'button'}
 	class={cn(chipVariants({ variant, active }), className)}
-	onclick={toggleable && !removable ? handleClick : undefined}
-	tabindex={toggleable && !removable ? 0 : -1}
-	aria-pressed={toggleable && !removable ? active : undefined}
+	data-slot="chip"
+	tabindex={toggleable ? 0 : -1}
+	aria-pressed={toggleable ? active : undefined}
+	onclick={toggleable ? handleToggle : onclick}
 	{disabled}
 	{...restProps}
 >
-	{#if toggleable}
-		{#if active}
-			<div in:scale={{ duration: 500, start: 0.85 }}>
-				<CheckIcon data-icon="inline-start" />
-			</div>
-		{:else}
-			<div in:scale={{ duration: 500, start: 0.85 }}>
-				<PlusIcon data-icon="inline-start" />
-			</div>
-		{/if}
-	{/if}
-
-	<span class="leading-1">
+	<span class="leading-2">
 		{@render children?.()}
 	</span>
+
+	{#if toggleable}
+		{#if active}
+			<span in:scale={{ duration: 500, start: 0.85 }} data-icon="inline-start">
+				<CheckIcon />
+			</span>
+		{:else}
+			<span in:scale={{ duration: 500, start: 0.85 }} data-icon="inline-start">
+				<PlusIcon />
+			</span>
+		{/if}
+	{/if}
 
 	{#if removable}
 		<button
