@@ -1,6 +1,6 @@
 import { error } from "@sveltejs/kit";
-import { extractDocsAssets } from "$lib/doc-content.server";
-import { highlightCode } from "$lib/highlighter.server";
+import { extractDocsAssets } from "$lib/utils/doc-content.server";
+import { highlightCode } from "$lib/utils/highlighter.server";
 import type { PageServerLoad } from "./$types";
 
 const rawDocSources = import.meta.glob("/content/**/*.md", {
