@@ -1,12 +1,14 @@
 <script lang="ts">
-	import SEO from "$lib/components/seo.svelte";
 	import type { PageProps } from "./$types";
 
 	let { data }: PageProps = $props();
 	const Markdown = $derived(data.component);
 </script>
 
-<SEO {...data.metadata} />
+<svelte:head>
+	<title>{data.metadata.title} - Quas UI</title>
+	<meta name="description" content={data.metadata.description} />
+</svelte:head>
 
 <div class="mb-6">
 	<h1 class="pb-2 text-4xl font-bold tracking-tight">

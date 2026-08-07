@@ -2,7 +2,7 @@
 	import "../app.css";
 	import { ModeWatcher } from "mode-watcher";
 	import { SidebarProvider } from "$lib/registry/ui/sidebar";
-	import DocsSidebar from "$lib/components/docs-sidebar.svelte";
+	import Sidebar from "$lib/components/sidebar.svelte";
 	import type { LayoutProps } from "./$types";
 
 	const { children }: LayoutProps = $props();
@@ -11,7 +11,7 @@
 <ModeWatcher />
 
 <SidebarProvider class="max-h-dvh px-2" style="--sidebar-width: 14rem;">
-	<DocsSidebar class="ml-auto py-10" />
+	<Sidebar class="ml-auto py-10" />
 	<div class="mx-auto flex w-full max-w-2xl scrollbar-none flex-col overflow-x-scroll py-8 lg:mx-4">
 		{@render children()}
 	</div>
