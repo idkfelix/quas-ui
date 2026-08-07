@@ -9,14 +9,16 @@ export default defineConfig({
 		tailwindcss(),
 		sveltekit({
 			adapter: adapter(),
-			preprocess: [mdsx({
-				extensions: [".md"],
-				blueprints: {
-					default: {
-						path: 'src/lib/components/mdsx/blueprint.svelte'
-					}
-				}
-			})],
+			preprocess: [
+				mdsx({
+					extensions: [".md"],
+					blueprints: {
+						default: {
+							path: "src/lib/components/mdsx/blueprint.svelte",
+						},
+					},
+				}),
+			],
 			alias: { "$content/*": ".velite/*" },
 			extensions: [".svelte", ".md"],
 			compilerOptions: {

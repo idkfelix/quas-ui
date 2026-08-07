@@ -11,10 +11,13 @@ description: A button that handles promises with a loading state.
 <ComponentPreview name="button-demo"/>
 
 ## Installation
+
 <PMAdd name="button"/>
 
 ## Variants
+
 <ComponentPreview name="button-variant"/>
 
 ## Sizes
+
 <ComponentPreview name="button-size"/>

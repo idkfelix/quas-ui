@@ -3,7 +3,7 @@
 	import CodeBlock from "$lib/components/code-block.svelte";
 
 	let { name }: { name: string } = $props();
-	
+
 	let Preview = $derived(page.data.exampleComponents[name]);
 </script>
 
@@ -13,5 +13,5 @@
 			<Preview />
 		</div>
 	</div>
-	<CodeBlock {name}/>
+	<CodeBlock {name} />
 </div>

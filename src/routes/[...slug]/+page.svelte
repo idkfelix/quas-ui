@@ -18,5 +18,5 @@
 </div>
 
 <main>
-	<Markdown/>
+	<Markdown />
 </main>

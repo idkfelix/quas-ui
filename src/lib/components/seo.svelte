@@ -1,5 +1,8 @@
 <script lang="ts">
-	let { title, description }: {
+	let {
+		title,
+		description,
+	}: {
 		title: string;
 		description: string;
 	} = $props();
