@@ -131,8 +131,7 @@
 }
 
 @layer components {
-	.shiki,
-	.shiki span {
+	.shiki, .shiki span {
 		background-color: var(--color-card) !important;
 	}
 

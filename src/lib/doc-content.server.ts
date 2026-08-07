@@ -3,7 +3,7 @@ export type DocsAssets = {
 	exampleSources: Record<string, string>;
 };
 
-const TAG_NAME_RE = /<(ComponentPreview)\s[^>]*\bname=["']([^"']+)["']/g;
+const TAG_NAME_RE = /<(ComponentPreview|CodeBlock)\s[^>]*\bname=["']([^"']+)["']/g;
 
 const exampleSourceModules = import.meta.glob("/src/lib/examples/*.svelte", {
 	eager: true,

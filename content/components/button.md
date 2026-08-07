@@ -14,9 +14,7 @@ description: A button that handles promises with a loading state.
 <PMAdd name="button"/>
 
 ## Variants
-
 <ComponentPreview name="button-variant"/>
 
 ## Sizes
-
 <ComponentPreview name="button-size"/>

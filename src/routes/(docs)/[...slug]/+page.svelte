@@ -3,11 +3,12 @@
 	import type { PageProps } from "./$types";
 
 	let { data }: PageProps = $props();
+	const Markdown = $derived(data.component);
 </script>
 
 <SEO {...data.metadata} />
 
-<div>
+<div class="mb-6">
 	<h1 class="pb-2 text-4xl font-bold tracking-tight">
 		{data.metadata.title}
 	</h1>
@@ -16,6 +17,6 @@
 	</p>
 </div>
 
-<div class="prose-docs mt-6">
-	<data.component />
-</div>
+<main>
+	<Markdown/>
+</main>

@@ -1,10 +1,8 @@
 <script lang="ts">
-	export interface SEOProps {
+	let { title, description }: {
 		title: string;
 		description: string;
-	}
-
-	let { title, description }: SEOProps = $props();
+	} = $props();
 </script>
 
 <svelte:head>

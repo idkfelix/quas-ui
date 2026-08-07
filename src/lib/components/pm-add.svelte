@@ -1,11 +1,11 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import PMCommand from '$lib/components/pm-command.svelte';
+  import PMCmd from '$lib/components/pm-cmd.svelte';
 
   let { name }: { name: string } = $props();
 </script>
 
-<PMCommand 
+<PMCmd
   command="execute" 
   args={[
     "shadcn-svelte@latest", 
