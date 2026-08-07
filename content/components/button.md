@@ -4,11 +4,11 @@ description: A button that handles promises with a loading state.
 ---
 
 <script lang="ts">
-  import ComponentPreview from '$lib/components/component-preview.svelte';
+  import Example from '$lib/components/example.svelte';
   import PMAdd from '$lib/components/pm-add.svelte';
 </script>
 
-<ComponentPreview name="button-demo"/>
+<Example name="button-demo"/>
 
 ## Installation
 
@@ -16,8 +16,8 @@ description: A button that handles promises with a loading state.
 
 ## Variants
 
-<ComponentPreview name="button-variant"/>
+<Example name="button-variant"/>
 
 ## Sizes
 
-<ComponentPreview name="button-size"/>
+<Example name="button-size"/>

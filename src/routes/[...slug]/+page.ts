@@ -5,32 +5,30 @@ import type { Component } from "svelte";
 
 export const prerender = true;
 
-const modules = import.meta.glob("/content/**/*.md");
-const exampleModules = import.meta.glob("/src/lib/examples/*.svelte");
+const docModules = import.meta.glob("/content/**/*.md");
+const exampleModules = import.meta.glob("/src/lib/examples/**/*.svelte");
 
 export const load: PageLoad = async ({ data, params: { slug } }) => {
-	const filePath = `/content/${slug}.md`;
-	if (!modules[filePath]) error(404, "Not Found");
+	const docResolver = docModules[`/content/${slug}.md`];
+	if (!docResolver) error(404, "Not Found");
 
-	const doc = (await modules[filePath]()) as { default: Component; metadata: Doc };
-
+	const doc = (await docResolver()) as { default: Component; metadata: Doc };
 	const exampleComponents: Record<string, Component> = {};
-	if (data.previewNames?.length) {
-		await Promise.all(
-			data.previewNames.map(async (name) => {
-				const importFn = exampleModules[`/src/lib/examples/${name}.svelte`];
-				if (importFn) {
-					const mod = (await importFn()) as { default: Component };
-					exampleComponents[name] = mod.default;
-				}
-			})
-		);
-	}
+
+	await Promise.all(
+		data.exampleNames.map(async (name) => {
+			const exampleResolver = exampleModules[`/src/lib/examples/${name}.svelte`];
+			if (exampleResolver) {
+				const example = (await exampleResolver()) as { default: Component };
+				exampleComponents[name] = example.default;
+			}
+		})
+	);
 
 	return {
 		...data,
+		exampleComponents,
 		component: doc.default,
 		metadata: doc.metadata,
-		exampleComponents,
 	};
 };
