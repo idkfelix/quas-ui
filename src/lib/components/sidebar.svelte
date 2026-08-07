@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import { docs } from "$content/index";
-	import * as Sidebar from "$lib/registry/ui/sidebar";
-	import { cn } from "$lib/utils";
+	import { docs } from "$content/index.js";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import { cn } from "$lib/utils.js";
 
 	let { class: className }: { class?: string } = $props();
 </script>

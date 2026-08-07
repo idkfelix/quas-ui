@@ -1,6 +1,6 @@
 import { error } from "@sveltejs/kit";
 import { highlightCode } from "$lib/server/highlighter.js";
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad } from "./$types.js";
 
 const TAG_NAME_RE = /<Example\s[^>]*\bname=["']([^"']+)["']/g;
 
@@ -14,7 +14,7 @@ const extractNames = (markdown: string): string[] => {
 	}
 
 	return [...exampleNames];
-}
+};
 
 const docStrings = import.meta.glob("./**/*.md", {
 	base: "/content",

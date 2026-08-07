@@ -49,7 +49,7 @@
 </script>
 
 <script lang="ts">
-	import { Spinner } from "$lib/registry/ui/spinner";
+	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 
 	let {
 		class: className,

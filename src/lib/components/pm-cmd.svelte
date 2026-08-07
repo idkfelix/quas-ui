@@ -11,8 +11,8 @@
 <script lang="ts">
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
 	import { resolveCommand } from "package-manager-detector/commands";
-	import * as Tabs from "$lib/registry/ui/tabs";
-	import { CopyButton } from "$lib/registry/ui/copy-button";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import { CopyButton } from "$lib/registry/ui/copy-button/index.js";
 	import { cn } from "$lib/utils.js";
 	import type { Command, Agent } from "package-manager-detector";
 

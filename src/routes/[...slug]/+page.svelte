@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageProps } from "./$types";
+	import type { PageProps } from "./$types.js";
 
 	let { data }: PageProps = $props();
 	const Markdown = $derived(data.component);

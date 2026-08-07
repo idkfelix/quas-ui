@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import { CopyButton } from "$lib/registry/ui/copy-button";
+	import { CopyButton } from "$lib/registry/ui/copy-button/index.js";
 
 	let { name }: { name: string } = $props();
 

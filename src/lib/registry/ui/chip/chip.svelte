@@ -48,7 +48,7 @@
 <script lang="ts">
 	import { XIcon, PlusIcon, CheckIcon } from "@lucide/svelte";
 	import { scale } from "svelte/transition";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		class: className,

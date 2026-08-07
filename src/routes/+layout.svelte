@@ -1,9 +1,9 @@
 <script lang="ts">
 	import "../app.css";
 	import { ModeWatcher } from "mode-watcher";
-	import { SidebarProvider } from "$lib/registry/ui/sidebar";
 	import Sidebar from "$lib/components/sidebar.svelte";
-	import type { LayoutProps } from "./$types";
+	import { SidebarProvider } from "$lib/registry/ui/sidebar/index.js";
+	import type { LayoutProps } from "./$types.js";
 
 	const { children }: LayoutProps = $props();
 </script>

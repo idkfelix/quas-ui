@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { mount, unmount } from "svelte";
+	import type { ButtonVariant } from "$lib/registry/ui/button/index.js";
 	import { ConfirmDialog } from "./index.ts";
-	import type { ButtonVariant } from "$lib/registry/ui/button";
 
 	export type ConfirmDialogProps = {
 		title: string;
@@ -23,7 +23,7 @@
 </script>
 
 <script lang="ts">
-	import * as AlertDialog from "$lib/registry/ui/alert-dialog";
+	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 
 	let {
 		title,

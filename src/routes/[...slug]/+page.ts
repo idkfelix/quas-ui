@@ -1,12 +1,12 @@
 import { type Doc } from "$content/index.js";
 import { error } from "@sveltejs/kit";
-import type { PageLoad } from "./$types";
+import type { PageLoad } from "./$types.js";
 import type { Component } from "svelte";
 
 export const prerender = true;
 
 const docModules = import.meta.glob("./**/*.md", {
-	base: "/content"
+	base: "/content",
 });
 
 const exampleModules = import.meta.glob("./**/*.svelte", {
