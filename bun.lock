@@ -27,6 +27,7 @@
         "mdsx": "^0.0.7",
         "mode-watcher": "^1.1.0",
         "oxfmt": "^0.61.0",
+        "package-manager-detector": "^1.8.0",
         "publint": "^0.3.21",
         "shadcn-svelte": "^1.4.2",
         "shiki": "^4.4.2",

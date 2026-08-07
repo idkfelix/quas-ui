@@ -14,7 +14,7 @@
 			<Sidebar.GroupContent>
 				<Sidebar.Menu class="gap-1">
 					{#each docs.filter((d) => d.group === "components") as { title, path } (path)}
-						{@const href = `/docs/${path}`}
+						{@const href = `/${path}`}
 						{@const isActive = page.url.pathname === href}
 						<Sidebar.MenuButton {isActive} class="w-fit" size="sm">
 							{#snippet child({ props })}

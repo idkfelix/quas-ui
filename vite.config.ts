@@ -3,14 +3,13 @@ import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { mdsx } from "mdsx";
 import { defineConfig } from "vite";
-import { mdsxConfig } from "./mdsx.config.ts";
 
 export default defineConfig({
 	plugins: [
 		tailwindcss(),
 		sveltekit({
 			adapter: adapter(),
-			preprocess: [mdsx(mdsxConfig)],
+			preprocess: [mdsx({extensions: [".md"]})],
 			alias: { "$content/*": ".velite/*" },
 			extensions: [".svelte", ".md"],
 			compilerOptions: {

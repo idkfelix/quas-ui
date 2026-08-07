@@ -5,7 +5,7 @@ export type DocsAssets = {
 
 const TAG_NAME_RE = /<(ComponentPreview)\s[^>]*\bname=["']([^"']+)["']/g;
 
-const exampleSourceModules = import.meta.glob("/src/lib/registry/examples/*.svelte", {
+const exampleSourceModules = import.meta.glob("/src/lib/examples/*.svelte", {
 	eager: true,
 	query: "?raw",
 	import: "default",
@@ -24,7 +24,7 @@ export function extractDocsAssets(markdown: string): DocsAssets {
 
 	const exampleSources: Record<string, string> = {};
 	for (const name of sourceNames) {
-		const source = exampleSourceModules[`/src/lib/registry/examples/${name}.svelte`];
+		const source = exampleSourceModules[`/src/lib/examples/${name}.svelte`];
 		if (source) exampleSources[name] = source;
 	}
 

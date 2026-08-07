@@ -6,7 +6,7 @@ import type { Component } from "svelte";
 export const prerender = true;
 
 const modules = import.meta.glob("/content/**/*.md");
-const exampleModules = import.meta.glob("/src/lib/registry/examples/*.svelte");
+const exampleModules = import.meta.glob("/src/lib/examples/*.svelte");
 
 export const load: PageLoad = async ({ data, params: { slug } }) => {
 	const filePath = `/content/${slug}.md`;
@@ -18,7 +18,7 @@ export const load: PageLoad = async ({ data, params: { slug } }) => {
 	if (data.previewNames?.length) {
 		await Promise.all(
 			data.previewNames.map(async (name) => {
-				const importFn = exampleModules[`/src/lib/registry/examples/${name}.svelte`];
+				const importFn = exampleModules[`/src/lib/examples/${name}.svelte`];
 				if (importFn) {
 					const mod = (await importFn()) as { default: Component };
 					exampleComponents[name] = mod.default;
