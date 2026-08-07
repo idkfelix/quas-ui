@@ -3,8 +3,6 @@ import { error } from "@sveltejs/kit";
 import type { PageLoad } from "./$types.js";
 import type { Component } from "svelte";
 
-export const prerender = true;
-
 const docModules = import.meta.glob("./**/*.md", {
 	base: "/content",
 });

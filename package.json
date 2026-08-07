@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "dev:content": "velite dev --watch",
     "sync": "svelte-kit sync",
-    "build": "vite build",
+    "build": "velite && vite build",
     "build:content": "velite",
     "lint": "oxfmt --check && eslint .",
     "format": "oxfmt"

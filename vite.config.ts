@@ -29,9 +29,6 @@ export default defineConfig({
 			adapter: adapter(),
 			alias: { "$content/*": ".velite/*" },
 			extensions: [".svelte", ".md"],
-			prerender: {
-				handleUnseenRoutes: 'ignore',
-			}
 		}),
 	],
 	assetsInclude: ["**/*.md"],
