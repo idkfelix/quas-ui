@@ -8,7 +8,6 @@
     "dev:content": "velite dev --watch",
     "sync": "svelte-kit sync",
     "build": "vite build",
-    "build:ui": "shadcn-svelte registry build",
     "build:content": "velite",
     "lint": "oxfmt --check && eslint .",
     "format": "oxfmt"
