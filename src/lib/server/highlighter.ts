@@ -3,7 +3,7 @@ import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
 const highlightCodeCache = new Map<string, string>();
 const highlighterPromise = createHighlighterCore({
-	themes: [import("@shikijs/themes/ayu-dark"), import("@shikijs/themes/ayu-light")],
+	themes: [import("@shikijs/themes/github-dark"), import("@shikijs/themes/github-light")],
 	langs: [
 		import("@shikijs/langs/javascript"),
 		import("@shikijs/langs/typescript"),
@@ -24,8 +24,8 @@ export const highlightCode = async (code: string, lang: string = "svelte") => {
 	const html = highlighter.codeToHtml(code, {
 		lang,
 		themes: {
-			light: "ayu-light",
-			dark: "ayu-dark",
+			light: "github-light",
+			dark: "github-dark",
 		},
 		transformers: [
 			{
