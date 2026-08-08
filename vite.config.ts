@@ -1,5 +1,6 @@
 import adapter from "@sveltejs/adapter-vercel";
 import tailwindcss from "@tailwindcss/vite";
+import rehypeSlug from "rehype-slug";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { mdsx } from "mdsx";
 import { defineConfig } from "vite";
@@ -19,6 +20,7 @@ export default defineConfig({
 			preprocess: [
 				mdsx({
 					extensions: [".md"],
+					rehypePlugins: [rehypeSlug],
 					blueprints: {
 						default: {
 							path: "src/lib/components/mdsx/blueprint.svelte",
