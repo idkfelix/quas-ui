@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.metadata.title} - Quas UI</title>
+	<title>{data.metadata.title} - quas ui</title>
 	<meta name="description" content={data.metadata.description} />
 </svelte:head>
 
