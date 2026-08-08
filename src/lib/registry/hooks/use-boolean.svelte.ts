@@ -1,14 +1,3 @@
-/**
- * A hook for working with boolean state.
- * ```svelte
- * <script lang='ts'>
- *   const open = new UseBoolean();
- * </script>
- *
- * <p>{open.current}</p>
- * <button onclick={open.toggle}/>
- * ```
- */
 export class UseBoolean {
 	#current = $state(false);
 

@@ -1,21 +1,3 @@
-/**
- * A hook for working with the clipboard.
- * ```svelte
- * <script lang='ts'>
- * 	const clipboard = new UseClipboard();
- * </script>
- *
- * <button onclick={() => clipboard.copy(...)}>
- * 	{#if clipboard.copied === undefined}
- * 		Copy
- * 	{:else if clipboard.copied}
- * 		Copied!
- * 	{:else}
- * 		Failed
- * 	{/if}
- * </button>
- * ```
- */
 export class UseClipboard {
 	#delay: number;
 	#copiedStatus = $state<boolean>();
