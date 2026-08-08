@@ -2,19 +2,10 @@ import { error } from "@sveltejs/kit";
 import { highlightCode } from "$lib/server/highlighter.js";
 import type { PageServerLoad } from "./$types.js";
 
-const TAG_NAME_RE = /<Example\s[^>]*\bname=["']([^"']+)["']/g;
-
-const extractNames = (markdown: string): string[] => {
-	const exampleNames = new Set<string>();
-	TAG_NAME_RE.lastIndex = 0;
-
-	for (let m: RegExpExecArray | null; (m = TAG_NAME_RE.exec(markdown)) !== null;) {
-		const [, name] = m;
-		exampleNames.add(name);
-	}
-
-	return [...exampleNames];
-};
+interface ExampleSource {
+	styled: string;
+	raw: string;
+}
 
 const docStrings = import.meta.glob("./**/*.md", {
 	base: "/content",
@@ -32,27 +23,26 @@ const exampleStrings = import.meta.glob("./**/*.svelte", {
 
 export const load: PageServerLoad = async ({ params: { slug } }) => {
 	const docSource = docStrings[`./${slug}.md`];
-	if (!docSource) error(404, "Page Not Found");
+	if (!docSource) error(404, "Content Not Found");
 
-	const exampleNames = extractNames(docSource);
-	const exampleSources: Record<
-		string,
-		{
-			styled: string;
-			raw: string;
-		}
-	> = {};
+	const exampleNames = new Set<string>();
+	const exampleSources: Record<string, ExampleSource> = {};
+
+	const regex = /<Example\s[^>]*\bname=(["'])(?<name>[^"']+)\1/g;
+	for (let m: RegExpExecArray | null; (m = regex.exec(docSource)) !== null;) {
+		if (m.groups?.name) exampleNames.add(m.groups.name);
+	}
 
 	exampleNames.forEach(async (name) => {
-		let source = exampleStrings[`./${name}.svelte`];
-		if (source) {
-			source = source.replaceAll("$lib/registry", "$lib/components");
+		const eSource = exampleStrings[`./${name}.svelte`];
+		if (eSource) {
+			const eClean = eSource.replaceAll("$lib/registry", "$lib/components");
 			exampleSources[name] = {
-				styled: await highlightCode(source),
-				raw: source,
+				styled: await highlightCode(eClean),
+				raw: eClean,
 			};
-		} else console.log(`Missing: ${name}`);
+		}
 	});
 
-	return { exampleNames, exampleSources };
+	return { exampleNames: [...exampleNames], exampleSources };
 };

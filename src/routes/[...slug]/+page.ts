@@ -12,15 +12,18 @@ const exampleModules = import.meta.glob("./**/*.svelte", {
 	import: "default",
 });
 
-export const load: PageLoad = async ({ data, params: { slug } }) => {
+export const load: PageLoad = async ({
+	data: { exampleNames, exampleSources },
+	params: { slug },
+}) => {
 	const docResolver = docModules[`./${slug}.md`];
-	if (!docResolver) error(404, "Not Found");
+	if (!docResolver) error(404, "Content Not Found");
 
 	const doc = (await docResolver()) as { default: Component; metadata: Doc };
 	const exampleComponents: Record<string, Component> = {};
 
 	await Promise.all(
-		data.exampleNames.map(async (name) => {
+		exampleNames.map(async (name) => {
 			const exampleResolver = exampleModules[`./${name}.svelte`];
 			if (exampleResolver) {
 				const example = (await exampleResolver()) as Component;
@@ -30,9 +33,9 @@ export const load: PageLoad = async ({ data, params: { slug } }) => {
 	);
 
 	return {
-		...data,
-		exampleComponents,
-		component: doc.default,
 		metadata: doc.metadata,
+		component: doc.default,
+		exampleSources,
+		exampleComponents,
 	};
 };
