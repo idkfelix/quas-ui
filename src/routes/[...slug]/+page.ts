@@ -16,7 +16,7 @@ export const load: PageLoad = async ({
 	data: { exampleNames, exampleSources },
 	params: { slug },
 }) => {
-	const docResolver = docModules[`./${slug}.md`];
+	const docResolver = docModules[`./${slug || "index"}.md`];
 	if (!docResolver) error(404, "Content Not Found");
 
 	const doc = (await docResolver()) as { default: Component; metadata: Doc };

@@ -22,7 +22,7 @@ const exampleStrings = import.meta.glob("./**/*.svelte", {
 }) as Record<string, string>;
 
 export const load: PageServerLoad = async ({ params: { slug } }) => {
-	const docSource = docStrings[`./${slug}.md`];
+	const docSource = docStrings[`./${slug || "index"}.md`];
 	if (!docSource) error(404, "Content Not Found");
 
 	const exampleNames = new Set<string>();
