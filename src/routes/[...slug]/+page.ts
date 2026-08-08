@@ -16,12 +16,14 @@ export const load: PageLoad = async ({
 	data: { exampleNames, exampleSources },
 	params: { slug },
 }) => {
+	// Get module of requested markdown
 	const docResolver = docModules[`./${slug || "index"}.md`];
 	if (!docResolver) error(404, "Content Not Found");
 
 	const doc = (await docResolver()) as { default: Component; metadata: Doc };
 	const exampleComponents: Record<string, Component> = {};
 
+	// Get modules for extracted example names
 	await Promise.all(
 		exampleNames.map(async (name) => {
 			const exampleResolver = exampleModules[`./${name}.svelte`];
@@ -33,8 +35,10 @@ export const load: PageLoad = async ({
 	);
 
 	return {
+		// Used by main page
 		metadata: doc.metadata,
 		component: doc.default,
+		// Used by example preview
 		exampleSources,
 		exampleComponents,
 	};
