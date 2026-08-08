@@ -10,10 +10,10 @@
 	<meta name="description" content={data.metadata.description} />
 </svelte:head>
 
-<div class="mb-6">
-	<h1 class="pb-2 text-4xl font-bold tracking-tight">
+<div class="mb-6" data-toc-ignore>
+	<p class="pb-2 text-4xl font-bold tracking-tight">
 		{data.metadata.title}
-	</h1>
+	</p>
 	<p class="text-base text-balance text-muted-foreground sm:text-base">
 		{data.metadata.description}
 	</p>

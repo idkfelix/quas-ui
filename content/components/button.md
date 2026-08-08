@@ -1,6 +1,6 @@
 ---
 title: Button
-description: A button that handles promises with a loading state.
+description: An extended button with variants and states.
 ---
 
 <script lang="ts">
