@@ -4,15 +4,7 @@ import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 const highlightCodeCache = new Map<string, string>();
 const highlighterPromise = createHighlighterCore({
 	themes: [import("@shikijs/themes/github-dark"), import("@shikijs/themes/github-light")],
-	langs: [
-		import("@shikijs/langs/javascript"),
-		import("@shikijs/langs/typescript"),
-		import("@shikijs/langs/svelte"),
-		import("@shikijs/langs/css"),
-		import("@shikijs/langs/html"),
-		import("@shikijs/langs/json"),
-		import("@shikijs/langs/markdown"),
-	],
+	langs: [import("@shikijs/langs/svelte")],
 	engine: createJavaScriptRegexEngine(),
 });
 
