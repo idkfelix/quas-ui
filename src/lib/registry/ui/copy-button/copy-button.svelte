@@ -11,7 +11,9 @@
 </script>
 
 <script lang="ts">
-	import { CopyIcon, CheckIcon, XIcon } from "@lucide/svelte";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import CopyIcon from "@lucide/svelte/icons/copy";
+	import XIcon from "@lucide/svelte/icons/x";
 	import { mergeProps } from "bits-ui";
 	import { scale } from "svelte/transition";
 	import { UseClipboard } from "$lib/registry/hooks/use-clipboard.svelte";

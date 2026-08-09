@@ -11,7 +11,8 @@
 </script>
 
 <script lang="ts">
-	import { SunIcon, MoonIcon } from "@lucide/svelte";
+	import MoonIcon from "@lucide/svelte/icons/moon";
+	import SunIcon from "@lucide/svelte/icons/sun";
 	import { toggleMode, mode } from "mode-watcher";
 	import { scale } from "svelte/transition";
 	import { Button } from "$lib/registry/ui/button/index.js";
