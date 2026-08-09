@@ -12,8 +12,6 @@ const exampleModules = import.meta.glob("./**/*.svelte", {
 	import: "default",
 });
 
-export const prerender = true;
-
 export const entries: EntryGenerator = () => {
 	console.info("Prerendering docs");
 	return Object.keys(docModules).map((path) => ({

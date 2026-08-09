@@ -2,8 +2,6 @@ import { error } from "@sveltejs/kit";
 import { highlightCode } from "$lib/server/highlighter.js";
 import type { PageServerLoad } from "./$types.js";
 
-export const prerender = true;
-
 const docStrings = import.meta.glob("./**/*.md", {
 	base: "/content",
 	eager: true,
