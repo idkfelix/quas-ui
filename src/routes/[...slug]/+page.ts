@@ -1,6 +1,6 @@
-import { type docs } from "$content/index.js";
+import { type Doc } from "$content/index.js";
 import { error } from "@sveltejs/kit";
-import type { PageLoad } from "./$types.js";
+import type { EntryGenerator, PageLoad } from "./$types.js";
 import type { Component } from "svelte";
 
 const docModules = import.meta.glob("./**/*.md", {
@@ -12,6 +12,15 @@ const exampleModules = import.meta.glob("./**/*.svelte", {
 	import: "default",
 });
 
+export const prerender = true;
+
+export const entries: EntryGenerator = () => {
+	console.info("Prerendering docs");
+	return Object.keys(docModules).map((path) => ({
+		slug: path.replace("./", "").replace(".md", ""),
+	}));
+};
+
 export const load: PageLoad = async ({
 	data: { exampleNames, exampleSources },
 	params: { slug },
@@ -20,7 +29,7 @@ export const load: PageLoad = async ({
 	const docResolver = docModules[`./${slug || "index"}.md`];
 	if (!docResolver) error(404, "Content Not Found");
 
-	const doc = (await docResolver()) as { default: Component; metadata: docs };
+	const doc = (await docResolver()) as { default: Component; metadata: Doc };
 	const exampleComponents: Record<string, Component> = {};
 
 	// Get modules for extracted example names

@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "dev:content": "velite dev --watch",
     "sync": "svelte-kit sync",
     "build": "velite && vite build",
     "build:content": "velite",
-    "lint": "oxfmt --check && eslint .",
+    "lint": "eslint .",
     "format": "oxfmt"
   },
   "devDependencies": {
@@ -22,7 +21,6 @@
     "@shikijs/langs": "^4.4.2",
     "@shikijs/themes": "^4.4.2",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/adapter-vercel": "^6.3.4",
     "@sveltejs/kit": "^2.63.0",
     "@sveltejs/package": "^2.5.8",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",

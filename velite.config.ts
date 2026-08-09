@@ -18,7 +18,7 @@ const schema = s
 export default defineConfig({
 	collections: {
 		docs: {
-			name: "docs",
+			name: "Doc",
 			pattern: "./**/*.md",
 			schema: schema,
 		},

@@ -7,9 +7,8 @@ node_modules
 .wrangler
 .velite
 /.svelte-kit
-/build
 /dist
-/static
+/build
 /public
 
 # OS

@@ -2,11 +2,6 @@ import { error } from "@sveltejs/kit";
 import { highlightCode } from "$lib/server/highlighter.js";
 import type { PageServerLoad } from "./$types.js";
 
-interface ExampleSource {
-	styled: string;
-	raw: string;
-}
-
 const docStrings = import.meta.glob("./**/*.md", {
 	base: "/content",
 	eager: true,
@@ -27,7 +22,13 @@ export const load: PageServerLoad = async ({ params: { slug } }) => {
 	if (!docSource) error(404, "Content Not Found");
 
 	const exampleNames = new Set<string>();
-	const exampleSources: Record<string, ExampleSource> = {};
+	const exampleSources: Record<
+		string,
+		{
+			styled: string;
+			raw: string;
+		}
+	> = {};
 
 	// Extract names of examples
 	const regex = /<Example\s[^>]*\bname=(["'])(?<name>[^"']+)\1/g;
