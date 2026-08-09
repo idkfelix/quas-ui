@@ -1,6 +1,6 @@
 import { type Doc } from "$content/index.js";
 import { error } from "@sveltejs/kit";
-import type { EntryGenerator, PageLoad } from "./$types.js";
+import type { PageLoad } from "./$types.js";
 import type { Component } from "svelte";
 
 const docModules = import.meta.glob("./**/*.md", {
@@ -11,13 +11,6 @@ const exampleModules = import.meta.glob("./**/*.svelte", {
 	base: "/src/lib/examples",
 	import: "default",
 });
-
-export const entries: EntryGenerator = () => {
-	console.info("Prerendering docs");
-	return Object.keys(docModules).map((path) => ({
-		slug: path.replace("./", "").replace(".md", ""),
-	}));
-};
 
 export const load: PageLoad = async ({
 	data: { exampleNames, exampleSources },

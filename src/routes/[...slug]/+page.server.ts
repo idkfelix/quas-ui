@@ -1,6 +1,6 @@
 import { error } from "@sveltejs/kit";
 import { highlightCode } from "$lib/server/highlighter.js";
-import type { PageServerLoad } from "./$types.js";
+import type { EntryGenerator, PageServerLoad } from "./$types.js";
 
 const docStrings = import.meta.glob("./**/*.md", {
 	base: "/content",
@@ -15,6 +15,13 @@ const exampleStrings = import.meta.glob("./**/*.svelte", {
 	query: "?raw",
 	import: "default",
 }) as Record<string, string>;
+
+export const entries: EntryGenerator = () => {
+	console.info("Prerendering docs");
+	return Object.keys(docStrings).map((path) => ({
+		slug: path.replace("./", "").replace(".md", ""),
+	}));
+};
 
 export const load: PageServerLoad = async ({ params: { slug } }) => {
 	// Get raw string of requested markdown
