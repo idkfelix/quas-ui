@@ -1,4 +1,4 @@
-import adapter from "@sveltejs/adapter-auto";
+import adapter from "@sveltejs/adapter-vercel";
 import rehypeSlug from "rehype-slug";
 import { mdsx } from "mdsx";
 
