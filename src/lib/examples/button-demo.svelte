@@ -1,11 +1,14 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Button from "$lib/registry/ui/button/index.js";
 </script>
 
-<Button
+<Button.Root
 	variant="outline"
+	aria-label="Submit"
 	onClickPromise={async () => {
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 	}}
-	aria-label="Submit">Submit</Button
 >
+	<Button.Spinner />
+	Submit
+</Button.Root>

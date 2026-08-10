@@ -4,7 +4,7 @@
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 
 	export const buttonVariants = tv({
-		base: "group/button inline-flex shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-xs/relaxed font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+		base: "group/button inline-flex shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-xs/relaxed font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-[loading=true]:[&_svg:not([data-loading-icon])]:hidden",
 		variants: {
 			variant: {
 				default: "bg-primary text-primary-foreground hover:bg-primary/80",
@@ -44,73 +44,72 @@
 			variant?: ButtonVariant;
 			size?: ButtonSize;
 			loading?: boolean;
-			onClickPromise?: (e: MouseEvent) => Promise<void>;
+			onClickPromise?: (e?: MouseEvent) => Promise<void>;
 		};
 </script>
 
 <script lang="ts">
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import { mergeProps } from "bits-ui";
+	import { settled, tick } from "svelte";
 
 	let {
 		class: className,
 		variant = "default",
 		size = "default",
+		loading = $bindable(false),
+		onClickPromise,
 		ref = $bindable(null),
 		href = undefined,
 		type = "button",
 		disabled,
-		loading,
-		onclick,
-		onClickPromise,
 		children,
 		...restProps
 	}: ButtonProps = $props();
 
-	let pending = $state(false);
-	let isLoading = $derived(loading || pending);
+	const mergedProps = $derived(
+		mergeProps(restProps, {
+			onclick: async (e: MouseEvent) => {
+				if (onClickPromise) {
+					loading = true;
+					await tick();
+					try {
+						await onClickPromise(e);
+					} finally {
+						await settled();
+						loading = false;
+					}
+				}
+			},
+		})
+	);
 </script>
 
 {#if href}
 	<a
 		bind:this={ref}
-		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
-		href={disabled ? undefined : href}
+		data-slot="button"
+		data-button-root
+		data-loading={loading}
+		href={disabled || loading ? undefined : href}
+		role={disabled || loading ? "link" : undefined}
+		tabindex={disabled || loading ? -1 : undefined}
 		aria-disabled={disabled}
-		role={disabled ? "link" : undefined}
-		tabindex={disabled ? -1 : undefined}
-		{...restProps}
+		{...mergedProps}
 	>
 		{@render children?.()}
 	</a>
 {:else}
 	<button
 		bind:this={ref}
+		class={cn(buttonVariants({ variant, size }), className)}
 		data-slot="button"
-		class={cn(
-			buttonVariants({ variant, size }),
-			isLoading && "[&_svg:not([data-loading-icon])]:hidden",
-			className
-		)}
+		data-button-root
+		data-loading={loading}
+		disabled={disabled || loading}
 		{type}
-		disabled={disabled || isLoading}
-		data-loading={isLoading}
-		onclick={async (e) => {
-			onclick?.(e as never);
-			if (onClickPromise) {
-				pending = true;
-				try {
-					await onClickPromise(e);
-				} finally {
-					pending = false;
-				}
-			}
-		}}
-		{...restProps}
+		{...mergedProps}
 	>
-		{#if isLoading}
-			<Spinner data-icon="inline-start" data-loading-icon />
-		{/if}
 		{@render children?.()}
 	</button>
 {/if}

@@ -1,6 +1,6 @@
 ---
 title: Button
-description: An extended button with variants and states.
+description: A button or anchor that handles promises.
 ---
 
 <script lang="ts">
