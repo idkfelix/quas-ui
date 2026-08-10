@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import TerminalIcon from "@lucide/svelte/icons/terminal";
 	import { resolveCommand } from "package-manager-detector/commands";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { CopyButton } from "$lib/registry/ui/copy-button/index.js";
@@ -29,7 +28,6 @@
 <div data-slot="pm-command" class="mt-4 mb-12 w-full rounded-lg border border-border bg-card">
 	<div class="flex place-items-center justify-between gap-2 border-b border-border py-1 pr-2">
 		<div class="flex place-items-center gap-2 px-2">
-			<TerminalIcon class="text-code size-4" />
 			<Tabs.Root bind:value={agent}>
 				<Tabs.List class="h-auto bg-transparent p-0">
 					{#each agents as pm (pm)}
