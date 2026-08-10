@@ -11,7 +11,7 @@
 <ModeWatcher />
 
 <SidebarProvider class="max-h-dvh px-2" style="--sidebar-width: 14rem;">
-	<Sidebar class="ml-auto py-10" />
+	<Sidebar class="ml-auto hidden py-10 lg:flex" />
 	<div class="mx-auto flex w-full max-w-2xl scrollbar-none flex-col overflow-x-scroll py-8 lg:mx-4">
 		{@render children()}
 	</div>

@@ -7,7 +7,7 @@
 	let { class: className }: { class?: string } = $props();
 </script>
 
-<Sidebar.Root class={cn("sticky hidden bg-transparent lg:flex", className)} collapsible="none">
+<Sidebar.Root class={cn("sticky bg-transparent", className)} collapsible="none">
 	<Sidebar.Content>
 		{#each Object.entries(groups) as [groupName, groupDocs] (groupName)}
 			<Sidebar.Group>
@@ -15,16 +15,16 @@
 					{groupName}
 				</Sidebar.GroupLabel>
 				<Sidebar.GroupContent>
-					<Sidebar.Menu class="gap-1">
+					<Sidebar.MenuSub class="gap-1">
 						{#each groupDocs as { title, path } (path)}
 							{@const href = `/${path}`}
-							<Sidebar.MenuButton class="w-fit" size="sm">
+							<Sidebar.MenuSubButton class="w-fit" size="sm">
 								{#snippet child({ props })}
 									<a {href} {...props}>{title}</a>
 								{/snippet}
-							</Sidebar.MenuButton>
+							</Sidebar.MenuSubButton>
 						{/each}
-					</Sidebar.Menu>
+					</Sidebar.MenuSub>
 				</Sidebar.GroupContent>
 			</Sidebar.Group>
 		{/each}
