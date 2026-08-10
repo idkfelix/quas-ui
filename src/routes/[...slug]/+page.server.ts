@@ -47,7 +47,9 @@ export const load: PageServerLoad = async ({ params: { slug } }) => {
 	exampleNames.forEach(async (name) => {
 		const eSource = exampleStrings[`./${name}.svelte`];
 		if (eSource) {
-			const eClean = eSource.replaceAll("$lib/registry", "$lib/components");
+			const eClean = eSource
+				.replaceAll("$lib/registry/hooks", "$lib/hooks")
+				.replaceAll("$lib/registry", "$lib/components");
 			exampleSources[name] = {
 				styled: await highlightCode(eClean),
 				raw: eClean,
