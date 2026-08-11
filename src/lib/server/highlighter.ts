@@ -22,8 +22,11 @@ export const highlight = async ({ value, lang = "svelte" }: { value: string; lan
 		transformers: [
 			{
 				pre(node) {
-					node.properties["class"] =
-						"shiki no-scrollbar overflow-x-auto px-4 py-3.5 outline-none mt-4 mb-12 rounded-lg border group-data-[slot=code]:my-0 group-data-[slot=code]:rounded-none group-data-[slot=code]:border-none";
+					delete node.properties["tabindex"];
+					this.addClassToHast(node, [
+						"shiki no-scrollbar overflow-x-auto px-4 py-3.5 outline-none rounded-lg border mt-4 mb-12",
+						"group-data-[slot=code]:rounded-none group-data-[slot=code]:border-none group-data-[slot=code]:my-0",
+					]);
 				},
 			},
 		],
