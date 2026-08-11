@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
-	import Heading from "./heading.svelte";
+	import H from "./h.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
@@ -19,7 +19,7 @@
 	{id}
 	{...restProps}
 >
-	<Heading id={id ?? undefined}>
+	<H id={id ?? undefined}>
 		{@render children?.()}
-	</Heading>
+	</H>
 </h2>
