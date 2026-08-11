@@ -21,7 +21,7 @@
 	{#if source}
 		<div
 			data-slot="code"
-			class="relative overflow-hidden [&_pre]:max-h-100 [&_pre:not(.shiki)]:p-0"
+			class="group relative overflow-hidden [&_pre]:max-h-100 [&_pre:not(.shiki)]:p-0"
 		>
 			<CopyButton
 				text={source.raw}

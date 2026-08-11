@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { highlightCode } from "$lib/server/highlighter.js";
+import { highlight } from "$lib/server/highlighter.js";
 import type { EntryGenerator, PageServerLoad } from "./$types.js";
 
 const docStrings = import.meta.glob("./**/*.md", {
@@ -51,7 +51,7 @@ export const load: PageServerLoad = async ({ params: { slug } }) => {
 				.replaceAll("$lib/registry/hooks", "$lib/hooks")
 				.replaceAll("$lib/registry", "$lib/components");
 			exampleSources[name] = {
-				styled: await highlightCode(eClean),
+				styled: await highlight({ value: eClean, lang: "svelte" }),
 				raw: eClean,
 			};
 		}

@@ -8,12 +8,12 @@ const highlighterPromise = createHighlighterCore({
 	engine: createJavaScriptRegexEngine(),
 });
 
-export const highlightCode = async (code: string, lang: string = "svelte") => {
-	const cachedCode = highlightCodeCache.get(code);
+export const highlight = async ({ value, lang = "svelte" }: { value: string; lang: string }) => {
+	const cachedCode = highlightCodeCache.get(value);
 	if (cachedCode) return cachedCode;
 
 	const highlighter = await highlighterPromise;
-	const html = highlighter.codeToHtml(code, {
+	const html = highlighter.codeToHtml(value, {
 		lang,
 		themes: {
 			light: "github-light",
@@ -23,12 +23,12 @@ export const highlightCode = async (code: string, lang: string = "svelte") => {
 			{
 				pre(node) {
 					node.properties["class"] =
-						"shiki no-scrollbar min-w-0 overflow-x-auto px-4 py-3.5 outline-none";
+						"shiki no-scrollbar overflow-x-auto px-4 py-3.5 outline-none mt-4 mb-12 rounded-lg border group-data-[slot=code]:my-0 group-data-[slot=code]:rounded-none group-data-[slot=code]:border-none";
 				},
 			},
 		],
 	});
 
-	highlightCodeCache.set(code, html);
+	highlightCodeCache.set(value, html);
 	return html;
 };

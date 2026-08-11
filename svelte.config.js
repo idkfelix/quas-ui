@@ -1,6 +1,8 @@
 import adapter from "@sveltejs/adapter-vercel";
 import rehypeSlug from "rehype-slug";
+import { rehypeCustomHighlight } from "@mdsx/rehype-custom-highlighter";
 import { mdsx } from "mdsx";
+import { highlight } from "./src/lib/server/highlighter.ts";
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
@@ -8,7 +10,7 @@ export default {
 	preprocess: [
 		mdsx({
 			extensions: [".md"],
-			rehypePlugins: [rehypeSlug],
+			rehypePlugins: [rehypeSlug, [rehypeCustomHighlight, { highlight }]],
 			blueprints: {
 				default: {
 					path: "src/lib/components/mdsx/blueprint.svelte",
