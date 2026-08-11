@@ -36,8 +36,8 @@ export const load: PageLoad = async ({
 
 	return {
 		// Used by main page
+		doc: doc.default,
 		metadata: doc.metadata,
-		component: doc.default,
 		// Used by example preview
 		exampleSources,
 		exampleComponents,

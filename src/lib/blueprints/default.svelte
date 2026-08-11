@@ -12,7 +12,31 @@
 
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	let { children }: { children: Snippet } = $props();
+	let {
+		children,
+		metadata,
+	}: {
+		children: Snippet;
+		metadata: {
+			title: string;
+			description: string;
+		};
+	} = $props();
 </script>
 
-{@render children()}
+<svelte:head>
+	<title>{metadata.title} - quas ui</title>
+	<meta name="description" content={metadata.description} />
+</svelte:head>
+
+<figure>
+	<header class="mb-6">
+		<p class="pb-2 text-4xl font-bold tracking-tight">
+			{metadata.title}
+		</p>
+		<p class="text-base text-balance text-muted-foreground sm:text-base">
+			{metadata.description}
+		</p>
+	</header>
+	{@render children()}
+</figure>
