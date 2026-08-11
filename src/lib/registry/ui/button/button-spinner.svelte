@@ -7,7 +7,6 @@
 </script>
 
 <Spinner
-	data-loading-icon
 	data-slot="button-spinner"
 	class={cn("hidden group-data-[loading=true]/button:inline", className)}
 	{...restProps}
