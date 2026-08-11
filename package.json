@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "sync": "svelte-kit sync",
+    "dev:content": "velite dev",
     "build": "velite && vite build",
     "build:content": "velite",
+    "sync": "svelte-kit sync",
+    "preview": "vite preview",
     "lint": "eslint .",
     "format": "oxfmt"
   },
