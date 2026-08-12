@@ -33,7 +33,7 @@ export async function build(): Promise<void> {
 	const registryJsonPath = path.resolve(cwd, "registry.json");
 	fs.writeFileSync(registryJsonPath, JSON.stringify(result, null, "\t"), "utf8");
 
-	execAsync(
+	await execAsync(
 		`bun shadcn-svelte registry build ${registryJsonPath} --output ${outputPath} -c ${cwd}`,
 		{ cwd }
 	);
