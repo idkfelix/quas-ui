@@ -2,8 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
-import { registryItemSchema, registrySchema, type Registry } from "shadcn-svelte/schema";
-import { toJSONSchema } from "zod";
+import { registrySchema, type Registry } from "shadcn-svelte/schema";
 import pkg from "../package.json" with { type: "json" };
 
 type RegistryItems = Registry["items"];
@@ -11,33 +10,20 @@ type RegistryItemFiles = Registry["items"][number]["files"];
 
 const execAsync = promisify(exec);
 
-function writeFileWithDirs(
-	filePath: string,
-	data: string,
-	options: Parameters<typeof fs.writeFileSync>[2] = {}
-): void {
-	const dirname = path.dirname(filePath);
-	fs.mkdirSync(dirname, { recursive: true });
-	fs.writeFileSync(filePath, data, options);
-}
-
 export async function build(): Promise<void> {
-	writeFileWithDirs(
-		path.resolve("static", "schema", "registry.json"),
-		JSON.stringify(toJSONSchema(registrySchema), null, "\t")
-	);
-	writeFileWithDirs(
-		path.resolve("static", "schema", "registry-item.json"),
-		JSON.stringify(toJSONSchema(registryItemSchema), null, "\t")
-	);
+	const registryRootPath = path.resolve("src", "lib", "registry");
+	const paths = {
+		ui: path.resolve(registryRootPath, "ui"),
+		hooks: path.resolve(registryRootPath, "hooks"),
+		blocks: path.resolve(registryRootPath, "blocks"),
+	};
 
-	const registry = buildRegistry();
 	const result = registrySchema.parse(
 		{
-			$schema: "./static/schema/registry.json",
+			$schema: "https://shadcn-svelte.com/schema/registry.json",
 			name: pkg.name,
 			homepage: pkg.homepage,
-			items: registry,
+			items: [crawlUI(paths.ui), crawlHooks(paths.hooks)].flat(),
 		} as Registry,
 		{ jitless: true }
 	);
@@ -51,17 +37,6 @@ export async function build(): Promise<void> {
 		`bun shadcn-svelte registry build ${registryJsonPath} --output ${outputPath} -c ${cwd}`,
 		{ cwd }
 	);
-}
-
-function buildRegistry(): RegistryItems {
-	const registryRootPath = path.resolve("src", "lib", "registry");
-	const paths = {
-		ui: path.resolve(registryRootPath, "ui"),
-		hooks: path.resolve(registryRootPath, "hooks"),
-		blocks: path.resolve(registryRootPath, "blocks"),
-	};
-
-	return [crawlUI(paths.ui), crawlHooks(paths.hooks)].flat();
 }
 
 function crawlUI(rootPath: string): RegistryItems {
