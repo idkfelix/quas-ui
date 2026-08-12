@@ -1,6 +1,7 @@
 {
   "name": "quas-ui",
   "homepage": "https://quas.vercel.app",
+  "license": "MIT NON-AI",
   "private": true,
   "version": "0.0.0",
   "type": "module",
