@@ -18,7 +18,7 @@
     "sync": "svelte-kit sync",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "oxfmt"
+    "fmt": "oxfmt"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
