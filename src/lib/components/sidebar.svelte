@@ -17,7 +17,7 @@
 				<Sidebar.GroupContent>
 					<Sidebar.MenuSub class="gap-1">
 						{#each groupDocs as { title, path } (path)}
-							{@const href = `/${path}`}
+							{@const href = `/${path.replace("index","")}`}
 							<Sidebar.MenuSubButton class="w-fit" size="sm">
 								{#snippet child({ props })}
 									<a {href} {...props}>{title}</a>
