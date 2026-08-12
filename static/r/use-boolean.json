@@ -1,0 +1,12 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "use-boolean",
+	"type": "registry:hook",
+	"files": [
+		{
+			"content": "export class UseBoolean {\n\t#current = $state(false);\n\n\tconstructor(defaultValue = false) {\n\t\tthis.#current = defaultValue;\n\t\tthis.toggle = this.toggle.bind(this);\n\t\tthis.setTrue = this.setTrue.bind(this);\n\t\tthis.setFalse = this.setFalse.bind(this);\n\t}\n\n\t/** Toggle the current state */\n\ttoggle() {\n\t\tthis.#current = !this.#current;\n\t}\n\n\t/** Set the current state to true */\n\tsetTrue() {\n\t\tthis.#current = true;\n\t}\n\n\t/** Set the current state to false */\n\tsetFalse() {\n\t\tthis.#current = false;\n\t}\n\n\tget current() {\n\t\treturn this.#current;\n\t}\n\n\tset current(value) {\n\t\tthis.#current = value;\n\t}\n}\n",
+			"type": "registry:hook",
+			"target": "use-boolean.svelte.ts"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "use-clipboard",
+	"type": "registry:hook",
+	"files": [
+		{
+			"content": "export class UseClipboard {\n\t#delay: number;\n\t#copiedStatus = $state<boolean>();\n\t#timeout: ReturnType<typeof setTimeout> | undefined = undefined;\n\n\tconstructor(delay: number = 500) {\n\t\tthis.#delay = delay;\n\t}\n\n\t/** Copies text to clipboard */\n\tasync copy(text: string) {\n\t\tif (this.#timeout) {\n\t\t\tthis.#copiedStatus = undefined;\n\t\t\tclearTimeout(this.#timeout);\n\t\t}\n\n\t\tthis.#copiedStatus = await navigator.clipboard.writeText(text).then(\n\t\t\t() => true,\n\t\t\t() => false\n\t\t);\n\n\t\tthis.#timeout = setTimeout(() => {\n\t\t\tthis.#copiedStatus = undefined;\n\t\t}, this.#delay);\n\n\t\treturn this.#copiedStatus;\n\t}\n\n\t/** Whether the copy was successful */\n\tget copied() {\n\t\treturn this.#copiedStatus;\n\t}\n}\n",
+			"type": "registry:hook",
+			"target": "use-clipboard.svelte.ts"
+		}
+	]
+}

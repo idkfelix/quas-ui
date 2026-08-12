@@ -1,0 +1,131 @@
+import fs from "node:fs";
+import path from "node:path";
+import { exec } from "node:child_process";
+import { promisify } from "node:util";
+import { registryItemSchema, registrySchema, type Registry } from "shadcn-svelte/schema";
+import { toJSONSchema } from "zod";
+import pkg from "../package.json" with { type: "json" };
+
+type RegistryItems = Registry["items"];
+type RegistryItemFiles = Registry["items"][number]["files"];
+
+const execAsync = promisify(exec);
+
+function writeFileWithDirs(
+	filePath: string,
+	data: string,
+	options: Parameters<typeof fs.writeFileSync>[2] = {}
+): void {
+	const dirname = path.dirname(filePath);
+	fs.mkdirSync(dirname, { recursive: true });
+	fs.writeFileSync(filePath, data, options);
+}
+
+export async function build(): Promise<void> {
+	writeFileWithDirs(
+		path.resolve("static", "schema", "registry.json"),
+		JSON.stringify(toJSONSchema(registrySchema), null, "\t")
+	);
+	writeFileWithDirs(
+		path.resolve("static", "schema", "registry-item.json"),
+		JSON.stringify(toJSONSchema(registryItemSchema), null, "\t")
+	);
+
+	const registry = buildRegistry();
+	const result = registrySchema.parse(
+		{
+			$schema: "./static/schema/registry.json",
+			name: pkg.name,
+			homepage: pkg.homepage,
+			items: registry,
+		} as Registry,
+		{ jitless: true }
+	);
+
+	const cwd = process.cwd();
+	const outputPath = path.resolve(cwd, "static", "r");
+	const registryJsonPath = path.resolve(cwd, "registry.json");
+	fs.writeFileSync(registryJsonPath, JSON.stringify(result, null, "\t"), "utf8");
+
+	execAsync(
+		`bun shadcn-svelte registry build ${registryJsonPath} --output ${outputPath} -c ${cwd}`,
+		{ cwd }
+	);
+}
+
+function buildRegistry(): RegistryItems {
+	const registryRootPath = path.resolve("src", "lib", "registry");
+	const paths = {
+		ui: path.resolve(registryRootPath, "ui"),
+		hooks: path.resolve(registryRootPath, "hooks"),
+		blocks: path.resolve(registryRootPath, "blocks"),
+	};
+
+	return [crawlUI(paths.ui), crawlHooks(paths.hooks)].flat();
+}
+
+function crawlUI(rootPath: string): RegistryItems {
+	const dir = fs
+		.readdirSync(rootPath, { recursive: true, withFileTypes: true })
+		.filter((dirent) => dirent.isDirectory());
+	return dir.map((dirent) => {
+		return buildUIItem(path.resolve(rootPath, dirent.name), dirent.name);
+	});
+}
+
+function buildUIItem(itemPath: string, itemName: string): RegistryItems[number] {
+	const dir = fs.readdirSync(itemPath, { withFileTypes: true });
+	const dirFiles = dir.filter((d) => d.isFile());
+
+	const files: RegistryItemFiles = [];
+	const registryDeps = new Set<string>();
+
+	dirFiles.map((dirent) => {
+		const filepath = path.join(itemPath, dirent.name);
+		const relativePath = path.relative(process.cwd(), filepath);
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+
+		getFileDeps(source).map((dep) => registryDeps.add(dep));
+		files.push({
+			path: relativePath.replaceAll("\\", "/"),
+			type: "registry:file" as const,
+		});
+	});
+
+	return {
+		name: itemName,
+		files,
+		type: "registry:ui" as const,
+		registryDependencies: Array.from(registryDeps),
+	} satisfies RegistryItems[number];
+}
+
+function crawlHooks(rootPath: string): RegistryItems {
+	const dir = fs.readdirSync(rootPath, { withFileTypes: true }).filter((dirent) => dirent.isFile());
+	return dir.map((dirent) => {
+		const [name] = dirent.name.split(".svelte.ts");
+		const filepath = path.join(rootPath, dirent.name);
+		const relativePath = path.relative(process.cwd(), filepath);
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+
+		return {
+			name,
+			type: "registry:hook" as const,
+			files: [{ path: relativePath.replaceAll("\\", "/"), type: "registry:hook" as const }],
+			registryDependencies: getFileDeps(source),
+		};
+	});
+}
+
+function getFileDeps(source: string): string[] {
+	const registryDeps = new Set<string>();
+	const DEPS_RE = /"\$lib\/registry\/(?:ui|hooks)\/([\w-]+)/g;
+	for (let m: RegExpExecArray | null; (m = DEPS_RE.exec(source)) !== null;) {
+		if (m[1]) registryDeps.add(`local:${m[1]}`);
+	}
+	return Array.from(registryDeps);
+}
+
+if (process.argv.includes("build")) {
+	build();
+}

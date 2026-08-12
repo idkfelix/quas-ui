@@ -1,0 +1,17 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "link",
+	"type": "registry:ui",
+	"files": [
+		{
+			"content": "import Root from \"./link.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Link,\n};\n",
+			"type": "registry:file",
+			"target": "link/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\n\tlet { children, class: className, href, ...rest }: HTMLAnchorAttributes = $props();\n\tconst internal = $derived(href?.startsWith(\"/\") || href?.startsWith(\"#\"));\n\tconst rel = $derived(!internal ? \"noopener noreferrer\" : undefined);\n\tconst target = $derived(!internal ? \"_blank\" : undefined);\n</script>\n\n<a\n\t{href}\n\t{target}\n\t{rel}\n\t{...rest}\n\tclass={cn(\"font-medium text-foreground underline underline-offset-4\", className)}\n>\n\t{@render children?.()}\n</a>\n",
+			"type": "registry:file",
+			"target": "link/link.svelte"
+		}
+	]
+}

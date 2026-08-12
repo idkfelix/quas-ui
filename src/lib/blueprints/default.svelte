@@ -6,7 +6,6 @@
 	export { default as li } from "./li.svelte";
 	export { default as ul } from "./ul.svelte";
 	export { default as hr } from "./hr.svelte";
-	export { default as strong } from "./strong.svelte";
 	export { Root as a } from "$lib/registry/ui/link/index.js";
 </script>
 
@@ -30,11 +29,11 @@
 </svelte:head>
 
 <figure>
-	<header class="mb-6">
-		<p class="pb-2 text-4xl font-bold tracking-tight">
+	<header class="mb-6 flex flex-col gap-2">
+		<h1 class="text-4xl font-bold tracking-tight">
 			{metadata.title}
-		</p>
-		<p class="text-base text-balance text-muted-foreground sm:text-base">
+		</h1>
+		<p class="text-base text-balance text-muted-foreground">
 			{metadata.description}
 		</p>
 	</header>

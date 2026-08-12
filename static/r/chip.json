@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "chip",
+	"type": "registry:ui",
+	"devDependencies": [
+		"@lucide/svelte@^1.28.0",
+		"tailwind-variants@^3.3.0"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\n\texport const chipVariants = tv({\n\t\tbase: [\n\t\t\t\"group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-[0.625rem] font-medium whitespace-nowrap transition-all\",\n\t\t\t\"has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 **:data-[icon=inline-end]:order-last **:data-[icon=inline-start]:order-first *:[&>svg]:pointer-events-none *:[&>svg]:size-2.5!\",\n\t\t\t\"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50\",\n\t\t\t\"aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40\",\n\t\t],\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-primary text-primary-foreground hover:bg-primary/90\",\n\t\t\t\tsecondary: \"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n\t\t\t\toutline: \"border-border bg-input/20 text-foreground hover:bg-muted\",\n\t\t\t\tghost: \"hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50\",\n\t\t\t},\n\t\t\tactive: {\n\t\t\t\ttrue: \"\",\n\t\t\t\tfalse: \"\",\n\t\t\t},\n\t\t},\n\t\tcompoundVariants: [\n\t\t\t{\n\t\t\t\tvariant: \"outline\",\n\t\t\t\tactive: true,\n\t\t\t\tclass: \"bg-primary text-primary-foreground hover:bg-primary/90\",\n\t\t\t},\n\t\t],\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t},\n\t});\n\n\texport type ChipVariant = VariantProps<typeof chipVariants>[\"variant\"];\n\n\texport type ChipProps = HTMLButtonAttributes & {\n\t\tvariant?: ChipVariant;\n\t\tactive?: boolean;\n\t\tremovable?: boolean;\n\t\ttoggleable?: boolean;\n\t\tonclick?: (e: MouseEvent) => void;\n\t\tonremove?: (e: MouseEvent) => void;\n\t};\n</script>\n\n<script lang=\"ts\">\n\timport CheckIcon from \"@lucide/svelte/icons/check\";\n\timport PlusIcon from \"@lucide/svelte/icons/plus\";\n\timport XIcon from \"@lucide/svelte/icons/x\";\n\timport { scale } from \"svelte/transition\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tactive = $bindable(false),\n\t\tremovable,\n\t\ttoggleable,\n\t\tdisabled,\n\t\tonclick,\n\t\tonremove,\n\t\tchildren,\n\t\t...restProps\n\t}: ChipProps = $props();\n\n\tconst handleToggle = (e: MouseEvent) => {\n\t\tif (disabled) return;\n\t\tif (onclick) onclick(e);\n\t\telse active = !active;\n\t};\n\n\tconst handleRemove = (e: MouseEvent) => {\n\t\te.stopPropagation();\n\t\tif (disabled) return;\n\t\tonremove?.(e);\n\t};\n</script>\n\n<svelte:element\n\tthis={removable ? \"span\" : \"button\"}\n\tclass={cn(chipVariants({ variant, active }), className)}\n\tdata-slot=\"chip\"\n\ttabindex={toggleable ? 0 : -1}\n\taria-pressed={toggleable ? active : undefined}\n\tonclick={toggleable ? handleToggle : onclick}\n\t{disabled}\n\t{...restProps}\n>\n\t<span class=\"leading-2\">\n\t\t{@render children?.()}\n\t</span>\n\n\t{#if toggleable}\n\t\t{#if active}\n\t\t\t<span in:scale={{ duration: 500, start: 0.85 }} data-icon=\"inline-start\">\n\t\t\t\t<CheckIcon />\n\t\t\t</span>\n\t\t{:else}\n\t\t\t<span in:scale={{ duration: 500, start: 0.85 }} data-icon=\"inline-start\">\n\t\t\t\t<PlusIcon />\n\t\t\t</span>\n\t\t{/if}\n\t{/if}\n\n\t{#if removable}\n\t\t<button\n\t\t\ttype=\"button\"\n\t\t\tclass=\"rounded-full hover:bg-primary/20\"\n\t\t\tonclick={handleRemove}\n\t\t\taria-label=\"Remove\"\n\t\t>\n\t\t\t<XIcon data-icon=\"inline-end\" />\n\t\t</button>\n\t{/if}\n</svelte:element>\n",
+			"type": "registry:file",
+			"target": "chip/chip.svelte"
+		},
+		{
+			"content": "import Root from \"./chip.svelte\";\nimport { chipVariants, type ChipVariant } from \"./chip.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Chip,\n\tchipVariants,\n\ttype ChipVariant,\n};\n",
+			"type": "registry:file",
+			"target": "chip/index.ts"
+		}
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "spinner",
+	"type": "registry:ui",
+	"devDependencies": [
+		"@lucide/svelte@^1.28.0"
+	],
+	"files": [
+		{
+			"content": "export { default as Spinner } from \"./spinner.svelte\";\n",
+			"type": "registry:file",
+			"target": "spinner/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport Loader2Icon from \"@lucide/svelte/icons/loader-2\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { SVGAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tclass: className,\n\t\trole = \"status\",\n\t\t// we add name, color, and stroke for compatibility with different icon libraries props\n\t\tname,\n\t\tcolor,\n\t\tstroke,\n\t\t\"aria-label\": ariaLabel = \"Loading\",\n\t\t...restProps\n\t}: SVGAttributes<SVGSVGElement> = $props();\n</script>\n\n<Loader2Icon\n\t{role}\n\tname={name === null ? undefined : name}\n\tcolor={color === null ? undefined : color}\n\tstroke={stroke === null ? undefined : stroke}\n\taria-label={ariaLabel}\n\tclass={cn(\"size-4 animate-spin\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "spinner/spinner.svelte"
+		}
+	]
+}
