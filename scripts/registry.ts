@@ -29,21 +29,20 @@ export function build(): void {
 		{ jitless: true }
 	);
 
-	log("writing registry.json")
+	log("writing registry.json");
 	const cwd = process.cwd();
 	const outputPath = path.resolve(cwd, "static", "r");
 	const registryJsonPath = path.resolve(cwd, "registry.json");
 	fs.writeFileSync(registryJsonPath, JSON.stringify(result, null, "\t"), "utf8");
 
-	log("building registry items...")
-	exec(
-		`bun shadcn-svelte registry build ${registryJsonPath} --output ${outputPath} -c ${cwd}`,
-		{ cwd }
-	);
+	log("building registry items...");
+	exec(`bun shadcn-svelte registry build ${registryJsonPath} --output ${outputPath} -c ${cwd}`, {
+		cwd,
+	});
 }
 
 function crawlUI(rootPath: string): RegistryItems {
-	log("crawling ui...")
+	log("crawling ui...");
 	const dir = fs
 		.readdirSync(rootPath, { recursive: true, withFileTypes: true })
 		.filter((dirent) => dirent.isDirectory());
@@ -80,7 +79,7 @@ function buildUIItem(itemPath: string, itemName: string): RegistryItems[number] 
 }
 
 function crawlHooks(rootPath: string): RegistryItems {
-	log("crawling hooks...")
+	log("crawling hooks...");
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true }).filter((dirent) => dirent.isFile());
 	return dir.map((dirent) => {
 		const [name] = dirent.name.split(".svelte.ts");
