@@ -3,11 +3,9 @@ import * as api from "../api-reference.js";
 import type { WithChildren } from "bits-ui";
 import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 
-export const ButtonRootRef = api.defineComponent<
+const Root = api.defineComponent<
 	WithChildren<Omit<ButtonProps, keyof HTMLButtonAttributes | keyof HTMLAnchorAttributes>>
 >({
-	name: "Button.Root",
-	description: "The root button component.",
 	props: {
 		ref: api.defineProp({
 			type: "HTMLElement",
@@ -53,5 +51,23 @@ export const ButtonRootRef = api.defineComponent<
 			description: "The loading state of the button.",
 			tooltip: '"true" | "false"',
 		}),
+	},
+});
+
+const Spinner = api.defineComponent<Record<string, unknown>>({
+	props: {},
+	dataAttrs: {
+		"data-slot": api.defineDataAttr({
+			value: '"button-spinner"',
+			description: "Slot used to target and apply styles.",
+		}),
+	},
+});
+
+export const Reference = api.defineReference({
+	name: "Button",
+	components: {
+		Root,
+		Spinner,
 	},
 });

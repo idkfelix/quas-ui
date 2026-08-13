@@ -1,6 +1,9 @@
-export type Component<T> = {
+export type ComponentReference<T = unknown> = {
 	name: string;
-	description: string;
+	components: Record<string, Component<T>>;
+};
+
+export type Component<T> = {
 	props: PropsReference<T>;
 	dataAttrs: Record<string, DataAttrReference>;
 };
@@ -24,9 +27,14 @@ export type DataAttrReference = {
 	tooltip?: string;
 };
 
-export function defineComponent<T extends Record<string, unknown>>(config: {
+export function defineReference<T = unknown>(config: {
 	name: string;
-	description: string;
+	components: Record<string, Component<T>>;
+}) {
+	return config as ComponentReference;
+}
+
+export function defineComponent<T extends Record<string, unknown>>(config: {
 	props: PropsReference<T>;
 	dataAttrs: Record<string, DataAttrReference>;
 }) {
