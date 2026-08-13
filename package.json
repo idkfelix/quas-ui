@@ -10,9 +10,10 @@
     "url": "git@github.com:idkfelix/quas-ui.git"
   },
   "scripts": {
-    "dev": "concurrently -c 'green,magenta' 'bun:dev:content' 'bun:dev:app'",
+    "dev": "concurrently -p none 'bun:dev:*'",
     "dev:app": "vite dev",
     "dev:content": "velite dev",
+    "dev:registry": "tsx watch --include \"src/lib/registry/**/*\" scripts/registry.ts build",
     "build": "bun build:registry && bun build:content && bun build:app",
     "build:app": "vite build",
     "build:content": "velite",
