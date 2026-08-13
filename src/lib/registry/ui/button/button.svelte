@@ -72,12 +72,12 @@
 				if (onClickPromise) {
 					loading = true;
 					await tick();
-					try {
-						await onClickPromise(e);
-					} finally {
-						await settled();
-						loading = false;
-					}
+					await Promise.try(() => onClickPromise(e))
+						.catch((err) => console.error(err))
+						.finally(async () => {
+							await settled();
+							loading = false;
+						});
 				}
 			},
 		})
