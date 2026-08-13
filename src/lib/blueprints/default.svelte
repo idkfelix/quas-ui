@@ -28,7 +28,7 @@
 	<meta name="description" content={metadata.description} />
 </svelte:head>
 
-<figure>
+<figure class="w-full">
 	<header class="mb-6 flex flex-col gap-2">
 		<h1 class="text-4xl font-bold tracking-tight">
 			{metadata.title}
