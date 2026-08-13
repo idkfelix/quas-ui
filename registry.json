@@ -311,6 +311,49 @@
 			]
 		},
 		{
+			"name": "popover",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-close.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-content.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-header.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-portal.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-title.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover.svelte"
+				}
+			]
+		},
+		{
 			"name": "select",
 			"type": "registry:ui",
 			"registryDependencies": ["local:separator"],
@@ -576,6 +619,49 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/spinner/spinner.svelte"
+				}
+			]
+		},
+		{
+			"name": "table",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/table/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/table/table-body.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/table/table-caption.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/table/table-cell.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/table/table-footer.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/table/table-head.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/table/table-header.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/table/table-row.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/table/table.svelte"
 				}
 			]
 		},

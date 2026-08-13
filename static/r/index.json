@@ -99,6 +99,12 @@
 		"relativeUrl": "link.json"
 	},
 	{
+		"name": "popover",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "popover.json"
+	},
+	{
 		"name": "select",
 		"type": "registry:ui",
 		"registryDependencies": [
@@ -144,6 +150,12 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "spinner.json"
+	},
+	{
+		"name": "table",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "table.json"
 	},
 	{
 		"name": "tabs",
