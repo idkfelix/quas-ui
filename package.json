@@ -10,14 +10,14 @@
     "url": "git@github.com:idkfelix/quas-ui.git"
   },
   "scripts": {
-    "dev": "vite dev",
+    "dev": "concurrently -c 'green,magenta' 'bun:dev:content' 'bun:dev:app'",
+    "dev:app": "vite dev",
     "dev:content": "velite dev",
-    "build": "velite && vite build",
+    "build": "bun build:registry && bun build:content && bun build:app",
+    "build:app": "vite build",
     "build:content": "velite",
     "build:registry": "tsx scripts/registry.ts build",
-    "sync": "svelte-kit sync",
-    "preview": "vite preview",
-    "lint": "eslint .",
+    "lint": "svelte-kit sync && svelte-check && eslint .",
     "fmt": "oxfmt"
   },
   "devDependencies": {
@@ -29,7 +29,6 @@
     "@mdsx/rehype-custom-highlighter": "^0.0.3",
     "@shikijs/langs": "^4.4.2",
     "@shikijs/themes": "^4.4.2",
-    "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/adapter-vercel": "^6.3.4",
     "@sveltejs/kit": "^2.70.2",
     "@sveltejs/package": "^2.5.8",
@@ -37,6 +36,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "bits-ui": "^2.16.3",
     "clsx": "^2.1.1",
+    "concurrently": "^10.0.4",
     "eslint": "^10.4.1",
     "eslint-plugin-svelte": "^3.19.0",
     "globals": "^17.6.0",

@@ -1,16 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
 import { exec } from "node:child_process";
-import { promisify } from "node:util";
 import { registrySchema, type Registry } from "shadcn-svelte/schema";
 import pkg from "../package.json" with { type: "json" };
 
 type RegistryItems = Registry["items"];
 type RegistryItemFiles = Registry["items"][number]["files"];
 
-const execAsync = promisify(exec);
+function log(message: string): void {
+	console.log(`\x1b[31m[Registry]\x1b[0m ${message}`);
+}
 
-export async function build(): Promise<void> {
+export function build(): void {
 	const registryRootPath = path.resolve("src", "lib", "registry");
 	const paths = {
 		ui: path.resolve(registryRootPath, "ui"),
@@ -28,18 +29,21 @@ export async function build(): Promise<void> {
 		{ jitless: true }
 	);
 
+	log("writing registry.json")
 	const cwd = process.cwd();
 	const outputPath = path.resolve(cwd, "static", "r");
 	const registryJsonPath = path.resolve(cwd, "registry.json");
 	fs.writeFileSync(registryJsonPath, JSON.stringify(result, null, "\t"), "utf8");
 
-	await execAsync(
+	log("building registry items...")
+	exec(
 		`bun shadcn-svelte registry build ${registryJsonPath} --output ${outputPath} -c ${cwd}`,
 		{ cwd }
 	);
 }
 
 function crawlUI(rootPath: string): RegistryItems {
+	log("crawling ui...")
 	const dir = fs
 		.readdirSync(rootPath, { recursive: true, withFileTypes: true })
 		.filter((dirent) => dirent.isDirectory());
@@ -76,6 +80,7 @@ function buildUIItem(itemPath: string, itemName: string): RegistryItems[number] 
 }
 
 function crawlHooks(rootPath: string): RegistryItems {
+	log("crawling hooks...")
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true }).filter((dirent) => dirent.isFile());
 	return dir.map((dirent) => {
 		const [name] = dirent.name.split(".svelte.ts");
