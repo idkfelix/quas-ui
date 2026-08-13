@@ -17,5 +17,7 @@
 	>
 		{@render children()}
 	</div>
-	<div class="mr-auto hidden w-(--sidebar-width) lg:flex"></div>
+	<div class="mr-auto hidden w-(--sidebar-width) lg:flex">
+		<!-- TODO: table of contents -->
+	</div>
 </SidebarProvider>
