@@ -19,7 +19,7 @@
 		resolveCommand(agent, "execute", [
 			"shadcn-svelte@latest",
 			"add",
-			`https://${page.url.host}/r/${name}.json`,
+			`${page.url.protocol}//${page.url.host}/r/${name}.json`,
 		])
 	);
 	const commandText = $derived(`${cmd?.command} ${cmd?.args.join(" ")}`);
