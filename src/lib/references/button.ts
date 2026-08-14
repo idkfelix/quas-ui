@@ -61,7 +61,7 @@ const Spinner = api.defineComponentRef<Record<string, unknown>>({
 	},
 });
 
-export const Reference = api.defineUIRef("Button", {
+export const Reference = api.defineParentRef("Button", {
 	Root,
 	Spinner,
 });
