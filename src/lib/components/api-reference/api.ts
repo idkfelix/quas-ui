@@ -18,7 +18,7 @@ export type PropReference = {
 };
 
 export type PropsReference<T> = {
-	[K in keyof T]-?: Omit<PropReference, "type">;
+	[K in keyof T]-?: PropReference;
 };
 
 export type DataAttrReference = {
@@ -26,6 +26,9 @@ export type DataAttrReference = {
 	description: string;
 	tooltip?: string;
 };
+
+type Union = `${string} | ${string}${string extends infer _R ? "" : ` | ${string}`}`;
+type StringUnion = `"${string}" | "${string}"${string extends infer _R ? "" : ` | "${string}"`}`;
 
 export function defineReference<T = unknown>(config: {
 	name: string;
@@ -41,137 +44,43 @@ export function defineComponent<T extends Record<string, unknown>>(config: {
 	return config satisfies Component<T>;
 }
 
+export function defineProp<K extends "function" | "number" | "boolean" | string>(
+	type: K,
+	config: {
+		description: string;
+		defaultValue?: K extends "number" ? number : K extends "boolean" ? boolean : string;
+		tooltip?: K extends "function" ? `(${string}) => ${string}` : string;
+		required?: boolean;
+		bindable?: boolean;
+	}
+): PropReference {
+	return {
+		required: false,
+		bindable: false,
+		type,
+		...config,
+		defaultValue: config.defaultValue?.toString?.(),
+	} satisfies PropReference;
+}
+
+export function defineUnionProp<K extends "string" | string>(
+	type: K,
+	config: {
+		description: string;
+		defaultValue?: K extends "string" ? `"${string}"` : string;
+		tooltip: K extends "string" ? StringUnion : Union;
+		required?: boolean;
+		bindable?: boolean;
+	}
+) {
+	return {
+		required: false,
+		bindable: false,
+		type: type === "string" ? ("enum" as const) : type,
+		...config,
+	} satisfies PropReference;
+}
+
 export function defineDataAttr(config: { value?: string; description: string; tooltip?: string }) {
 	return config satisfies DataAttrReference;
-}
-
-export function defineProp({
-	type,
-	description,
-	required = false,
-	bindable = false,
-	defaultValue,
-	tooltip,
-}: {
-	type: string;
-	description: string;
-	required?: boolean;
-	bindable?: boolean;
-	defaultValue?: string;
-	tooltip?: string;
-}) {
-	return {
-		type,
-		description,
-		required,
-		bindable,
-		defaultValue,
-		tooltip,
-	} satisfies PropReference;
-}
-
-export function defineBooleanProp({
-	description,
-	required = false,
-	bindable = false,
-	defaultValue,
-}: {
-	description: string;
-	required?: boolean;
-	bindable?: boolean;
-	defaultValue?: boolean;
-}) {
-	return {
-		type: "boolean" as const,
-		description,
-		required,
-		bindable,
-		defaultValue: defaultValue?.toString(),
-	} satisfies PropReference;
-}
-
-export function defineNumberProp({
-	description,
-	required = false,
-	bindable = false,
-	defaultValue,
-}: {
-	description: string;
-	required?: boolean;
-	bindable?: boolean;
-	defaultValue?: number;
-}) {
-	return {
-		type: "number" as const,
-		description,
-		required,
-		bindable,
-		defaultValue: defaultValue?.toString(),
-	} satisfies PropReference;
-}
-
-export function defineStringProp({
-	description,
-	required = false,
-	bindable = false,
-	defaultValue,
-}: {
-	description: string;
-	required?: boolean;
-	bindable?: boolean;
-	defaultValue?: string;
-}) {
-	return {
-		type: "string" as const,
-		description,
-		required,
-		bindable,
-		defaultValue,
-	} satisfies PropReference;
-}
-
-export function defineUnionProp({
-	type,
-	description,
-	required = false,
-	bindable = false,
-	defaultValue,
-}: {
-	type: `"${string}" | "${string}"${string extends infer _R ? "" : ` | "${string}"`}`;
-	description: string;
-	required?: boolean;
-	bindable?: boolean;
-	defaultValue?: string;
-}) {
-	return {
-		type: "enum" as const,
-		description,
-		required,
-		bindable,
-		defaultValue,
-		tooltip: type,
-	} satisfies PropReference;
-}
-
-export function defineFunctionProp({
-	type,
-	description,
-	required = false,
-	bindable = false,
-	defaultValue,
-}: {
-	type: string;
-	description: string;
-	required?: boolean;
-	bindable?: boolean;
-	defaultValue?: string;
-}) {
-	return {
-		type: "function" as const,
-		description,
-		required,
-		bindable,
-		defaultValue,
-		tooltip: type,
-	} satisfies PropReference;
 }

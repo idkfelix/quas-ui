@@ -7,34 +7,32 @@ const Root = api.defineComponent<
 	WithChildren<Omit<ButtonProps, keyof HTMLButtonAttributes | keyof HTMLAnchorAttributes>>
 >({
 	props: {
-		ref: api.defineProp({
-			type: "HTMLElement",
+		ref: api.defineProp("HTMLElement", {
 			tooltip: "HTMLButtonElement | HTMLAnchorElement",
 			description: "A reference to the button element.",
 			defaultValue: "null",
 			bindable: true,
 		}),
-		children: api.defineProp({
-			type: "Snippet",
+		children: api.defineProp("Snippet", {
 			description: "The content of the button.",
 		}),
-		variant: api.defineUnionProp({
-			type: '"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"',
+		variant: api.defineUnionProp("string", {
+			tooltip: '"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"',
 			description: "The visual style of the button.",
 			defaultValue: '"default"',
 		}),
-		size: api.defineUnionProp({
-			type: '"default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg"',
+		size: api.defineUnionProp("string", {
+			tooltip: '"default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg"',
 			description: "The size of the button.",
 			defaultValue: '"default"',
 		}),
-		loading: api.defineBooleanProp({
+		loading: api.defineProp("boolean", {
 			description: "The loading state of the button.",
 			defaultValue: false,
 			bindable: true,
 		}),
-		onClickPromise: api.defineFunctionProp({
-			type: "(e: MouseEvent) => Promise<void>",
+		onClickPromise: api.defineProp("function", {
+			tooltip: "(e: MouseEvent) => Promise<void>",
 			description: "A function to await on the button click event.",
 		}),
 	},
