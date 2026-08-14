@@ -1,17 +1,17 @@
-export type ParentRef = {
-	name: string;
-	components: Record<string, ComponentRef<unknown>>;
-};
-
-export type ComponentRef<T> = {
-	props?: PropsReference<T>;
-	dataAttrs?: DataAttrsReference<T>;
-};
-
-export type HookRef<T> = {
+export type HookRef<T extends object = object> = {
 	name: string;
 	props?: Partial<PropsReference<T>>;
 	methods?: MethodsReference<T>;
+};
+
+export type ParentRef = {
+	name: string;
+	components: Record<string, ComponentRef>;
+};
+
+export type ComponentRef<T extends object = object> = {
+	props?: PropsReference<T>;
+	dataAttrs?: DataAttrsReference<T>;
 };
 
 export type PropReference = {
@@ -23,7 +23,7 @@ export type PropReference = {
 	tooltip?: string;
 };
 
-export type PropsReference<T> = {
+export type PropsReference<T extends object> = {
 	[K in keyof T]-?: PropReference;
 };
 
@@ -33,7 +33,7 @@ export type DataAttrReference = {
 	tooltip?: string;
 };
 
-export type DataAttrsReference<T> = {
+export type DataAttrsReference<T extends object> = {
 	[K in keyof T as K extends `data-${string}` ? K : never]-?: DataAttrReference;
 } & {
 	[D in `data-${string}`]: DataAttrReference;
@@ -44,26 +44,9 @@ export type MethodReference = {
 	description: string;
 };
 
-export type MethodsReference<T> = {
+export type MethodsReference<T extends object> = {
 	[K in keyof T as T[K] extends (...args: unknown[]) => unknown ? K : never]: MethodReference;
 };
-
-export function defineParentRef<T extends Record<string, ComponentRef<unknown>>>(
-	name: string,
-	components: T
-) {
-	return {
-		name,
-		components,
-	} satisfies ParentRef;
-}
-
-export function defineComponentRef<T extends Record<string, unknown>>(config: {
-	props?: PropsReference<T>;
-	dataAttrs?: DataAttrsReference<T>;
-}) {
-	return config satisfies ComponentRef<T>;
-}
 
 export function defineHookRef<T extends object>(
 	name: string,
@@ -73,6 +56,20 @@ export function defineHookRef<T extends object>(
 	}
 ) {
 	return { name, ...config } satisfies HookRef<T>;
+}
+
+export function defineParentRef(name: string, components: Record<string, ComponentRef>) {
+	return {
+		name,
+		components,
+	} satisfies ParentRef;
+}
+
+export function defineComponentRef<T extends object>(config: {
+	props?: PropsReference<T>;
+	dataAttrs?: DataAttrsReference<T>;
+}) {
+	return config satisfies ComponentRef<T>;
 }
 
 export function defineProp<K extends "function" | "number" | "boolean" | string>(
