@@ -4,15 +4,23 @@
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import type { Component, DataAttrReference, PropReference } from "./api.js";
+	import type {
+		ComponentRef,
+		DataAttrReference,
+		HookRef,
+		MethodReference,
+		PropReference,
+	} from "./api.js";
 
-	type Props = Component<T> & { parent: string; name: string };
-	let { parent, name, props, dataAttrs }: Props = $props();
+	type Props = Partial<ComponentRef<T> & HookRef<T>> & { parent?: string; name: string };
+	let { parent, name, props, dataAttrs, methods }: Props = $props();
 </script>
 
 <div class="mt-4 mb-2 font-medium">
 	<code class="flex w-min rounded-lg border bg-card px-3 py-1 text-base">
-		<span class="text-muted-foreground">{parent}.</span>
+		{#if parent}
+			<span class="text-muted-foreground">{parent}.</span>
+		{/if}
 		<span>{name}</span>
 	</code>
 </div>
@@ -20,7 +28,7 @@
 <!-- NEED TO REFACTOR -->
 
 <section>
-	{#if Object.entries(props).length > 0}
+	{#if props && Object.entries(props).length > 0}
 		<Table.Root>
 			<Table.Header class="pointer-events-none">
 				<Table.Row class="*:text-muted-foreground">
@@ -66,7 +74,7 @@
 		<Separator class="mb-6 last-of-type:mb-10" />
 	{/if}
 
-	{#if Object.entries(dataAttrs).length > 0}
+	{#if dataAttrs && Object.entries(dataAttrs).length > 0}
 		<Table.Root>
 			<Table.Header class="pointer-events-none">
 				<Table.Row class="*:font-bold *:text-muted-foreground">
@@ -94,6 +102,35 @@
 									</Popover.Content>
 								</Popover.Root>
 							{/if}
+						</Table.Cell>
+						<Table.Cell>
+							<p>{ref.description}</p>
+						</Table.Cell>
+					</Table.Row>
+				{/each}
+			</Table.Body>
+		</Table.Root>
+		<Separator class="mb-6 last-of-type:mb-10" />
+	{/if}
+
+	{#if methods && Object.entries(methods).length > 0}
+		<Table.Root>
+			<Table.Header class="pointer-events-none">
+				<Table.Row class="*:font-bold *:text-muted-foreground">
+					<Table.Head class="w-1/3">Method</Table.Head>
+					<Table.Head class="w-1/4">Type</Table.Head>
+					<Table.Head class="w-5/12">Description</Table.Head>
+				</Table.Row>
+			</Table.Header>
+			<Table.Body>
+				{#each Object.entries(methods) as [method, value] (method)}
+					{@const ref = value as MethodReference}
+					<Table.Row>
+						<Table.Cell>
+							<code>{method}</code>
+						</Table.Cell>
+						<Table.Cell class="text-muted-foreground">
+							<code>{ref.type || "——"}</code>
 						</Table.Cell>
 						<Table.Cell>
 							<p>{ref.description}</p>

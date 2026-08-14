@@ -1,11 +1,17 @@
-export type ComponentReference<T = unknown> = {
+export type ParentRef = {
 	name: string;
-	components: Record<string, Component<T>>;
+	components: Record<string, ComponentRef<unknown>>;
 };
 
-export type Component<T> = {
-	props: PropsReference<T>;
-	dataAttrs: Record<string, DataAttrReference>;
+export type ComponentRef<T> = {
+	props?: PropsReference<T>;
+	dataAttrs?: DataAttrsReference<T>;
+};
+
+export type HookRef<T> = {
+	name: string;
+	props?: Partial<PropsReference<T>>;
+	methods?: MethodsReference<T>;
 };
 
 export type PropReference = {
@@ -22,26 +28,51 @@ export type PropsReference<T> = {
 };
 
 export type DataAttrReference = {
-	value?: string;
 	description: string;
+	value?: string;
 	tooltip?: string;
 };
 
-type Union = `${string} | ${string}${string extends infer _R ? "" : ` | ${string}`}`;
-type StringUnion = `"${string}" | "${string}"${string extends infer _R ? "" : ` | "${string}"`}`;
+export type DataAttrsReference<T> = {
+	[K in keyof T as K extends `data-${string}` ? K : never]-?: DataAttrReference;
+} & {
+	[D in `data-${string}`]: DataAttrReference;
+};
 
-export function defineReference<T = unknown>(config: {
-	name: string;
-	components: Record<string, Component<T>>;
-}) {
-	return config as ComponentReference;
+export type MethodReference = {
+	type: `(${string}) => ${string}`;
+	description: string;
+};
+
+export type MethodsReference<T> = {
+	[K in keyof T as T[K] extends (...args: unknown[]) => unknown ? K : never]: MethodReference;
+};
+
+export function defineParentRef<T extends Record<string, ComponentRef<unknown>>>(
+	name: string,
+	components: T
+) {
+	return {
+		name,
+		components,
+	} satisfies ParentRef;
 }
 
-export function defineComponent<T extends Record<string, unknown>>(config: {
-	props: PropsReference<T>;
-	dataAttrs: Record<string, DataAttrReference>;
+export function defineComponentRef<T extends Record<string, unknown>>(config: {
+	props?: PropsReference<T>;
+	dataAttrs?: DataAttrsReference<T>;
 }) {
-	return config satisfies Component<T>;
+	return config satisfies ComponentRef<T>;
+}
+
+export function defineHookRef<T extends object>(
+	name: string,
+	config: {
+		props?: Partial<PropsReference<T>>;
+		methods?: MethodsReference<T>;
+	}
+) {
+	return { name, ...config } satisfies HookRef<T>;
 }
 
 export function defineProp<K extends "function" | "number" | "boolean" | string>(
@@ -68,7 +99,9 @@ export function defineUnionProp<K extends "string" | string>(
 	config: {
 		description: string;
 		defaultValue?: K extends "string" ? `"${string}"` : string;
-		tooltip: K extends "string" ? StringUnion : Union;
+		tooltip: K extends "string"
+			? `"${string}" | "${string}"${string extends infer _R ? "" : ` | "${string}"`}`
+			: `${string} | ${string}${string extends infer _R ? "" : ` | ${string}`}`;
 		required?: boolean;
 		bindable?: boolean;
 	}
@@ -79,8 +112,4 @@ export function defineUnionProp<K extends "string" | string>(
 		type: type === "string" ? ("enum" as const) : type,
 		...config,
 	} satisfies PropReference;
-}
-
-export function defineDataAttr(config: { value?: string; description: string; tooltip?: string }) {
-	return config satisfies DataAttrReference;
 }

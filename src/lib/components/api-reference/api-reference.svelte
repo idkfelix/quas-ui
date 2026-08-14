@@ -1,8 +1,8 @@
 <script lang="ts">
 	import ApiTable from "./api-table.svelte";
-	import type { ComponentReference } from "./api.js";
+	import type { ParentRef } from "./api.js";
 
-	let { name: parent, components }: ComponentReference = $props();
+	let { name: parent, components }: ParentRef = $props();
 </script>
 
 {#each Object.entries(components) as [name, component] (name)}

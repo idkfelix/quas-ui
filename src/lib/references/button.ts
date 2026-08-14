@@ -3,7 +3,7 @@ import type { ButtonProps } from "$lib/registry/ui/button/button.svelte";
 import type { WithChildren } from "bits-ui";
 import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 
-const Root = api.defineComponent<
+const Root = api.defineComponentRef<
 	WithChildren<Omit<ButtonProps, keyof HTMLButtonAttributes | keyof HTMLAnchorAttributes>>
 >({
 	props: {
@@ -37,35 +37,31 @@ const Root = api.defineComponent<
 		}),
 	},
 	dataAttrs: {
-		"data-slot": api.defineDataAttr({
+		"data-slot": {
 			value: '"button"',
 			description: "Slot used to target and apply styles.",
-		}),
-		"data-button-root": api.defineDataAttr({
+		},
+		"data-button-root": {
 			description: "Present on the root button component.",
-		}),
-		"data-loading": api.defineDataAttr({
+		},
+		"data-loading": {
 			value: "enum",
 			description: "The loading state of the button.",
 			tooltip: '"true" | "false"',
-		}),
+		},
 	},
 });
 
-const Spinner = api.defineComponent<Record<string, unknown>>({
-	props: {},
+const Spinner = api.defineComponentRef<Record<string, unknown>>({
 	dataAttrs: {
-		"data-slot": api.defineDataAttr({
+		"data-slot": {
 			value: '"button-spinner"',
 			description: "Slot used to target and apply styles.",
-		}),
+		},
 	},
 });
 
-export const Reference = api.defineReference({
-	name: "Button",
-	components: {
-		Root,
-		Spinner,
-	},
+export const Reference = api.defineUIRef("Button", {
+	Root,
+	Spinner,
 });
