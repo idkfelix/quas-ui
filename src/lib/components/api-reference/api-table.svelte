@@ -4,7 +4,7 @@
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import type { Component, DataAttrReference, PropReference } from "./api-reference.ts";
+	import type { Component, DataAttrReference, PropReference } from "./api.js";
 
 	type Props = Component<T> & { parent: string; name: string };
 	let { parent, name, props, dataAttrs }: Props = $props();
