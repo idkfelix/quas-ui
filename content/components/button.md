@@ -6,7 +6,7 @@ description: A button or anchor that handles promises.
 <script lang="ts">
   import Example from '$lib/components/example.svelte';
   import PMAdd from '$lib/components/pm-add.svelte';
-  import { ApiReference } from '$lib/components/api-reference/index.js';
+  import { ApiParentRef } from '$lib/components/api-reference/index.js';
   import { Reference } from '$lib/references/button.js';
 </script>
 
@@ -34,4 +34,4 @@ description: A button or anchor that handles promises.
 
 ## API Reference
 
-<ApiReference {...Reference}/>
+<ApiParentRef {...Reference}/>

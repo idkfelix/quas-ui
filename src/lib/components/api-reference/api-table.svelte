@@ -1,4 +1,4 @@
-<script lang="ts" generics="T">
+<script lang="ts" generics="T extends object">
 	import InfoIcon from "@lucide/svelte/icons/info";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";

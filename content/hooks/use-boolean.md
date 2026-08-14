@@ -6,7 +6,7 @@ description: A hook to simplify working with boolean state.
 <script lang="ts">
   import Example from '$lib/components/example.svelte';
   import PMAdd from '$lib/components/pm-add.svelte';
-  import { ApiTable } from '$lib/components/api-reference/index.js';
+  import { ApiHookRef } from '$lib/components/api-reference/index.js';
   import { Reference } from '$lib/references/use-boolean.js';
 </script>
 
@@ -18,4 +18,4 @@ description: A hook to simplify working with boolean state.
 
 ## API Reference
 
-<ApiTable {...Reference}/>
+<ApiHookRef {...Reference}/>
