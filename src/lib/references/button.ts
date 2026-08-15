@@ -37,27 +37,27 @@ const Root = api.defineComponentRef<
 		}),
 	},
 	dataAttrs: {
-		"data-slot": {
+		"data-slot": api.defineDataAttr({
 			value: '"button"',
 			description: "Slot used to target and apply styles.",
-		},
-		"data-button-root": {
+		}),
+		"data-button-root": api.defineDataAttr({
 			description: "Present on the root button component.",
-		},
-		"data-loading": {
+		}),
+		"data-loading": api.defineDataAttr({
 			value: "enum",
 			description: "The loading state of the button.",
 			tooltip: '"true" | "false"',
-		},
+		}),
 	},
 });
 
-const Spinner = api.defineComponentRef<Record<string, unknown>>({
+const Spinner = api.defineComponentRef<object>({
 	dataAttrs: {
-		"data-slot": {
+		"data-slot": api.defineDataAttr({
 			value: '"button-spinner"',
 			description: "Slot used to target and apply styles.",
-		},
+		}),
 	},
 });
 

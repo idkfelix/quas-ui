@@ -1,9 +1,3 @@
-export type HookRef<T extends object = object> = {
-	name: string;
-	props?: Partial<PropsReference<T>>;
-	methods?: MethodsReference<T>;
-};
-
 export type ParentRef = {
 	name: string;
 	components: Record<string, ComponentRef>;
@@ -13,50 +7,6 @@ export type ComponentRef<T extends object = object> = {
 	props?: PropsReference<T>;
 	dataAttrs?: DataAttrsReference<T>;
 };
-
-export type PropReference = {
-	type: string;
-	description: string;
-	required: boolean;
-	bindable: boolean;
-	defaultValue?: string;
-	tooltip?: string;
-};
-
-export type PropsReference<T extends object> = {
-	[K in keyof T]-?: PropReference;
-};
-
-export type DataAttrReference = {
-	description: string;
-	value?: string;
-	tooltip?: string;
-};
-
-export type DataAttrsReference<T extends object> = {
-	[K in keyof T as K extends `data-${string}` ? K : never]-?: DataAttrReference;
-} & {
-	[D in `data-${string}`]: DataAttrReference;
-};
-
-export type MethodReference = {
-	type: `(${string}) => ${string}`;
-	description: string;
-};
-
-export type MethodsReference<T extends object> = {
-	[K in keyof T as T[K] extends (...args: unknown[]) => unknown ? K : never]: MethodReference;
-};
-
-export function defineHookRef<T extends object>(
-	name: string,
-	config: {
-		props?: Partial<PropsReference<T>>;
-		methods?: MethodsReference<T>;
-	}
-) {
-	return { name, ...config } satisfies HookRef<T>;
-}
 
 export function defineParentRef(name: string, components: Record<string, ComponentRef>) {
 	return {
@@ -71,6 +21,19 @@ export function defineComponentRef<T extends object>(config: {
 }) {
 	return config satisfies ComponentRef<T>;
 }
+
+export type PropReference = {
+	type: string;
+	description: string;
+	required: boolean;
+	bindable: boolean;
+	defaultValue?: string;
+	tooltip?: string;
+};
+
+export type PropsReference<T extends object> = {
+	[K in keyof T]-?: PropReference;
+};
 
 export function defineProp<K extends "function" | "number" | "boolean" | string>(
 	type: K,
@@ -109,4 +72,20 @@ export function defineUnionProp<K extends "string" | string>(
 		type: type === "string" ? ("enum" as const) : type,
 		...config,
 	} satisfies PropReference;
+}
+
+export type DataAttrReference = {
+	description: string;
+	value?: string;
+	tooltip?: string;
+};
+
+export type DataAttrsReference<T extends object> = {
+	[K in keyof T as K extends `data-${string}` ? K : never]-?: DataAttrReference;
+} & {
+	[D in `data-${string}`]: DataAttrReference;
+};
+
+export function defineDataAttr(config: DataAttrReference) {
+	return config satisfies DataAttrReference;
 }
