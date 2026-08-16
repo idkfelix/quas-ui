@@ -6,8 +6,8 @@
 	import type { Agent } from "package-manager-detector";
 
 	let {
-		agents = ["npm", "pnpm", "yarn", "bun"],
-		agent = $bindable("bun"),
+		agents = ["bun", "npm", "pnpm", "yarn"],
+		agent = $bindable(agents[0]),
 		name,
 	}: {
 		agents?: Agent[];
