@@ -9,6 +9,6 @@
 	<Button variant="outline" onclick={state.setTrue}>On</Button>
 	<Button variant="outline" onclick={state.setFalse}>Off</Button>
 	<Button variant="outline" onclick={state.toggle} class="w-12">
-		{state.current ? "True" : "False"}
+		<code>{state.current ? "True" : "False"}</code>
 	</Button>
 </div>
