@@ -1,80 +1,64 @@
-import type { ButtonProps } from "$lib/registry/ui/button/button.svelte";
-import {
-	enumOf,
-	unionOf,
-	defineComponentAPISchema,
-	defineComplexProp,
-	defineSimpleProp,
-	defineSimpleDataAttr,
-	defineEnumDataAttr,
-} from "../utils.ts";
-import type { WithChildren } from "bits-ui";
-import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
+import type { ButtonPropsWithoutHTML } from "$lib/registry/ui/button/index.js";
+import * as u from "../utils.ts";
 
-export const root = defineComponentAPISchema<
-	WithChildren<Omit<ButtonProps, keyof HTMLButtonAttributes | keyof HTMLAnchorAttributes>>
->({
+export const root = u.defineAPISchema<ButtonPropsWithoutHTML>({
 	title: "Root",
 	props: {
-		ref: defineComplexProp({
+		ref: u.defineUnionProp({
 			type: "HTMLElement",
 			bindable: true,
-			definition: unionOf("HTMLButtonElement", "HTMLAnchorElement"),
+			options: ["HTMLButtonElement", "HTMLAnchorElement"],
 			description: "A reference to the button element.",
 		}),
-		children: defineSimpleProp({
+		children: u.defineSimpleProp({
 			type: "Snippet",
 			description: "The content of the button.",
 		}),
-		variant: defineComplexProp({
-			type: "enum",
-			definition: enumOf("default", "destructive", "outline", "secondary", "ghost", "link"),
+		variant: u.defineEnumProp({
+			options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
 			description: "The visual style of the button.",
 			default: '"default"',
 		}),
-		size: defineComplexProp({
-			type: "enum",
-			definition: enumOf("default", "xs", "sm", "lg", "icon", "icon-xs", "icon-sm", "icon-lg"),
+		size: u.defineEnumProp({
+			options: ["default", "xs", "sm", "lg", "icon", "icon-xs", "icon-sm", "icon-lg"],
 			description: "The size of the button.",
 			default: '"default"',
 		}),
-		loading: defineSimpleProp({
+		loading: u.defineSimpleProp({
 			type: "boolean",
 			description: "The loading state of the button.",
 			default: false,
 			bindable: true,
 		}),
-		onClickPromise: defineComplexProp({
-			type: "function",
+		onClickPromise: u.defineFunctionProp({
 			definition: "(e: MouseEvent) => Promise<void>",
 			description: "A function to await on the button click event.",
 		}),
 	},
 	dataAttrs: [
-		defineSimpleDataAttr({
+		u.defineSimpleDataAttr({
 			name: "data-button-root",
-			description: "Present on the root button component.",
+			description: "Present on the root button element.",
 		}),
-		defineSimpleDataAttr({
+		u.defineSimpleDataAttr({
 			name: "data-slot",
 			value: '"button"',
 			description: "Slot used to target and apply styles.",
 		}),
-		defineEnumDataAttr({
+		u.defineEnumDataAttr({
 			name: "data-loading",
-			value: enumOf("true", "false"),
+			options: ["true", "false"],
 			description: "The loading state of the button.",
 		}),
 	],
 });
 
-export const spinner = defineComponentAPISchema<object>({
+export const spinner = u.defineAPISchema<object>({
 	title: "Spinner",
 	dataAttrs: [
-		defineSimpleDataAttr({
-			name: "data-slot",
-			value: '"button-spinner"',
-			description: "Slot used to target and apply styles.",
+		u.defineSimpleDataAttr({
+			name: "data-button-spinner",
+			description: "Present on the button spinner element.",
 		}),
 	],
 });
