@@ -7,7 +7,7 @@
 	let { class: className }: { class?: string } = $props();
 </script>
 
-<Sidebar.Root class={cn("sticky bg-transparent", className)} collapsible="none">
+<Sidebar.Root class={cn("bg-transparent", className)} collapsible="none">
 	<Sidebar.Content>
 		{#each Object.entries(groups) as [groupName, groupDocs] (groupName)}
 			<Sidebar.Group>

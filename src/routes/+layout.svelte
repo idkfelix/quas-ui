@@ -10,14 +10,12 @@
 
 <ModeWatcher />
 
-<SidebarProvider class="flex max-h-dvh" style="--sidebar-width: calc(var(--spacing) * 48)">
-	<Sidebar class="ml-auto hidden py-8 md:flex" />
-	<div
-		class="mx-auto flex w-full max-w-2xl scrollbar-none flex-col overflow-x-scroll px-4 py-8 md:mr-auto lg:mx-0"
-	>
+<SidebarProvider class="flex min-h-svh" style="--sidebar-width: calc(var(--spacing) * 48)">
+	<Sidebar class="sticky top-0 ml-auto hidden py-8 md:flex" />
+	<div class="mx-auto flex w-full max-w-2xl flex-col px-4 py-8 md:mr-auto lg:mx-0">
 		{@render children()}
 	</div>
-	<div class="mr-auto hidden w-(--sidebar-width) lg:flex">
+	<div class="sticky top-0 mr-auto hidden w-(--sidebar-width) lg:flex">
 		<!-- TODO: table of contents -->
 	</div>
 </SidebarProvider>
