@@ -1,9 +1,9 @@
 <script lang="ts">
 	import InfoIcon from "@lucide/svelte/icons/info";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import * as Table from "$lib/registry/ui/table/index.js";
+	import * as Popover from "$lib/components/ui/popover/index.js";
+	import * as Table from "$lib/components/ui/table/index.js";
+	import { Badge } from "$lib/components/ui/badge/index.js";
 	import type { PropSchema } from "$lib/references/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 
 	let { props = {} }: { props: Record<string, PropSchema> } = $props();
 </script>

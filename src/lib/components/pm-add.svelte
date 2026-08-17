@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
 	import { resolveCommand } from "package-manager-detector/commands";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import * as Tabs from "$lib/components/ui/tabs/index.js";
 	import { CopyButton } from "$lib/registry/ui/copy-button/index.js";
 	import type { Agent } from "package-manager-detector";
 

@@ -33,7 +33,7 @@
 </script>
 
 <script lang="ts">
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 </script>
 
 <Sidebar.Root class="sticky top-0 ml-auto hidden bg-transparent py-8 md:flex" collapsible="none">

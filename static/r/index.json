@@ -1,19 +1,5 @@
 [
 	{
-		"name": "alert-dialog",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"local:button"
-		],
-		"relativeUrl": "alert-dialog.json"
-	},
-	{
-		"name": "badge",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "badge.json"
-	},
-	{
 		"name": "button",
 		"type": "registry:ui",
 		"registryDependencies": [
@@ -22,27 +8,10 @@
 		"relativeUrl": "button.json"
 	},
 	{
-		"name": "button-group",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"local:separator"
-		],
-		"relativeUrl": "button-group.json"
-	},
-	{
 		"name": "chip",
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "chip.json"
-	},
-	{
-		"name": "confirm-dialog",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"local:button",
-			"local:alert-dialog"
-		],
-		"relativeUrl": "confirm-dialog.json"
 	},
 	{
 		"name": "copy-button",
@@ -52,37 +21,6 @@
 			"local:use-clipboard"
 		],
 		"relativeUrl": "copy-button.json"
-	},
-	{
-		"name": "field",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"local:label",
-			"local:separator"
-		],
-		"relativeUrl": "field.json"
-	},
-	{
-		"name": "input",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "input.json"
-	},
-	{
-		"name": "input-group",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"local:button",
-			"local:input",
-			"local:textarea"
-		],
-		"relativeUrl": "input-group.json"
-	},
-	{
-		"name": "label",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "label.json"
 	},
 	{
 		"name": "light-switch",
@@ -99,81 +37,10 @@
 		"relativeUrl": "link.json"
 	},
 	{
-		"name": "popover",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "popover.json"
-	},
-	{
-		"name": "select",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"local:separator"
-		],
-		"relativeUrl": "select.json"
-	},
-	{
-		"name": "separator",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "separator.json"
-	},
-	{
-		"name": "sheet",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"local:button"
-		],
-		"relativeUrl": "sheet.json"
-	},
-	{
-		"name": "sidebar",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"local:input",
-			"local:tooltip",
-			"local:skeleton",
-			"local:separator",
-			"local:button",
-			"local:sheet"
-		],
-		"relativeUrl": "sidebar.json"
-	},
-	{
-		"name": "skeleton",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "skeleton.json"
-	},
-	{
 		"name": "spinner",
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "spinner.json"
-	},
-	{
-		"name": "table",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "table.json"
-	},
-	{
-		"name": "tabs",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "tabs.json"
-	},
-	{
-		"name": "textarea",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "textarea.json"
-	},
-	{
-		"name": "tooltip",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "tooltip.json"
 	},
 	{
 		"name": "use-boolean",

@@ -2,7 +2,7 @@
 	import "../app.css";
 	import { ModeWatcher } from "mode-watcher";
 	import Sidebar from "$lib/components/sidebar.svelte";
-	import { SidebarProvider } from "$lib/registry/ui/sidebar/index.js";
+	import { SidebarProvider } from "$lib/components/ui/sidebar/index.js";
 	import type { LayoutProps } from "./$types.js";
 
 	const { children }: LayoutProps = $props();

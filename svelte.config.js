@@ -13,7 +13,7 @@ export default {
 			rehypePlugins: [rehypeSlug, [rehypeCustomHighlight, { highlight }]],
 			blueprints: {
 				default: {
-					path: "src/lib/components/blueprint/default.svelte",
+					path: "src/lib/components/mdsx/default.svelte",
 				},
 			},
 		}),
