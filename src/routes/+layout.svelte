@@ -10,7 +10,7 @@
 
 <ModeWatcher />
 
-<SidebarProvider class="flex min-h-svh" style="--sidebar-width: calc(var(--spacing) * 48)">
+<SidebarProvider class="flex h-full min-h-svh" style="--sidebar-width: calc(var(--spacing) * 48)">
 	<Sidebar class="sticky top-0 ml-auto hidden py-8 md:flex" />
 	<div class="mx-auto flex w-full max-w-2xl flex-col px-4 py-8 md:mr-auto lg:mx-0">
 		{@render children()}
