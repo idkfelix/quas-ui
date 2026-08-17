@@ -2,7 +2,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<div class="flex gap-2">
+<div class="grid gap-2 sm:flex">
 	<Button variant="default">Default</Button>
 	<Button variant="secondary">Secondary</Button>
 	<Button variant="outline">Outline</Button>
