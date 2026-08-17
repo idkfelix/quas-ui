@@ -11,7 +11,7 @@ const schema = s
 		const parts = data.path.split("/");
 		return {
 			...data,
-			folder: parts.length > 1 ? parts[0] : "overview",
+			folder: parts.length > 1 ? parts[0] : "root",
 		};
 	});
 
