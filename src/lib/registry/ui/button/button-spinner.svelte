@@ -1,13 +1,24 @@
 <script lang="ts">
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import Loader2Icon from "@lucide/svelte/icons/loader-2";
 	import { cn } from "$lib/utils.js";
 	import type { SVGAttributes } from "svelte/elements";
 
-	let { class: className, ...restProps }: SVGAttributes<SVGSVGElement> = $props();
+	let {
+		class: className,
+		name,
+		color,
+		stroke,
+		...restProps
+	}: SVGAttributes<SVGSVGElement> = $props();
 </script>
 
-<Spinner
+<Loader2Icon
 	data-button-spinner
-	class={cn("hidden group-data-[loading=true]/button:inline", className)}
+	role="status"
+	aria-label="Loading"
+	class={cn("hidden size-4 animate-spin group-data-[loading=true]/button:inline", className)}
+	name={name === null ? undefined : name}
+	color={color === null ? undefined : color}
+	stroke={stroke === null ? undefined : stroke}
 	{...restProps}
 />

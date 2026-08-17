@@ -2,9 +2,7 @@
 	{
 		"name": "button",
 		"type": "registry:ui",
-		"registryDependencies": [
-			"local:spinner"
-		],
+		"registryDependencies": [],
 		"relativeUrl": "button.json"
 	},
 	{
@@ -35,12 +33,6 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "link.json"
-	},
-	{
-		"name": "spinner",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "spinner.json"
 	},
 	{
 		"name": "use-boolean",

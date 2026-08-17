@@ -6,7 +6,7 @@
 		{
 			"name": "button",
 			"type": "registry:ui",
-			"registryDependencies": ["local:spinner"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"type": "registry:file",
@@ -79,21 +79,6 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/link/link.svelte"
-				}
-			]
-		},
-		{
-			"name": "spinner",
-			"type": "registry:ui",
-			"registryDependencies": [],
-			"files": [
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/spinner/index.ts"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/spinner/spinner.svelte"
 				}
 			]
 		},

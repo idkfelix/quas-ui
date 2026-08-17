@@ -3,16 +3,14 @@
 	"name": "button",
 	"type": "registry:ui",
 	"devDependencies": [
+		"@lucide/svelte@^1.28.0",
 		"bits-ui@^2.16.3",
 		"@internationalized/date@^3.12.0",
 		"tailwind-variants@^3.3.0"
 	],
-	"registryDependencies": [
-		"./spinner.json"
-	],
 	"files": [
 		{
-			"content": "<script lang=\"ts\">\n\timport { Spinner } from \"$UI$/spinner/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { SVGAttributes } from \"svelte/elements\";\n\n\tlet { class: className, ...restProps }: SVGAttributes<SVGSVGElement> = $props();\n</script>\n\n<Spinner\n\tdata-button-spinner\n\tclass={cn(\"hidden group-data-[loading=true]/button:inline\", className)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport Loader2Icon from \"@lucide/svelte/icons/loader-2\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { SVGAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tclass: className,\n\t\tname,\n\t\tcolor,\n\t\tstroke,\n\t\t...restProps\n\t}: SVGAttributes<SVGSVGElement> = $props();\n</script>\n\n<Loader2Icon\n\tdata-button-spinner\n\trole=\"status\"\n\taria-label=\"Loading\"\n\tclass={cn(\"hidden size-4 animate-spin group-data-[loading=true]/button:inline\", className)}\n\tname={name === null ? undefined : name}\n\tcolor={color === null ? undefined : color}\n\tstroke={stroke === null ? undefined : stroke}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "button/button-spinner.svelte"
 		},
