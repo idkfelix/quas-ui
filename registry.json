@@ -6,9 +6,7 @@
 		{
 			"name": "button",
 			"type": "registry:ui",
-			"registryDependencies": [
-				"local:spinner"
-			],
+			"registryDependencies": ["local:spinner"],
 			"files": [
 				{
 					"type": "registry:file",
@@ -42,10 +40,7 @@
 		{
 			"name": "copy-button",
 			"type": "registry:ui",
-			"registryDependencies": [
-				"local:button",
-				"local:use-clipboard"
-			],
+			"registryDependencies": ["local:button", "local:use-clipboard"],
 			"files": [
 				{
 					"type": "registry:file",
@@ -60,9 +55,7 @@
 		{
 			"name": "light-switch",
 			"type": "registry:ui",
-			"registryDependencies": [
-				"local:button"
-			],
+			"registryDependencies": ["local:button"],
 			"files": [
 				{
 					"type": "registry:file",
