@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { highlight } from "$lib/server/highlighter.js";
+import { highlight } from "$lib/highlighter.js";
 import type { EntryGenerator, PageServerLoad } from "./$types.js";
 
 const docStrings = import.meta.glob("./**/*.md", {
