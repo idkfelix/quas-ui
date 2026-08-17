@@ -1,2 +1,3 @@
-export type { APISchema, PropSchema, DataAttrSchema } from "./types.ts";
-export * from "./components/index.ts";
+export type { APISchema, PropSchema, DataAttrSchema } from "./api/index.ts";
+
+export { button } from "./button.ts";
