@@ -1,7 +1,7 @@
 <script lang="ts">
 	import "../app.css";
 	import { ModeWatcher } from "mode-watcher";
-	import Sidebar from "$lib/components/sidebar.svelte";
+	import { Sidebar } from "$lib/components/index.js";
 	import { SidebarProvider } from "$lib/components/ui/sidebar/index.js";
 	import type { LayoutProps } from "./$types.js";
 

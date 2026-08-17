@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { APISchema } from "$lib/references/index.js";
-	import DataAttrsTable from "./api-data-attrs.svelte";
-	import PropsTable from "./api-props.svelte";
+	import DataAttrsTable from "./data-attrs-table.svelte";
+	import PropsTable from "./props-table.svelte";
 
 	let { schemas = [], prefix }: { schemas: APISchema[]; prefix?: string } = $props();
 </script>

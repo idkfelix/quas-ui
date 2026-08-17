@@ -4,9 +4,7 @@ description: A button or anchor that handles promises.
 ---
 
 <script lang="ts">
-  import Example from '$lib/components/example.svelte';
-  import PMAdd from '$lib/components/pm-add.svelte';
-  import ApiReference from '$lib/components/api-reference.svelte';
+  import { Example, PMAdd, ApiReference } from '$lib/components/index.js';
   import { button } from '$lib/references/index.js';
 </script>
 
