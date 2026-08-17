@@ -1,7 +1,11 @@
-import type { ButtonPropsWithoutHTML } from "$lib/registry/ui/button/index.js";
+import type { ButtonProps } from "$lib/registry/ui/button/index.js";
 import { api } from "./api/index.ts";
+import type { WithChildren } from "bits-ui";
+import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 
-export const root = api.defineAPISchema<ButtonPropsWithoutHTML>({
+export const root = api.defineAPISchema<
+	WithChildren<Omit<ButtonProps, keyof HTMLButtonAttributes | keyof HTMLAnchorAttributes>>
+>({
 	title: "Root",
 	props: {
 		ref: api.defineUnionProp({

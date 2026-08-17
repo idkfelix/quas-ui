@@ -1,13 +1,11 @@
 <script lang="ts" module>
-	import type { ButtonProps } from "$lib/registry/ui/button/index.js";
+	import type { ButtonSize, ButtonVariant } from "$lib/registry/ui/button/index.js";
 	import type { WithoutChildren } from "bits-ui";
 
-	export type ModeToggleProps = WithoutChildren<
-		Omit<ButtonProps, "variant" | "size"> & {
-			size?: "icon" | "icon-xs" | "icon-sm" | "icon-lg";
-			variant?: "outline" | "ghost";
-		}
-	>;
+	export type LightSwitchProps = WithoutChildren<{
+		size?: Extract<ButtonSize, `icon${string}`>;
+		variant?: Exclude<ButtonVariant, "destructive" | "link">;
+	}>;
 </script>
 
 <script lang="ts">
@@ -17,15 +15,10 @@
 	import { scale } from "svelte/transition";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
-	let {
-		ref = $bindable(null),
-		size = "icon",
-		variant = "outline",
-		...restProps
-	}: ModeToggleProps = $props();
+	let { size = "icon", variant = "default", ...restProps }: LightSwitchProps = $props();
 </script>
 
-<Button bind:ref {size} {variant} onclick={toggleMode} {...restProps}>
+<Button data-light-switch {size} {variant} onclick={toggleMode} {...restProps}>
 	{#if mode.current === "dark"}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
 			<MoonIcon />

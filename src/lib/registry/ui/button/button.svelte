@@ -1,5 +1,4 @@
 <script lang="ts" module>
-	import { type WithChildren } from "bits-ui";
 	import { type VariantProps, tv } from "tailwind-variants";
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
@@ -47,9 +46,6 @@
 			loading?: boolean;
 			onClickPromise?: (e?: MouseEvent) => Promise<void>;
 		};
-	export type ButtonPropsWithoutHTML = WithChildren<
-		Omit<ButtonProps, keyof HTMLButtonAttributes | keyof HTMLAnchorAttributes>
-	>;
 </script>
 
 <script lang="ts">
