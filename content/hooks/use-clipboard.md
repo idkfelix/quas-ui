@@ -4,12 +4,11 @@ description: A hook to simplify copying text to the clipboard.
 ---
 
 <script lang="ts">
-  import Example from '$lib/components/example.svelte';
-  import PMAdd from '$lib/components/pm-add.svelte';
+  import { Example, AddRegistry } from '$lib/components/index.js';
 </script>
 
 <Example name="use-clipboard-demo"/>
 
 ## Installation
 
-<PMAdd name="use-clipboard"/>
+<AddRegistry name="use-clipboard"/>

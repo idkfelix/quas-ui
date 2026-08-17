@@ -4,7 +4,7 @@ description: A button or anchor that handles promises.
 ---
 
 <script lang="ts">
-  import { Example, PMAdd, ApiReference } from '$lib/components/index.js';
+  import { Example, AddRegistry, ApiReference } from '$lib/components/index.js';
   import { button } from '$lib/references/index.js';
 </script>
 
@@ -12,7 +12,7 @@ description: A button or anchor that handles promises.
 
 ## Installation
 
-<PMAdd name="button"/>
+<AddRegistry name="button"/>
 
 ## Structure
 

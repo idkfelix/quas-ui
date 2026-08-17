@@ -4,12 +4,11 @@ description: A hook to simplify working with boolean state.
 ---
 
 <script lang="ts">
-  import Example from '$lib/components/example.svelte';
-  import PMAdd from '$lib/components/pm-add.svelte';
+  import { Example, AddRegistry } from '$lib/components/index.js';
 </script>
 
 <Example name="use-boolean-demo"/>
 
 ## Installation
 
-<PMAdd name="use-boolean"/>
+<AddRegistry name="use-boolean"/>
