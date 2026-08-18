@@ -10,10 +10,6 @@
 			"files": [
 				{
 					"type": "registry:file",
-					"path": "src/lib/registry/ui/button/button-spinner.svelte"
-				},
-				{
-					"type": "registry:file",
 					"path": "src/lib/registry/ui/button/button.svelte"
 				},
 				{

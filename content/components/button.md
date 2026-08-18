@@ -14,14 +14,6 @@ description: A button or anchor that handles promises.
 
 <AddRegistry name="button"/>
 
-## Structure
-
-```svelte
-<Button.Root>
-	<Button.Spinner />
-</Button.Root>
-```
-
 ## Variants
 
 <Example name="button-variant"/>

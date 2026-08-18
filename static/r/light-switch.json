@@ -4,9 +4,7 @@
 	"type": "registry:ui",
 	"devDependencies": [
 		"@lucide/svelte@^1.28.0",
-		"mode-watcher@^1.1.0",
-		"bits-ui@^2.16.3",
-		"@internationalized/date@^3.12.0"
+		"mode-watcher@^1.1.0"
 	],
 	"registryDependencies": [
 		"./button.json"
@@ -18,7 +16,7 @@
 			"target": "light-switch/index.ts"
 		},
 		{
-			"content": "<script lang=\"ts\" module>\n\timport type { ButtonSize, ButtonVariant } from \"$UI$/button/index.js\";\n\timport type { WithoutChildren } from \"bits-ui\";\n\n\texport type LightSwitchProps = WithoutChildren<{\n\t\tsize?: Extract<ButtonSize, `icon${string}`>;\n\t\tvariant?: Exclude<ButtonVariant, \"destructive\" | \"link\">;\n\t}>;\n</script>\n\n<script lang=\"ts\">\n\timport MoonIcon from \"@lucide/svelte/icons/moon\";\n\timport SunIcon from \"@lucide/svelte/icons/sun\";\n\timport { toggleMode, mode } from \"mode-watcher\";\n\timport { scale } from \"svelte/transition\";\n\timport { Button } from \"$UI$/button/index.js\";\n\n\tlet { size = \"icon\", variant = \"default\", ...restProps }: LightSwitchProps = $props();\n</script>\n\n<Button data-light-switch {size} {variant} onclick={toggleMode} {...restProps}>\n\t{#if mode.current === \"dark\"}\n\t\t<div in:scale={{ duration: 500, start: 0.85 }}>\n\t\t\t<MoonIcon />\n\t\t</div>\n\t{:else}\n\t\t<div in:scale={{ duration: 500, start: 0.85 }}>\n\t\t\t<SunIcon />\n\t\t</div>\n\t{/if}\n</Button>\n",
+			"content": "<script lang=\"ts\" module>\n\timport type { ButtonSize, ButtonVariant } from \"$UI$/button/index.js\";\n\timport type { Component } from \"svelte\";\n\n\texport type LightSwitchProps = {\n\t\tlightIcon?: Component;\n\t\tdarkIcon?: Component;\n\t\tsize?: Exclude<ButtonSize, `icon${string}`>;\n\t\tvariant?: Exclude<ButtonVariant, \"destructive\" | \"link\">;\n\t};\n\n\tconst sizeMap = {\n\t\tdefault: \"icon\",\n\t\txs: \"icon-xs\",\n\t\tsm: \"icon-sm\",\n\t\tlg: \"icon-lg\",\n\t} as Record<string, ButtonSize>;\n</script>\n\n<script lang=\"ts\">\n\timport MoonIcon from \"@lucide/svelte/icons/moon\";\n\timport SunIcon from \"@lucide/svelte/icons/sun\";\n\timport { toggleMode } from \"mode-watcher\";\n\timport { Button } from \"$UI$/button/index.js\";\n\n\tlet {\n\t\tlightIcon: LightIcon = SunIcon,\n\t\tdarkIcon: DarkIcon = MoonIcon,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t}: LightSwitchProps = $props();\n</script>\n\n<Button\n\tdata-light-switch\n\taria-label=\"Toggle theme\"\n\tonclick={toggleMode}\n\tsize={sizeMap[size]}\n\t{variant}\n>\n\t<LightIcon class=\"scale-100 rotate-0 transition-all! dark:scale-0 dark:-rotate-90\" />\n\t<DarkIcon class=\"absolute scale-0 rotate-90 transition-all! dark:scale-100 dark:rotate-0\" />\n</Button>\n",
 			"type": "registry:file",
 			"target": "light-switch/light-switch.svelte"
 		}

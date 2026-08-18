@@ -4,15 +4,23 @@ import { api } from "./api/index.ts";
 export const root = api.defineAPISchema<LightSwitchProps>({
 	title: "Root",
 	props: {
+		lightIcon: api.defineSimpleProp({
+			type: "Component",
+			description: "Light mode icon override.",
+		}),
+		darkIcon: api.defineSimpleProp({
+			type: "Component",
+			description: "Dark mode icon override.",
+		}),
 		variant: api.defineEnumProp({
 			options: ["default", "outline", "secondary", "ghost"],
 			description: "The visual style of the button.",
 			default: '"default"',
 		}),
 		size: api.defineEnumProp({
-			options: ["icon", "icon-xs", "icon-sm", "icon-lg"],
+			options: ["default", "xs", "sm", "lg"],
 			description: "The size of the button.",
-			default: '"icon"',
+			default: '"default"',
 		}),
 	},
 	dataAttrs: [

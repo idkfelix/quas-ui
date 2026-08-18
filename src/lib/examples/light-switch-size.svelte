@@ -3,8 +3,8 @@
 </script>
 
 <div class="grid gap-2 sm:flex">
-	<LightSwitch variant="outline" size="icon-xs" />
-	<LightSwitch variant="outline" size="icon-sm" />
-	<LightSwitch variant="outline" size="icon" />
-	<LightSwitch variant="outline" size="icon-lg" />
+	<LightSwitch variant="outline" size="xs" />
+	<LightSwitch variant="outline" size="sm" />
+	<LightSwitch variant="outline" size="default" />
+	<LightSwitch variant="outline" size="lg" />
 </div>

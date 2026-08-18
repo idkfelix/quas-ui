@@ -57,28 +57,4 @@ export const root = api.defineAPISchema<
 	],
 });
 
-export const spinner = api.defineAPISchema<object>({
-	title: "Spinner",
-	props: {
-		name: api.defineSimpleProp({
-			type: "string",
-			description: "The svg name attribute.",
-		}),
-		color: api.defineSimpleProp({
-			type: "string",
-			description: "The color of the spinner.",
-		}),
-		stroke: api.defineSimpleProp({
-			type: "string",
-			description: "The stroke of the spinner.",
-		}),
-	},
-	dataAttrs: [
-		api.defineSimpleDataAttr({
-			name: "data-button-spinner",
-			description: "Present on the button spinner element.",
-		}),
-	],
-});
-
-export const button = [root, spinner];
+export const button = [root];

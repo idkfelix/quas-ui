@@ -1,4 +1,3 @@
-import Spinner from "./button-spinner.svelte";
 import Root, {
 	type ButtonProps,
 	type ButtonSize,
@@ -8,11 +7,9 @@ import Root, {
 
 export {
 	Root,
-	Spinner,
 	type ButtonProps as Props,
 	//
 	Root as Button,
-	Spinner as ButtonSpinner,
 	buttonVariants,
 	type ButtonProps,
 	type ButtonSize,

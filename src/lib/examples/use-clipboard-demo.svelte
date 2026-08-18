@@ -8,7 +8,7 @@
 	let clipboard = new UseClipboard();
 </script>
 
-<Button variant="outline" size="icon-lg" onclick={() => clipboard.copy("Hello World!")}>
+<Button variant="outline" size="icon" onclick={() => clipboard.copy("Hello World!")}>
 	{#if clipboard.copied === true}
 		<CheckIcon />
 	{:else if clipboard.copied === false}
