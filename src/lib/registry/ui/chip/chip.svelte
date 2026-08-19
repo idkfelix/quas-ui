@@ -49,7 +49,6 @@
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import XIcon from "@lucide/svelte/icons/x";
-	import { scale } from "svelte/transition";
 	import { cn } from "$lib/utils.js";
 
 	let {
@@ -93,15 +92,14 @@
 	</span>
 
 	{#if toggleable}
-		{#if active}
-			<span in:scale={{ duration: 500, start: 0.85 }} data-icon="inline-start">
-				<CheckIcon />
-			</span>
-		{:else}
-			<span in:scale={{ duration: 500, start: 0.85 }} data-icon="inline-start">
-				<PlusIcon />
-			</span>
-		{/if}
+		<CheckIcon
+			data-icon="inline-start"
+			class="scale-0 rotate-90 aria-pressed:scale-100 aria-pressed:rotate-0"
+		/>
+		<PlusIcon
+			data-icon="inline-start"
+			class="scale-100 rotate-0 aria-pressed:scale-0 aria-pressed:-rotate-90"
+		/>
 	{/if}
 
 	{#if removable}
