@@ -36,9 +36,11 @@
 		{#each Object.entries(groups) as [group, items] (group)}
 			<p class="pointer-events-none font-semibold text-muted-foreground">{group}</p>
 			<div class="mx-1 my-3 flex flex-col gap-1 border-l-2 border-muted px-2">
-				{#each items as item (item.title)}
-					<a class="w-fit rounded-md px-2 py-1.5 transition-all hover:bg-muted" href={item.href}
-						>{item.title}</a
+				{#each items as { title, href } (title)}
+					<a
+						class="w-fit rounded-md px-2 py-1.5 transition-all hover:bg-muted"
+						target={href.at(0) != "/" ? "_blank" : undefined}
+						{href}>{title}</a
 					>
 				{/each}
 			</div>
