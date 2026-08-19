@@ -1,41 +1,29 @@
 <script lang="ts" module>
 	import { docs } from "$content/index.js";
 
-	type SidebarGroup = {
-		title: string;
-		items: {
+	const groups: Record<
+		string,
+		{
 			title: string;
 			href: string;
-		}[];
+		}[]
+	> = {
+		Overview: [
+			{ title: "Home", href: "/" },
+			{ title: "Github", href: "https://github.com/idkfelix/quas-ui" },
+		],
+		Components: docs
+			.filter((doc) => doc.folder === "components")
+			.map(({ title, path }) => ({ title, href: `/${path}` })),
+		Hooks: docs
+			.filter((doc) => doc.folder === "hooks")
+			.map(({ title, path }) => ({ title, href: `/${path}` })),
 	};
-
-	const groups: SidebarGroup[] = [
-		{
-			title: "Overview",
-			items: [
-				{ title: "Home", href: "/" },
-				{ title: "Github", href: "https://github.com/idkfelix/quas-ui" },
-			],
-		},
-		{
-			title: "Components",
-			items: docs
-				.filter((doc) => doc.folder === "components")
-				.map(({ title, path }) => ({ title, href: `/${path}` })),
-		},
-		{
-			title: "Hooks",
-			items: docs
-				.filter((doc) => doc.folder === "hooks")
-				.map(({ title, path }) => ({ title, href: `/${path}` })),
-		},
-	];
 </script>
 
 <script lang="ts">
 	import "../app.css";
 	import { ModeWatcher } from "mode-watcher";
-	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import type { LayoutProps } from "./$types.js";
 
 	const { children }: LayoutProps = $props();
@@ -43,31 +31,21 @@
 
 <ModeWatcher />
 
-<Sidebar.Provider class="flex h-full min-h-svh" style="--sidebar-width: calc(var(--spacing) * 48)">
-	<Sidebar.Root class="sticky top-0 ml-auto hidden bg-transparent py-8 md:flex" collapsible="none">
-		<Sidebar.Content>
-			{#each groups as { title, items } (title)}
-				<Sidebar.Group>
-					<Sidebar.GroupLabel class="font-medium text-muted-foreground">
-						{title}
-					</Sidebar.GroupLabel>
-					<Sidebar.GroupContent>
-						<Sidebar.MenuSub class="gap-1">
-							{#each items as { title, href } (title)}
-								<Sidebar.MenuSubButton class="w-fit" size="sm">
-									{#snippet child({ props })}
-										<a {href} target={href.at(0) !== "/" ? "_blank" : ""} {...props}>{title}</a>
-									{/snippet}
-								</Sidebar.MenuSubButton>
-							{/each}
-						</Sidebar.MenuSub>
-					</Sidebar.GroupContent>
-				</Sidebar.Group>
-			{/each}
-		</Sidebar.Content>
-	</Sidebar.Root>
+<div class="flex h-full min-h-svh">
+	<div class="sticky top-0 ml-auto hidden h-dvh w-48 flex-col py-16 pl-4 text-xs md:flex">
+		{#each Object.entries(groups) as [group, items] (group)}
+			<p class="pointer-events-none font-semibold text-muted-foreground">{group}</p>
+			<div class="mb-3 flex flex-col gap-1 px-3 py-2">
+				{#each items as item (item.title)}
+					<a class="w-fit rounded-md px-2 py-1.5 transition-all hover:bg-muted" href={item.href}
+						>{item.title}</a
+					>
+				{/each}
+			</div>
+		{/each}
+	</div>
 	<div class="mx-auto flex w-full max-w-2xl flex-col px-4 py-8 md:mr-auto lg:mx-0">
 		{@render children()}
 	</div>
-	<div class="sticky top-0 mr-auto hidden w-(--sidebar-width) lg:flex"></div>
-</Sidebar.Provider>
+	<div class="sticky top-0 mr-auto hidden w-48 lg:flex"></div>
+</div>
