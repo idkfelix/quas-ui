@@ -35,7 +35,7 @@
 	<div class="sticky top-0 ml-auto hidden h-dvh w-48 flex-col py-16 pl-4 text-xs md:flex">
 		{#each Object.entries(groups) as [group, items] (group)}
 			<p class="pointer-events-none font-semibold text-muted-foreground">{group}</p>
-			<div class="mb-3 flex flex-col gap-1 px-3 py-2">
+			<div class="mx-1 my-3 flex flex-col gap-1 border-l-2 border-muted px-2">
 				{#each items as item (item.title)}
 					<a class="w-fit rounded-md px-2 py-1.5 transition-all hover:bg-muted" href={item.href}
 						>{item.title}</a
