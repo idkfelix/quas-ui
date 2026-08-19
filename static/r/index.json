@@ -29,12 +29,6 @@
 		"relativeUrl": "light-switch.json"
 	},
 	{
-		"name": "link",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "link.json"
-	},
-	{
 		"name": "use-boolean",
 		"type": "registry:hook",
 		"registryDependencies": [],

@@ -6,7 +6,7 @@
 	export { default as li } from "./li.svelte";
 	export { default as ul } from "./ul.svelte";
 	export { default as hr } from "./hr.svelte";
-	export { Root as a } from "$lib/registry/ui/link/index.js";
+	export { default as a } from "./a.svelte";
 </script>
 
 <script lang="ts">
