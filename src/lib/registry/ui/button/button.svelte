@@ -89,7 +89,6 @@
 		bind:this={ref}
 		class={cn(buttonVariants({ variant, size }), className)}
 		data-slot="button"
-		data-button-root
 		data-loading={loading}
 		href={disabled || loading ? undefined : href}
 		role={disabled || loading ? "link" : undefined}
@@ -104,7 +103,6 @@
 		bind:this={ref}
 		class={cn(buttonVariants({ variant, size }), className)}
 		data-slot="button"
-		data-button-root
 		data-loading={loading}
 		disabled={disabled || loading}
 		{type}

@@ -35,7 +35,6 @@
 
 <button
 	bind:this={ref}
-	data-copy-button
 	data-slot="button"
 	class={cn(buttonVariants({ variant, size }), className)}
 	{...mergeProps(restProps, {

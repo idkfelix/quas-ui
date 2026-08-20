@@ -28,7 +28,6 @@
 
 <button
 	bind:this={ref}
-	data-light-switch
 	data-slot="button"
 	aria-label="Toggle theme"
 	class={cn(buttonVariants({ variant, size }), className)}
