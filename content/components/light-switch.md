@@ -33,17 +33,9 @@ Install and include the `<ModeWatcher/>` component from [svecosystem/mode-watche
 {@render children()}
 ```
 
-## Icon Overrides
+## Variants & Sizes
 
-<Example name="light-switch-icon"/>
-
-## Variants
-
-<Example name="light-switch-variant"/>
-
-## Sizes
-
-<Example name="light-switch-size"/>
+Refer to [Button Variants](/components/button#variants) and [Button Sizes](/components/button#sizes) for examples of available styles.
 
 ## API Reference
 

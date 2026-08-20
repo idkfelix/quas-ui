@@ -14,12 +14,8 @@ export const root = api.defineAPISchema<
 			options: ["HTMLButtonElement", "HTMLAnchorElement"],
 			description: "A reference to the button element.",
 		}),
-		children: api.defineSimpleProp({
-			type: "Snippet",
-			description: "The content of the button.",
-		}),
 		variant: api.defineEnumProp({
-			options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
+			options: ["default", "outline", "secondary", "ghost", "destructive", "link"],
 			description: "The visual style of the button.",
 			default: '"default"',
 		}),
@@ -37,6 +33,10 @@ export const root = api.defineAPISchema<
 		onClickPromise: api.defineFunctionProp({
 			definition: "(e: MouseEvent) => Promise<void>",
 			description: "A function to await on the button click event.",
+		}),
+		children: api.defineSimpleProp({
+			type: "Snippet",
+			description: "The content of the button.",
 		}),
 	},
 	dataAttrs: [
