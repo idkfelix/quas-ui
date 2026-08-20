@@ -14,6 +14,7 @@
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import XIcon from "@lucide/svelte/icons/x";
+	import { mergeProps } from "bits-ui";
 	import { scale } from "svelte/transition";
 	import { UseClipboard } from "$lib/registry/hooks/use-clipboard.svelte";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
@@ -34,11 +35,12 @@
 
 <button
 	bind:this={ref}
-	name="copy"
 	data-copy-button
+	data-slot="button"
 	class={cn(buttonVariants({ variant, size }), className)}
-	onclick={() => clipboard.copy(text)}
-	{...restProps}
+	{...mergeProps(restProps, {
+		onclick: () => clipboard.copy(text),
+	})}
 >
 	{#if clipboard.copied === true}
 		<div in:scale={{ duration: 500, start: 0.85 }}>

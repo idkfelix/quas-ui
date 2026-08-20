@@ -38,6 +38,11 @@ export const root = api.defineAPISchema<
 			name: "data-copy-button",
 			description: "Present on the root button element.",
 		}),
+		api.defineSimpleDataAttr({
+			name: "data-slot",
+			value: '"button"',
+			description: "Slot used to target and apply styles.",
+		}),
 	],
 });
 
