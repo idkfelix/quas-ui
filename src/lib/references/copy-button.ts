@@ -21,15 +21,19 @@ export const root = api.defineAPISchema<
 		size: api.defineEnumProp({
 			options: ["default", "xs", "sm", "lg", "icon", "icon-xs", "icon-sm", "icon-lg"],
 			description: "The size of the button.",
-			default: '"icon"',
+			default: '"default"',
 		}),
 		text: api.defineSimpleProp({
 			type: "string",
 			description: "The text to be copied when the button is clicked.",
 			required: true,
 		}),
+		onCopy: api.defineFunctionProp({
+			definition: "(copied: boolean | undefined) => unknown",
+			description: "A function that uses the resulting copied state.",
+		}),
 		children: api.defineSimpleProp({
-			type: "Snippet",
+			type: "Snippet[]",
 			description: "The content of the button.",
 		}),
 	},

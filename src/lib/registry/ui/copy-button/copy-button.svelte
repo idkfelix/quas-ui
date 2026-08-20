@@ -7,6 +7,7 @@
 		variant?: Exclude<ButtonVariant, "destructive" | "link">;
 		size?: ButtonSize;
 		text: string;
+		onCopy?: (copied: boolean | undefined) => unknown;
 	};
 </script>
 
@@ -24,8 +25,9 @@
 		ref = $bindable(null),
 		class: className,
 		variant = "default",
-		size = "icon",
+		size = "default",
 		text,
+		onCopy,
 		children,
 		...restProps
 	}: CopyButtonProps = $props();
@@ -38,22 +40,22 @@
 	data-slot="button"
 	class={cn(buttonVariants({ variant, size }), className)}
 	{...mergeProps(restProps, {
-		onclick: () => clipboard.copy(text),
+		onclick: () => clipboard.copy(text).then((copied) => onCopy?.(copied)),
 	})}
 >
 	{#if clipboard.copied === true}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
-			<CheckIcon tabindex={-1} />
+			<CheckIcon tabindex={-1} data-icon="inline-start" />
 			<span class="sr-only">Copied</span>
 		</div>
 	{:else if clipboard.copied === false}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
-			<XIcon tabindex={-1} />
+			<XIcon tabindex={-1} data-icon="inline-start" />
 			<span class="sr-only">Failed to copy</span>
 		</div>
 	{:else}
 		<div in:scale={{ duration: 500, start: 0.85 }}>
-			<CopyIcon tabindex={-1} />
+			<CopyIcon tabindex={-1} data-icon="inline-start" />
 			<span class="sr-only">Copy</span>
 		</div>
 	{/if}

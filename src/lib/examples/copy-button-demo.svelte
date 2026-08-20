@@ -2,4 +2,4 @@
 	import { CopyButton } from "$lib/registry/ui/copy-button/index.js";
 </script>
 
-<CopyButton variant="outline" text="Hello World!" />
+<CopyButton variant="outline" text="Hello World!">Copy</CopyButton>

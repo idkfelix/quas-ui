@@ -38,7 +38,7 @@
 				</Tabs.List>
 			</Tabs.Root>
 		</div>
-		<CopyButton text={commandText} variant="ghost" class="text-muted-foreground" />
+		<CopyButton text={commandText} size="icon" variant="ghost" class="text-muted-foreground" />
 	</div>
 	<div class="scrollbar-none overflow-x-auto p-3">
 		<code class="font-mono text-sm leading-none font-light text-nowrap text-muted-foreground">

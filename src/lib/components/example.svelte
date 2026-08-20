@@ -27,6 +27,7 @@
 				text={source.raw}
 				class="absolute inset-e-2 top-3 text-muted-foreground"
 				variant="ghost"
+				size="icon"
 			/>
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html source.styled}

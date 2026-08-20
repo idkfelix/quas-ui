@@ -35,7 +35,7 @@ export const root = api.defineAPISchema<
 			description: "A function to await on the button click event.",
 		}),
 		children: api.defineSimpleProp({
-			type: "Snippet",
+			type: "Snippet[]",
 			description: "The content of the button.",
 		}),
 	},
