@@ -1,12 +1,12 @@
 <script lang="ts" module>
 	import { tv, type VariantProps } from "tailwind-variants";
-	import type { HTMLButtonAttributes } from "svelte/elements";
+	import type { SvelteHTMLElements } from "svelte/elements";
 
 	export const chipVariants = tv({
 		base: [
-			"group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-[0.625rem] font-medium whitespace-nowrap transition-all",
+			"group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-[0.625rem]/none font-medium whitespace-nowrap transition-all",
 			"has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 **:data-[icon=inline-end]:order-last **:data-[icon=inline-start]:order-first *:[&>svg]:pointer-events-none *:[&>svg]:size-2.5!",
-			"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50",
+			"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-disabled:pointer-events-none aria-disabled:opacity-50",
 			"aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
 		],
 		variants: {
@@ -34,82 +34,46 @@
 	});
 
 	export type ChipVariant = VariantProps<typeof chipVariants>["variant"];
-
-	export type ChipProps = HTMLButtonAttributes & {
+	export type ChipProps = SvelteHTMLElements["span"] & {
 		variant?: ChipVariant;
 		active?: boolean;
-		removable?: boolean;
+		disabled?: boolean;
 		toggleable?: boolean;
-		onclick?: (e: MouseEvent) => void;
-		onremove?: (e: MouseEvent) => void;
 	};
 </script>
 
 <script lang="ts">
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import PlusIcon from "@lucide/svelte/icons/plus";
-	import XIcon from "@lucide/svelte/icons/x";
+	// import CheckIcon from "@lucide/svelte/icons/check";
+	// import PlusIcon from "@lucide/svelte/icons/plus";
+	// import XIcon from "@lucide/svelte/icons/x";
 	import { cn } from "$lib/utils.js";
 
 	let {
 		class: className,
 		variant = "default",
 		active = $bindable(false),
-		removable,
-		toggleable,
 		disabled,
-		onclick,
-		onremove,
+		toggleable,
 		children,
 		...restProps
 	}: ChipProps = $props();
 
-	const handleToggle = (e: MouseEvent) => {
+	const handleClick = () => {
 		if (disabled) return;
-		if (onclick) onclick(e);
-		else active = !active;
-	};
-
-	const handleRemove = (e: MouseEvent) => {
-		e.stopPropagation();
-		if (disabled) return;
-		onremove?.(e);
+		active = !active;
 	};
 </script>
 
-<svelte:element
-	this={removable ? "span" : "button"}
-	class={cn(chipVariants({ variant, active }), className)}
+<span
 	data-slot="chip"
-	tabindex={toggleable ? 0 : -1}
+	data-active={active}
+	class={cn(chipVariants({ variant, active }), className)}
+	role={toggleable ? "button" : undefined}
+	aria-disabled={disabled}
 	aria-pressed={toggleable ? active : undefined}
-	onclick={toggleable ? handleToggle : onclick}
-	{disabled}
+	onclick={handleClick}
+	onkeydown={(e) => (e.key === "Enter" || e.key === " ") && handleClick()}
 	{...restProps}
 >
-	<span class="leading-2">
-		{@render children?.()}
-	</span>
-
-	{#if toggleable}
-		<CheckIcon
-			data-icon="inline-start"
-			class="scale-0 rotate-90 aria-pressed:scale-100 aria-pressed:rotate-0"
-		/>
-		<PlusIcon
-			data-icon="inline-start"
-			class="scale-100 rotate-0 aria-pressed:scale-0 aria-pressed:-rotate-90"
-		/>
-	{/if}
-
-	{#if removable}
-		<button
-			type="button"
-			class="rounded-full hover:bg-primary/20"
-			onclick={handleRemove}
-			aria-label="Remove"
-		>
-			<XIcon data-icon="inline-end" />
-		</button>
-	{/if}
-</svelte:element>
+	{@render children?.()}
+</span>
