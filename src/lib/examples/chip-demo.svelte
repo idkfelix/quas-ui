@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex gap-2">
-	<Chip>Tag</Chip>
-	<Chip variant="outline" toggleable>Tag</Chip>
-	<Chip variant="outline" disabled toggleable>Tag</Chip>
+	<Chip>Static</Chip>
+	<Chip variant="outline" type="toggle">Toggle</Chip>
+	<Chip variant="secondary" type="tag">Tag</Chip>
 </div>
