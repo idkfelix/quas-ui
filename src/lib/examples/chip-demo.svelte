@@ -5,5 +5,5 @@
 <div class="flex gap-2">
 	<Chip>Static</Chip>
 	<Chip variant="outline" type="toggle">Toggle</Chip>
-	<Chip variant="secondary" type="tag">Tag</Chip>
+	<Chip variant="secondary" type="removable">Tag</Chip>
 </div>
