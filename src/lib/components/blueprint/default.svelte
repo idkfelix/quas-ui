@@ -10,7 +10,9 @@
 </script>
 
 <script lang="ts">
+	import NavMobile from "../nav-mobile.svelte";
 	import type { Snippet } from "svelte";
+
 	let {
 		children,
 		metadata,
@@ -30,9 +32,12 @@
 
 <figure class="w-full">
 	<header class="mb-6 flex flex-col gap-2">
-		<h1 class="text-4xl font-bold tracking-tight">
-			{metadata.title}
-		</h1>
+		<div class="flex w-full">
+			<h1 class="mr-auto text-4xl font-bold tracking-tight">
+				{metadata.title}
+			</h1>
+			<NavMobile />
+		</div>
 		<p class="text-base text-balance text-muted-foreground">
 			{metadata.description}
 		</p>
