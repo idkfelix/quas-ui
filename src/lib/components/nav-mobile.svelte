@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { page } from "$app/state";
 	import MenuIcon from "@lucide/svelte/icons/menu";
 	import XIcon from "@lucide/svelte/icons/x";
 	import * as Popover from "$lib/components/ui/popover/index.js";
 	import { Navigation } from "$lib/components/index.js";
 
-	let open = $state(false);
+	let open = $derived(!page.url.pathname);
 </script>
 
 <Popover.Root bind:open>

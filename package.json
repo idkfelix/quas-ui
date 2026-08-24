@@ -47,6 +47,7 @@
     "package-manager-detector": "^1.8.0",
     "publint": "^0.3.21",
     "rehype-slug": "^6.0.0",
+    "runed": "^0.37.1",
     "shadcn-svelte": "^1.4.2",
     "shiki": "^4.4.2",
     "svelte": "^5.56.1",
