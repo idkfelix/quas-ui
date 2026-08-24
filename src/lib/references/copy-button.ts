@@ -11,7 +11,7 @@ export const root = api.defineAPISchema<
 		ref: api.defineSimpleProp({
 			type: "HTMLElement",
 			bindable: true,
-			description: "A reference to the button element.",
+			description: "The underlying DOM element being rendered.",
 		}),
 		variant: api.defineEnumProp({
 			options: ["default", "outline", "secondary", "ghost"],

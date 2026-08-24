@@ -12,7 +12,7 @@ export const root = api.defineAPISchema<
 			type: "HTMLElement",
 			bindable: true,
 			options: ["HTMLButtonElement", "HTMLAnchorElement"],
-			description: "A reference to the button element.",
+			description: "The underlying DOM element being rendered.",
 		}),
 		variant: api.defineEnumProp({
 			options: ["default", "outline", "secondary", "ghost", "destructive", "link"],
@@ -36,7 +36,7 @@ export const root = api.defineAPISchema<
 		}),
 		children: api.defineSimpleProp({
 			type: "Snippet[]",
-			description: "The content of the button.",
+			description: "The children content to render.",
 		}),
 	},
 	dataAttrs: [

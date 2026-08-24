@@ -3,7 +3,7 @@
 	"name": "chip",
 	"type": "registry:ui",
 	"devDependencies": [
-		"@lucide/svelte@^1.28.0",
+		"@lucide/svelte@^1.33.0",
 		"tailwind-variants@^3.3.0"
 	],
 	"files": [

@@ -29,6 +29,18 @@
 		"relativeUrl": "light-switch.json"
 	},
 	{
+		"name": "select",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "select.json"
+	},
+	{
+		"name": "separator",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "separator.json"
+	},
+	{
 		"name": "use-boolean",
 		"type": "registry:hook",
 		"registryDependencies": [],

@@ -1,0 +1,72 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "select",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0",
+		"@lucide/svelte@^1.33.0"
+	],
+	"files": [
+		{
+			"content": "import Content from \"./select-content.svelte\";\nimport GroupHeading from \"./select-group-heading.svelte\";\nimport Group from \"./select-group.svelte\";\nimport Item from \"./select-item.svelte\";\nimport Label from \"./select-label.svelte\";\nimport Portal from \"./select-portal.svelte\";\nimport ScrollDownButton from \"./select-scroll-down-button.svelte\";\nimport ScrollUpButton from \"./select-scroll-up-button.svelte\";\nimport Separator from \"./select-separator.svelte\";\nimport Trigger from \"./select-trigger.svelte\";\nimport Root from \"./select.svelte\";\n\nexport {\n\tRoot,\n\tGroup,\n\tLabel,\n\tItem,\n\tContent,\n\tTrigger,\n\tSeparator,\n\tScrollDownButton,\n\tScrollUpButton,\n\tGroupHeading,\n\tPortal,\n\t//\n\tRoot as Select,\n\tGroup as SelectGroup,\n\tLabel as SelectLabel,\n\tItem as SelectItem,\n\tContent as SelectContent,\n\tTrigger as SelectTrigger,\n\tSeparator as SelectSeparator,\n\tScrollDownButton as SelectScrollDownButton,\n\tScrollUpButton as SelectScrollUpButton,\n\tGroupHeading as SelectGroupHeading,\n\tPortal as SelectPortal,\n};\n",
+			"type": "registry:file",
+			"target": "select/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChild } from \"$UTILS$.js\";\n\timport type { WithoutChildrenOrChild } from \"$UTILS$.js\";\n\timport SelectPortal from \"./select-portal.svelte\";\n\timport SelectScrollDownButton from \"./select-scroll-down-button.svelte\";\n\timport SelectScrollUpButton from \"./select-scroll-up-button.svelte\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 4,\n\t\tportalProps,\n\t\tchildren,\n\t\tpreventScroll = true,\n\t\t...restProps\n\t}: WithoutChild<SelectPrimitive.ContentProps> & {\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof SelectPortal>>;\n\t} = $props();\n</script>\n\n<SelectPortal {...portalProps}>\n\t<SelectPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\t{preventScroll}\n\t\tdata-slot=\"select-content\"\n\t\tclass={cn(\n\t\t\t\"relative isolate z-50 min-w-32 animate-none! overflow-x-hidden overflow-y-auto rounded-lg bg-popover/70 text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 before:pointer-events-none before:absolute before:inset-0 before:-z-1 before:rounded-[inherit] before:backdrop-blur-2xl before:backdrop-saturate-150 data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 **:data-[slot$=-item]:focus:bg-foreground/10 **:data-[slot$=-item]:data-highlighted:bg-foreground/10 **:data-[slot$=-separator]:bg-foreground/5 **:data-[slot$=-trigger]:focus:bg-foreground/10 **:data-[slot$=-trigger]:aria-expanded:bg-foreground/10! **:data-[variant=destructive]:**:text-accent-foreground! **:data-[variant=destructive]:text-accent-foreground! **:data-[variant=destructive]:focus:bg-foreground/10! data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t<SelectScrollUpButton />\n\t\t<SelectPrimitive.Viewport\n\t\t\tclass={cn(\n\t\t\t\t\"h-(--bits-select-anchor-height) w-full min-w-(--bits-select-anchor-width) scroll-my-1\"\n\t\t\t)}\n\t\t>\n\t\t\t{@render children?.()}\n\t\t</SelectPrimitive.Viewport>\n\t\t<SelectScrollDownButton />\n\t</SelectPrimitive.Content>\n</SelectPortal>\n",
+			"type": "registry:file",
+			"target": "select/select-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: ComponentProps<typeof SelectPrimitive.GroupHeading> = $props();\n</script>\n\n<SelectPrimitive.GroupHeading\n\tbind:ref\n\tdata-slot=\"select-group-heading\"\n\tclass={cn(\"px-2 py-1.5 text-xs text-muted-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</SelectPrimitive.GroupHeading>\n",
+			"type": "registry:file",
+			"target": "select/select-group-heading.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SelectPrimitive.GroupProps = $props();\n</script>\n\n<SelectPrimitive.Group\n\tbind:ref\n\tdata-slot=\"select-group\"\n\tclass={cn(\"scroll-my-1 p-1\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "select/select-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport CheckIcon from \"@lucide/svelte/icons/check\";\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue,\n\t\tlabel,\n\t\tchildren: childrenProp,\n\t\t...restProps\n\t}: WithoutChild<SelectPrimitive.ItemProps> = $props();\n</script>\n\n<SelectPrimitive.Item\n\tbind:ref\n\t{value}\n\tdata-slot=\"select-item\"\n\tclass={cn(\n\t\t\"relative flex min-h-7 w-full cursor-default items-center gap-2 rounded-md px-2 py-1 text-xs/relaxed outline-hidden select-none focus:bg-accent focus:bg-accent focus:text-accent-foreground focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ selected, highlighted })}\n\t\t<span class=\"absolute end-2 flex size-3.5 items-center justify-center\">\n\t\t\t{#if selected}\n\t\t\t\t<CheckIcon class=\"cn-select-item-indicator-icon\" />\n\t\t\t{/if}\n\t\t</span>\n\t\t<span class=\"flex flex-1 shrink-0 gap-2 whitespace-nowrap\">\n\t\t\t{#if childrenProp}\n\t\t\t\t{@render childrenProp({ selected, highlighted })}\n\t\t\t{:else}\n\t\t\t\t{label || value}\n\t\t\t{/if}\n\t\t</span>\n\t{/snippet}\n</SelectPrimitive.Item>\n",
+			"type": "registry:file",
+			"target": "select/select-item.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"select-label\"\n\tclass={cn(\"px-2 py-1.5 text-xs text-muted-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "select/select-label.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\n\tlet { ...restProps }: SelectPrimitive.PortalProps = $props();\n</script>\n\n<SelectPrimitive.Portal {...restProps} />\n",
+			"type": "registry:file",
+			"target": "select/select-portal.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport ChevronDownIcon from \"@lucide/svelte/icons/chevron-down\";\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SelectPrimitive.ScrollDownButtonProps> = $props();\n</script>\n\n<SelectPrimitive.ScrollDownButton\n\tbind:ref\n\tdata-slot=\"select-scroll-down-button\"\n\tclass={cn(\n\t\t\"bottom-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-3.5\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<ChevronDownIcon />\n</SelectPrimitive.ScrollDownButton>\n",
+			"type": "registry:file",
+			"target": "select/select-scroll-down-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport ChevronUpIcon from \"@lucide/svelte/icons/chevron-up\";\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SelectPrimitive.ScrollUpButtonProps> = $props();\n</script>\n\n<SelectPrimitive.ScrollUpButton\n\tbind:ref\n\tdata-slot=\"select-scroll-up-button\"\n\tclass={cn(\n\t\t\"top-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-3.5\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<ChevronUpIcon />\n</SelectPrimitive.ScrollUpButton>\n",
+			"type": "registry:file",
+			"target": "select/select-scroll-up-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Separator } from \"$lib/components/ui/separator/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { Separator as SeparatorPrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SeparatorPrimitive.RootProps = $props();\n</script>\n\n<Separator\n\tbind:ref\n\tdata-slot=\"select-separator\"\n\tclass={cn(\"pointer-events-none -mx-1 my-1 h-px bg-border/50\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "select/select-separator.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport ChevronDownIcon from \"@lucide/svelte/icons/chevron-down\";\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\tsize = \"default\",\n\t\t...restProps\n\t}: WithoutChild<SelectPrimitive.TriggerProps> & {\n\t\tsize?: \"sm\" | \"default\";\n\t} = $props();\n</script>\n\n<SelectPrimitive.Trigger\n\tbind:ref\n\tdata-slot=\"select-trigger\"\n\tdata-size={size}\n\tclass={cn(\n\t\t\"flex w-fit items-center justify-between gap-1.5 rounded-md border border-input bg-input/20 px-2 py-1.5 text-xs/relaxed whitespace-nowrap transition-colors outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/20 data-placeholder:text-muted-foreground data-[size=default]:h-7 data-[size=sm]:h-6 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t<ChevronDownIcon class=\"pointer-events-none size-3.5 text-muted-foreground\" />\n</SelectPrimitive.Trigger>\n",
+			"type": "registry:file",
+			"target": "select/select-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\n\tlet {\n\t\topen = $bindable(false),\n\t\tvalue = $bindable(),\n\t\t...restProps\n\t}: SelectPrimitive.RootProps = $props();\n</script>\n\n<SelectPrimitive.Root bind:open bind:value={value as never} {...restProps} />\n",
+			"type": "registry:file",
+			"target": "select/select.svelte"
+		}
+	]
+}
