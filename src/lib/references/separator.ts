@@ -1,4 +1,4 @@
-import { api } from "./api/index.ts";
+import { api, children } from "./api/index.ts";
 import type { SeparatorRootPropsWithoutHTML } from "bits-ui";
 
 export const root = api.defineAPISchema<Omit<SeparatorRootPropsWithoutHTML, "child" | "style">>({
@@ -19,14 +19,12 @@ export const root = api.defineAPISchema<Omit<SeparatorRootPropsWithoutHTML, "chi
 			description: "Whether the separator should be read by screen readers.",
 			default: false,
 		}),
-		children: api.defineSimpleProp({
-			type: "Snippet[]",
-			description: "The children content to render.",
-		}),
+		children,
 	},
 	dataAttrs: [
 		api.defineSimpleDataAttr({
-			name: "data-separator-root",
+			name: "data-slot",
+			value: '"separator"',
 			description: "Present on the root element.",
 		}),
 		api.defineEnumDataAttr({

@@ -25,7 +25,7 @@ export const root = api.defineAPISchema<Omit<LightSwitchProps, keyof HTMLButtonA
 		api.defineSimpleDataAttr({
 			name: "data-slot",
 			value: '"button"',
-			description: "Slot used to target and apply styles.",
+			description: "Present on the root element.",
 		}),
 	],
 });

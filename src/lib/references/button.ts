@@ -1,5 +1,5 @@
 import type { ButtonProps } from "$lib/registry/ui/button/index.js";
-import { api } from "./api/index.ts";
+import { api, children } from "./api/index.ts";
 import type { WithChildren } from "bits-ui";
 import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 
@@ -34,16 +34,13 @@ export const root = api.defineAPISchema<
 			definition: "(e: MouseEvent) => Promise<void>",
 			description: "A function to await on the button click event.",
 		}),
-		children: api.defineSimpleProp({
-			type: "Snippet[]",
-			description: "The children content to render.",
-		}),
+		children,
 	},
 	dataAttrs: [
 		api.defineSimpleDataAttr({
 			name: "data-slot",
 			value: '"button"',
-			description: "Slot used to target and apply styles.",
+			description: "Present on the root element.",
 		}),
 		api.defineEnumDataAttr({
 			name: "data-loading",

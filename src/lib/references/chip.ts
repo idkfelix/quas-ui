@@ -1,5 +1,5 @@
 import type { ChipProps } from "$lib/registry/ui/chip/index.js";
-import { api } from "./api/index.ts";
+import { api, children } from "./api/index.ts";
 import type { WithChildren } from "bits-ui";
 import type { SvelteHTMLElements } from "svelte/elements";
 
@@ -38,16 +38,13 @@ export const root = api.defineAPISchema<
 			definition: "() => void",
 			description: "A handler function for removing the chip.",
 		}),
-		children: api.defineSimpleProp({
-			type: "Snippet[]",
-			description: "The children content to render.",
-		}),
+		children,
 	},
 	dataAttrs: [
 		api.defineSimpleDataAttr({
 			name: "data-slot",
 			value: '"chip"',
-			description: "Slot used to target and apply styles.",
+			description: "Present on the root element.",
 		}),
 	],
 });

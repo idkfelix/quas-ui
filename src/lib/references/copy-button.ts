@@ -1,5 +1,5 @@
 import type { CopyButtonProps } from "$lib/registry/ui/copy-button/index.js";
-import { api } from "./api/index.ts";
+import { api, children } from "./api/index.ts";
 import type { WithChildren } from "bits-ui";
 import type { HTMLButtonAttributes } from "svelte/elements";
 
@@ -32,16 +32,13 @@ export const root = api.defineAPISchema<
 			definition: "(copied: boolean | undefined) => unknown",
 			description: "A function that uses the resulting copied state.",
 		}),
-		children: api.defineSimpleProp({
-			type: "Snippet[]",
-			description: "The content of the button.",
-		}),
+		children,
 	},
 	dataAttrs: [
 		api.defineSimpleDataAttr({
 			name: "data-slot",
 			value: '"button"',
-			description: "Slot used to target and apply styles.",
+			description: "Present on the root element.",
 		}),
 	],
 });
