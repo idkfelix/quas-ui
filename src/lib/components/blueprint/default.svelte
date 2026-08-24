@@ -10,37 +10,8 @@
 </script>
 
 <script lang="ts">
-	import NavMobile from "../nav-mobile.svelte";
 	import type { Snippet } from "svelte";
-
-	let {
-		children,
-		metadata,
-	}: {
-		children: Snippet;
-		metadata: {
-			title: string;
-			description: string;
-		};
-	} = $props();
+	let { children }: { children: Snippet } = $props();
 </script>
 
-<svelte:head>
-	<title>{metadata.title} - quas ui</title>
-	<meta name="description" content={metadata.description} />
-</svelte:head>
-
-<figure class="w-full">
-	<header class="mb-6 flex flex-col gap-2">
-		<div class="flex w-full">
-			<h1 class="mr-auto text-4xl font-bold tracking-tight">
-				{metadata.title}
-			</h1>
-			<NavMobile />
-		</div>
-		<p class="text-base text-balance text-muted-foreground">
-			{metadata.description}
-		</p>
-	</header>
-	{@render children()}
-</figure>
+{@render children()}
