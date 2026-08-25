@@ -1,6 +1,6 @@
 ---
 title: Chip
-description: A static, toggle, or removable chip component.
+description: An action, toggle, or removable chip component.
 ---
 
 <script lang="ts">
