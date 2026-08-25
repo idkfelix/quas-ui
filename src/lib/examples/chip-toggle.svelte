@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Chip } from "$lib/registry/ui/chip/index.js";
-	let chipActive = $state(false);
+
+	let active = $state(false);
+	let text = $derived(active ? "Active" : "Inactive");
 </script>
 
-<Chip bind:active={chipActive} variant="outline" type="toggle"
-	>{chipActive ? "Active" : "Inactive"}</Chip
->
+<Chip bind:active variant="outline" type="toggle">{text}</Chip>

@@ -4,7 +4,12 @@ import type { WithChildren } from "bits-ui";
 import type { SvelteHTMLElements } from "svelte/elements";
 
 export const root = api.defineAPISchema<
-	WithChildren<Omit<ChipProps, keyof SvelteHTMLElements["span"]>>
+	WithChildren<
+		Omit<
+			ChipProps,
+			keyof SvelteHTMLElements["span"] | keyof Omit<SvelteHTMLElements["button"], "type">
+		>
+	>
 >({
 	title: "Root",
 	props: {
@@ -13,26 +18,21 @@ export const root = api.defineAPISchema<
 			bindable: true,
 			description: "The underlying DOM element being rendered.",
 		}),
+		type: api.defineEnumProp({
+			options: ["action", "toggle", "removable"],
+			description: "The type of chip component to display.",
+			default: '"action"',
+		}),
 		variant: api.defineEnumProp({
-			options: ["default", "outline", "secondary", "ghost"],
+			options: ["default", "outline", "secondary"],
 			description: "The visual style of the chip.",
 			default: '"default"',
-		}),
-		type: api.defineEnumProp({
-			options: ["static", "toggle", "removable"],
-			description: "The type of chip component to display.",
-			default: '"static"',
 		}),
 		active: api.defineSimpleProp({
 			type: "boolean",
 			bindable: true,
 			description: "Whether the chip is currently toggled on.",
 			default: false,
-		}),
-		disabled: api.defineSimpleProp({
-			type: "boolean",
-			default: false,
-			description: "Whether the chip is currently disabled.",
 		}),
 		onRemove: api.defineFunctionProp({
 			definition: "() => void",

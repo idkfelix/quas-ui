@@ -14,6 +14,10 @@ description: A static, toggle, or removable chip component.
 
 <AddRegistry name="chip"/>
 
+## Variants
+
+<Example name="chip-variant"/>
+
 ## Toggle
 
 <Example name="chip-toggle"/>

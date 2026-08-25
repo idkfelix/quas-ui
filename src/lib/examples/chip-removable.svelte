@@ -5,11 +5,8 @@
 
 <div class="flex gap-2">
 	{#each tags as tag, index (tag)}
-		<Chip
-			variant="secondary"
-			type="removable"
-			onRemove={() => (tags = tags.toSpliced(index, 1))}
-			disabled={index === 0}>{tag}</Chip
+		<Chip variant="secondary" type="removable" onRemove={() => (tags = tags.toSpliced(index, 1))}
+			>{tag}</Chip
 		>
 	{/each}
 </div>
