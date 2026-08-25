@@ -36,7 +36,10 @@
 		{
 			"name": "copy-button",
 			"type": "registry:ui",
-			"registryDependencies": ["local:button", "local:use-clipboard"],
+			"registryDependencies": [
+				"local:button",
+				"local:use-clipboard"
+			],
 			"files": [
 				{
 					"type": "registry:file",
@@ -51,7 +54,9 @@
 		{
 			"name": "light-switch",
 			"type": "registry:ui",
-			"registryDependencies": ["local:button"],
+			"registryDependencies": [
+				"local:button"
+			],
 			"files": [
 				{
 					"type": "registry:file",
@@ -60,61 +65,6 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/light-switch/light-switch.svelte"
-				}
-			]
-		},
-		{
-			"name": "select",
-			"type": "registry:ui",
-			"registryDependencies": [],
-			"files": [
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/index.ts"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-content.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-group-heading.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-group.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-item.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-label.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-portal.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-scroll-down-button.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-scroll-up-button.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-separator.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select-trigger.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/select/select.svelte"
 				}
 			]
 		},
