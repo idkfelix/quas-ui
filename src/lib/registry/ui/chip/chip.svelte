@@ -4,7 +4,13 @@
 	import type { SvelteHTMLElements } from "svelte/elements";
 
 	export const chipVariants = tv({
-		base: "group/chip inline-flex h-5 w-fit shrink-0 items-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-[0.625rem]/none font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-disabled:pointer-events-none aria-disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-2.5",
+		base: [
+			"group/chip inline-flex h-5 w-fit shrink-0 items-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-[0.625rem]/none font-medium whitespace-nowrap transition-all",
+			"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5",
+			"disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50",
+			"aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
+			"[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-2.5",
+		],
 		variants: {
 			variant: {
 				default:
