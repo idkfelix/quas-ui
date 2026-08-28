@@ -49,6 +49,36 @@
 			]
 		},
 		{
+			"name": "input",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input/input.svelte"
+				}
+			]
+		},
+		{
+			"name": "label",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/label/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/label/label.svelte"
+				}
+			]
+		},
+		{
 			"name": "light-switch",
 			"type": "registry:ui",
 			"registryDependencies": ["local:button"],

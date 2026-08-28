@@ -13,12 +13,18 @@
 		],
 		variants: {
 			variant: {
-				default:
-					"bg-primary text-primary-foreground hover:bg-primary/90 aria-pressed:border-border aria-pressed:bg-input/20 aria-pressed:text-foreground aria-pressed:hover:bg-muted",
-				outline:
-					"border-border bg-input/20 text-foreground hover:bg-muted aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary/90",
-				secondary:
-					"bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-pressed:border-border aria-pressed:bg-input/20 aria-pressed:text-foreground aria-pressed:hover:bg-muted",
+				default: [
+					"bg-primary text-primary-foreground hover:bg-primary/90",
+					"aria-pressed:border-border aria-pressed:bg-input/20 aria-pressed:text-foreground aria-pressed:hover:bg-muted",
+				],
+				outline: [
+					"border-border bg-input/20 text-foreground hover:bg-muted",
+					"aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary/90",
+				],
+				secondary: [
+					"bg-secondary text-secondary-foreground hover:bg-secondary/80",
+					"aria-pressed:border-border aria-pressed:bg-input/20 aria-pressed:text-foreground aria-pressed:hover:bg-muted",
+				],
 			},
 		},
 		defaultVariants: {
